@@ -1,17 +1,34 @@
 function questionController(Question) {
   function getMethod(req, res) {
     const query = {};
-    Question.find(query, (errorQuestion, question) => (errorQuestion ? res.send(errorQuestion) : res.json(question)));
+    function findCallback(errorFindQuestion, question) {
+      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(question);
+    }
+    Question.find(query, findCallback);
   }
+
   function deleteMethod({ body }, res) {
-    Question.findByIdAndRemove(body._id, body, (errorDeleteQuestion, removedQuestion) => (errorDeleteQuestion ? res.send(errorDeleteQuestion) : res.send(removedQuestion)));
+    const query = body._id;
+    function deleteCallback(errorDeleteQuestion, removedQuestion) {
+      return errorDeleteQuestion ? res.send(errorDeleteQuestion) : res.json(removedQuestion);
+    }
+    Question.findByIdAndRemove(query, body, deleteCallback);
   }
+
   function putMethod({ body }, res) {
-    Question.findByIdAndUpdate(body._id, body, (errorFindQuestion, updatedQuestion) => (errorFindQuestion ? res.send(errorFindQuestion) : res.send(updatedQuestion)));
+    const query = body._id;
+    function putCallback(errorFindQuestion, updatedQuestion) {
+      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(updatedQuestion);
+    }
+    Question.findByIdAndUpdate(query, body, putCallback);
   }
-  function postMethod(req, res) {
-    const newQuestion = req.body;
-    Question.create(newQuestion, (errorUpdateQuestion) => (errorUpdateQuestion ? res.send(errorUpdateQuestion) : res.send(newQuestion)));
+
+  function postMethod({ body }, res) {
+    const newQuestion = body;
+    function postCallback(errorFindQuestion, createdNewQuestion) {
+      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(createdNewQuestion);
+    }
+    Question.create(newQuestion, postCallback);
   }
   return {
     getMethod, deleteMethod, putMethod, postMethod,
