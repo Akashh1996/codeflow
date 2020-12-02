@@ -1,0 +1,22 @@
+main{
+    display: flex;
+    margin: 0 58px;
+}
+.main-content{
+    margin: 0 10px;
+    flex: 0.70
+    
+}
+.side-tag{
+    flex:0.3;
+}
+@media only screen and (max-width: 934px) {
+    main {
+      display: block;
+    }
+ }
+@media only screen and (max-width: 570px) {
+    main, .main-content{
+      margin: 0px 5px;
+    }
+ }

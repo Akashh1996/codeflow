@@ -1,6 +1,8 @@
 function questionController(Question) {
   function getMethod(req, res) {
-    const query = {};
+    const query = req.body;
+    // eslint-disable-next-line no-console
+    console.log(req.body);
     function findCallback(errorFindQuestion, question) {
       return errorFindQuestion ? res.send(errorFindQuestion) : res.json(question);
     }
