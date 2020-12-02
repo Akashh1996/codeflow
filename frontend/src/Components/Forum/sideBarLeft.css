@@ -9,9 +9,11 @@ aside{
     top: 0px;
 }
 .tags__all{
-    border: 1px solid grey;
+    border: 1px solid #707885;
     width: fit-content;
-    padding: 5px 5px
+    padding: 1px 3px;
+    border-radius: 2px;
+    color: #0077CC;
 } 
 .wrapper-tags{
     margin: 20px;
@@ -19,11 +21,18 @@ aside{
     flex-wrap: wrap;
     margin-top: 10px;
     background-color: white;
+    justify-content: center;
+    font-size: 15px;
 
 }
-.wrapper-tags > p{
+.wrapper-tags > a{
     margin: 5px 4px;
 }
+.wrapper-tags a:hover{
+    background-color: #2D6FF7;
+    color: white;
+}
+
 .second{
     position: sticky;
     top: 10px;

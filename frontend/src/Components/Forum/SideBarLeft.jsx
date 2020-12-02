@@ -14,22 +14,22 @@ function DetailHeader() {
 
       <aside className="wrapper-tags-fixed">
         <div className="wrapper-tags">
-          <p className="tags__all">React</p>
-          <p className="tags__all">React</p>
-          <p className="tags__all">React</p>
-          <p className="tags__all">React</p>
-          <p className="tags__all">React</p>
-          <p className="tags__all">React</p>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
+          <Link to="/" className="tags__all">React</Link>
         </div>
       </aside>
-
       <aside>
-        <p>akash</p>
-        <p>akash</p>
-        <p>akash</p>
-        <p>akash</p>
-        <p>akash</p>
-        <p>akash</p>
+        <div className="wrapper-tags">
+          <p>Top Questions</p>
+          <p>Question no 1</p>
+        </div>
       </aside>
 
     </>
