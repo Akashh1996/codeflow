@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
+import Forum from './Components/Forum/Forum';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello wokrd</h1>
-    </div>
+    <>
+      <Forum />
+    </>
   );
 }
 
