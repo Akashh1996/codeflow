@@ -7,10 +7,8 @@ import './forum.css';
 
 function Forum() {
   return (
+
     <main>
-      <div className="side-tag">
-        <SideBarLeft />
-      </div>
       <div className="main-content">
         <SecondaryNav />
         <QuestionList />
