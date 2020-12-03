@@ -1,11 +1,18 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './sideBarLeft.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { filterByTag } from '../../redux/actions/questionAction';
 
-function DetailHeader({ tags }) {
+function DetailHeader({ tags, dispatch }) {
+  function handleClick(tag) {
+    dispatch(filterByTag(tag));
+  }
+
   return (
+
     <>
       <aside>
         <div className="add-question">
@@ -17,7 +24,14 @@ function DetailHeader({ tags }) {
       <aside className="wrapper-tags-fixed">
         <div className="wrapper-tags">
           {tags.map((tag) => (
-            <Link to="/" className="tags__all">{tag}</Link>
+            <Link
+              to={`/${tag}`}
+              className="tags__all"
+              onClick={() => handleClick(tag)}
+            >
+              {tag}
+
+            </Link>
           ))}
         </div>
 
@@ -34,6 +48,8 @@ function DetailHeader({ tags }) {
 }
 
 function mapStateToProps({ questionReducer }) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   return {
     tags: questionReducer.tags,
   };
