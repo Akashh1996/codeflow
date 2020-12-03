@@ -7,7 +7,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Question = require('./src/models/questionModel');
-const questionRouter = require('./src/routers/questionRouter')(Question);
+const Answer = require('./src/models/answerModel');
+const questionRouter = require('./src/routers/questionRouter')(Question, Answer);
+const answerRouter = require('./src/routers/answerRouter')(Answer);
 
 const app = express();
 app.use(cors());
@@ -22,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/questions', questionRouter);
+app.use('/answers', answerRouter);
 
 app.listen(port, () => {
   debug(`server is running on port ${chalk.blue(port)}`);

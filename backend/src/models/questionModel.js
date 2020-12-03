@@ -7,11 +7,10 @@ const questionSchema = new Schema({
   questionDescription: { type: String },
   date: { type: String },
   owner: { type: Schema.Types.ObjectId, ref: 'user' },
-  answers: [{ type: Schema.Types.ObjectId, ref: 'answer' }],
+  answers: [{ type: Schema.Types.ObjectId, ref: 'answers' }],
   likes: { type: Number },
   dislikes: { type: Number },
   tag: { type: String },
-
 });
 
 module.exports = model('questions', questionSchema);
