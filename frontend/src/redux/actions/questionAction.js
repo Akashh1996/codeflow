@@ -26,3 +26,9 @@ export default function loadQuestion() {
     }
   };
 }
+export function filterByTag(tag) {
+  return {
+    type: actionTypes.FILTER_BY_TAG,
+    tag,
+  };
+}

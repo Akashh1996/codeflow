@@ -6,10 +6,10 @@ function SecondaryNav() {
   return (
     <header>
       <div className="answer-types">
-        <Link to="/recent">Recent</Link>
-        <Link to="/any">No Answer</Link>
-        <Link to="/any">Most Answered</Link>
-        <Link to="/any">Most Disliked</Link>
+        <Link to="/">Recent</Link>
+        <Link to="/">No Answer</Link>
+        <Link to="/">Most Answered</Link>
+        <Link to="/">Most Disliked</Link>
       </div>
 
       <div className="select-wrapper ">

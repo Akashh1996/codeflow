@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
@@ -23,15 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({ dispatch, questionList }) {
+function QuestionList({ dispatch, displayList }) {
   const classes = useStyles();
   useEffect(() => {
-    if (!questionList || !questionList?.length) { dispatch(loadQuestion()); }
-  }, [questionList?.length]);
+    if (!displayList || !displayList?.length) { dispatch(loadQuestion()); }
+  }, [displayList?.length]);
 
   return (
     <>
-      {questionList && questionList.length > 0 && questionList.map((question, index) => (
+      {displayList && displayList.length > 0 && displayList.map((question, index) => (
         <article className="question-article" key={index}>
           <div className="question-article__content">
             <div className="content-header">
@@ -47,7 +48,7 @@ function QuestionList({ dispatch, questionList }) {
                 <div className="date-query">
                   Asked at:
                   {' '}
-                  <span className="date">20 april 2020</span>
+                  <span className="date">{question.date}</span>
                   {' '}
                 </div>
               </div>
@@ -73,13 +74,13 @@ function QuestionList({ dispatch, questionList }) {
                   {' '}
                 </p>
               </div>
-              <p className="tag">React</p>
+              <p className="tag">{question.tag}</p>
             </div>
             <div className="content-footer">
               <div className="content-footer__left">
                 <div className="icon-wrapper">
                   <ThumbUpAltOutlinedIcon fontSize="medium" />
-                  <span>1</span>
+                  <span>{question.likes}</span>
                 </div>
                 <div className="icon-wrapper">
                   <ThumbDownOutlinedIcon fontSize="medium" />
@@ -101,15 +102,16 @@ function QuestionList({ dispatch, questionList }) {
 
 QuestionList.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  questionList: PropTypes.arrayOf(PropTypes.object),
+  displayList: PropTypes.arrayOf(PropTypes.object),
 };
 QuestionList.defaultProps = {
-  questionList: [],
+  displayList: [],
 };
 
 function mapStateToProps(state) {
+  debugger;
   return {
-    questionList: state.questionReducer.questionList,
+    displayList: state.questionReducer.displayList,
   };
 }
 

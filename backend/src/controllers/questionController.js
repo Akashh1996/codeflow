@@ -1,12 +1,16 @@
 function questionController(Question) {
   function getMethod(req, res) {
-    const query = req.body;
-    // eslint-disable-next-line no-console
-    console.log(req.body);
-    function findCallback(errorFindQuestion, question) {
-      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(question);
-    }
-    Question.find(query, findCallback);
+    const query = {};
+    const question = Question.find(query);
+    question.populate({
+      path: 'answers',
+    });
+    question.exec((errorFindQuestion, questions) => {
+      if (errorFindQuestion) {
+        return res.send(errorFindQuestion);
+      }
+      return res.json(questions);
+    });
   }
 
   function deleteMethod({ body }, res) {
