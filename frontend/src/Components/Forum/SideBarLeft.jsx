@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './sideBarLeft.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function DetailHeader() {
+function DetailHeader({ tags }) {
   return (
     <>
       <aside>
@@ -14,16 +16,11 @@ function DetailHeader() {
 
       <aside className="wrapper-tags-fixed">
         <div className="wrapper-tags">
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
-          <Link to="/" className="tags__all">React</Link>
+          {tags.map((tag) => (
+            <Link to="/" className="tags__all">{tag}</Link>
+          ))}
         </div>
+
       </aside>
       <aside>
         <div className="wrapper-tags">
@@ -35,4 +32,11 @@ function DetailHeader() {
     </>
   );
 }
-export default DetailHeader;
+
+function mapStateToProps({ questionReducer }) {
+  return {
+    tags: questionReducer.tags,
+  };
+}
+
+export default connect(mapStateToProps)(DetailHeader);
