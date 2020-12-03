@@ -28,6 +28,7 @@ function DetailHeader({ tags, dispatch }) {
             <Link
               to={`/${tag}`}
               className="tags__all"
+              key={tag}
               onClick={() => handleClick(tag)}
             >
               {tag}

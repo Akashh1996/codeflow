@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function QuestionList({ dispatch, displayList }) {
-  // eslint-disable-next-line no-console
   const classes = useStyles();
   useEffect(() => {
     if (!displayList || !displayList?.length) { dispatch(loadQuestion()); }
-  }, [displayList?.length]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('my-list', JSON.stringify(displayList));
@@ -62,18 +61,18 @@ function QuestionList({ dispatch, displayList }) {
               <div className="buttons-user-logged">
                 <div>
                   <IconButton aria-label="delete" className={classes.margin}>
-                    <DeleteOutlineOutlinedIcon fontSize="medium" />
+                    <DeleteOutlineOutlinedIcon />
                   </IconButton>
                 </div>
                 <div>
                   <IconButton aria-label="delete" className={classes.margin}>
-                    <EditOutlinedIcon fontSize="medium" />
+                    <EditOutlinedIcon />
                   </IconButton>
                 </div>
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link href="www.google.com">{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to="/">{question.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
@@ -86,15 +85,15 @@ function QuestionList({ dispatch, displayList }) {
             <div className="content-footer">
               <div className="content-footer__left">
                 <div className="icon-wrapper">
-                  <ThumbUpAltOutlinedIcon fontSize="medium" />
+                  <ThumbUpAltOutlinedIcon />
                   <span>{question.likes}</span>
                 </div>
                 <div className="icon-wrapper">
-                  <ThumbDownOutlinedIcon fontSize="medium" />
+                  <ThumbDownOutlinedIcon />
                   <span>3</span>
                 </div>
                 <div className="icon-wrapper">
-                  <QuestionAnswerOutlinedIcon fontSize="medium" />
+                  <QuestionAnswerOutlinedIcon />
                   <span>6</span>
                 </div>
               </div>
