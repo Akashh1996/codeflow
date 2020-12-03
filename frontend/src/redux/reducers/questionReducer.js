@@ -15,12 +15,15 @@ export default function questionReducer(state = initialState, action) {
         displayList: action.questionList,
       };
     case actionTypes.FILTER_BY_TAG:
+
       return {
         ...state,
-        displayList: action.questionList.filter((question) => question.tag === action.tag),
+        displayList: state.questionList.filter((question) => question.tag === action.tag),
       };
     case actionTypes.LOAD_QUESTION_ERROR:
       return { ...state, error: action.error };
+    case actionTypes.RESET:
+      return { ...state, displayList: action.questionList };
     default:
       return state;
   }

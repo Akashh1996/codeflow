@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-debugger */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
@@ -25,10 +27,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function QuestionList({ dispatch, displayList }) {
+  // eslint-disable-next-line no-console
   const classes = useStyles();
   useEffect(() => {
     if (!displayList || !displayList?.length) { dispatch(loadQuestion()); }
   }, [displayList?.length]);
+
+  useEffect(() => {
+    localStorage.setItem('my-list', JSON.stringify(displayList));
+  });
 
   return (
     <>
@@ -109,7 +116,6 @@ QuestionList.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  debugger;
   return {
     displayList: state.questionReducer.displayList,
   };
