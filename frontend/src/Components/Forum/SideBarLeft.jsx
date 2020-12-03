@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './sideBarLeft.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterByTag } from '../../redux/actions/questionAction';
+import { filterByTag, reset } from '../../redux/actions/questionAction';
 
 function DetailHeader({ tags, dispatch }) {
   function handleClick(tag) {
@@ -16,7 +17,7 @@ function DetailHeader({ tags, dispatch }) {
     <>
       <aside>
         <div className="add-question">
-          <Link to="/">Add Question +</Link>
+          <Link to="/tag">Add Question +</Link>
         </div>
 
       </aside>
@@ -38,8 +39,7 @@ function DetailHeader({ tags, dispatch }) {
       </aside>
       <aside>
         <div className="wrapper-tags">
-          <p>Top Questions</p>
-          <p>Question no 1</p>
+          <Link to="/" onClick={() => dispatch(reset())}>Back</Link>
         </div>
       </aside>
 
@@ -49,7 +49,6 @@ function DetailHeader({ tags, dispatch }) {
 
 function mapStateToProps({ questionReducer }) {
   // eslint-disable-next-line no-debugger
-  debugger;
   return {
     tags: questionReducer.tags,
   };

@@ -1,9 +1,7 @@
-/* eslint-disable no-debugger */
 import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
 export default function questionReducer(state = initialState, action) {
-  debugger;
   let newTagsMap;
   let newTags;
   switch (action.type) {
@@ -17,13 +15,15 @@ export default function questionReducer(state = initialState, action) {
         displayList: action.questionList,
       };
     case actionTypes.FILTER_BY_TAG:
-      debugger;
+
       return {
         ...state,
         displayList: state.questionList.filter((question) => question.tag === action.tag),
       };
     case actionTypes.LOAD_QUESTION_ERROR:
       return { ...state, error: action.error };
+    case actionTypes.RESET:
+      return { ...state, displayList: action.questionList };
     default:
       return state;
   }
