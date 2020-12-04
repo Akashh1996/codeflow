@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
@@ -6,6 +7,7 @@ export default function questionReducer(state = initialState, action) {
   let newTags;
   switch (action.type) {
     case actionTypes.LOAD_QUESTION:
+      debugger;
       newTagsMap = action.questionList.map((question) => question.tag);
       newTags = newTagsMap.reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
       return {
@@ -14,16 +16,10 @@ export default function questionReducer(state = initialState, action) {
         tags: newTags,
         displayList: action.questionList,
       };
-    case actionTypes.FILTER_BY_TAG:
-
-      return {
-        ...state,
-        displayList: state.questionList.filter((question) => question.tag === action.tag),
-      };
     case actionTypes.LOAD_QUESTION_ERROR:
       return { ...state, error: action.error };
-    case actionTypes.RESET:
-      return { ...state, displayList: action.questionList };
+    case actionTypes.FILTER_BY_TAG:
+      return { ...state, displayList: action.tagList };
     default:
       return state;
   }

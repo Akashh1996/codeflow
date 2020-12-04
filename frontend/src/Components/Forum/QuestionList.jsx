@@ -4,6 +4,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -12,7 +13,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import './questionList.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import loadQuestion from '../../redux/actions/questionAction';
@@ -26,19 +27,19 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({ dispatch, displayList }) {
+function QuestionList({ dispatch, questionList }) {
+  const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
-    if (!displayList || !displayList?.length) { dispatch(loadQuestion()); }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('my-list', JSON.stringify(displayList));
-  });
-
+    if (tag) {
+      dispatch(loadQuestion(tag));
+    } else {
+      dispatch(loadQuestion());
+    }
+  }, [tag]);
   return (
     <>
-      {displayList && displayList.length > 0 && displayList.map((question, index) => (
+      {questionList && questionList.length > 0 && questionList.map((question, index) => (
         <article className="question-article" key={index}>
           <div className="question-article__content">
             <div className="content-header">
@@ -72,7 +73,7 @@ function QuestionList({ dispatch, displayList }) {
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link to="/">{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to={`/question/:${question._id}`}>{question.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
@@ -108,15 +109,15 @@ function QuestionList({ dispatch, displayList }) {
 
 QuestionList.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  displayList: PropTypes.arrayOf(PropTypes.object),
+  questionList: PropTypes.arrayOf(PropTypes.object),
 };
 QuestionList.defaultProps = {
-  displayList: [],
+  questionList: [],
 };
 
 function mapStateToProps(state) {
   return {
-    displayList: state.questionReducer.displayList,
+    questionList: state.questionReducer.questionList,
   };
 }
 
