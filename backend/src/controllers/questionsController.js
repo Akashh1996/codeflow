@@ -1,7 +1,7 @@
-function questionController(Question) {
+function questionsController(Question) {
   function getMethod(req, res) {
-    const query = req.id;
-    const question = Question.findById(query);
+    const { query } = req;
+    const question = Question.find(query);
     question.populate({
       path: 'answers',
     });
@@ -36,13 +36,9 @@ function questionController(Question) {
     }
     Question.create(newQuestion, postCallback);
   }
-  function allMiddleware(req, res, next) {
-    req.id = req.params.questionId;
-    next();
-  }
   return {
-    getMethod, deleteMethod, putMethod, postMethod, allMiddleware,
+    getMethod, deleteMethod, putMethod, postMethod,
   };
 }
 
-module.exports = questionController;
+module.exports = questionsController;

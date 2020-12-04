@@ -8,8 +8,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Question = require('./src/models/questionModel');
 const Answer = require('./src/models/answerModel');
+const questionsRouter = require('./src/routers/questionsRouter')(Question, Answer);
 const questionRouter = require('./src/routers/questionRouter')(Question, Answer);
-const answerRouter = require('./src/routers/answerRouter')(Answer);
 
 const app = express();
 app.use(cors());
@@ -23,8 +23,8 @@ app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/questions', questionRouter);
-app.use('/answers', answerRouter);
+app.use('/questions', questionsRouter);
+app.use('/question', questionRouter);
 
 app.listen(port, () => {
   debug(`server is running on port ${chalk.blue(port)}`);

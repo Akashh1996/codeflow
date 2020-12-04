@@ -1,11 +1,12 @@
 const { Router } = require('express');
 const questionController = require('../controllers/questionController');
 
-function questionRouter(Quesion) {
+function questionRouter(Question) {
   const router = Router();
-  const question = questionController(Quesion);
+  const question = questionController(Question);
 
-  router.route('/')
+  router.route('/:questionId')
+    .all(question.allMiddleware)
     .get(question.getMethod)
     .delete(question.deleteMethod)
     .put(question.putMethod)
