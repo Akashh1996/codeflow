@@ -1,15 +1,21 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './secondaryNav.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { filterByNoAnswer } from '../../redux/actions/questionAction';
 
-function SecondaryNav() {
+function SecondaryNav({ dispatch }) {
   return (
     <header>
       <div className="answer-types">
-        <Link to="/">Recent</Link>
-        <Link to="/">No Answer</Link>
-        <Link to="/">Most Answered</Link>
-        <Link to="/">Most Disliked</Link>
+        <Link
+          to="/"
+          onClick={() => dispatch(filterByNoAnswer())}
+        >
+          No Answer
+        </Link>
+
       </div>
 
       <div className="select-wrapper ">
@@ -27,4 +33,4 @@ function SecondaryNav() {
     </header>
   );
 }
-export default SecondaryNav;
+export default connect()(SecondaryNav);

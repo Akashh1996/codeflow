@@ -4,6 +4,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -12,7 +13,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import './questionList.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import loadQuestion from '../../redux/actions/questionAction';
@@ -27,16 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function QuestionList({ dispatch, displayList }) {
-  // eslint-disable-next-line no-console
+  const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
-    if (!displayList || !displayList?.length) { dispatch(loadQuestion()); }
-  }, [displayList?.length]);
-
-  useEffect(() => {
-    localStorage.setItem('my-list', JSON.stringify(displayList));
-  });
-
+    if (tag) {
+      dispatch(loadQuestion(tag));
+    } else {
+      dispatch(loadQuestion());
+    }
+  }, [tag]);
   return (
     <>
       {displayList && displayList.length > 0 && displayList.map((question, index) => (
@@ -62,18 +62,18 @@ function QuestionList({ dispatch, displayList }) {
               <div className="buttons-user-logged">
                 <div>
                   <IconButton aria-label="delete" className={classes.margin}>
-                    <DeleteOutlineOutlinedIcon fontSize="medium" />
+                    <DeleteOutlineOutlinedIcon />
                   </IconButton>
                 </div>
                 <div>
                   <IconButton aria-label="delete" className={classes.margin}>
-                    <EditOutlinedIcon fontSize="medium" />
+                    <EditOutlinedIcon />
                   </IconButton>
                 </div>
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link href="www.google.com">{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to={`/question/:${question._id}`}>{question.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
@@ -86,15 +86,15 @@ function QuestionList({ dispatch, displayList }) {
             <div className="content-footer">
               <div className="content-footer__left">
                 <div className="icon-wrapper">
-                  <ThumbUpAltOutlinedIcon fontSize="medium" />
+                  <ThumbUpAltOutlinedIcon />
                   <span>{question.likes}</span>
                 </div>
                 <div className="icon-wrapper">
-                  <ThumbDownOutlinedIcon fontSize="medium" />
+                  <ThumbDownOutlinedIcon />
                   <span>3</span>
                 </div>
                 <div className="icon-wrapper">
-                  <QuestionAnswerOutlinedIcon fontSize="medium" />
+                  <QuestionAnswerOutlinedIcon />
                   <span>6</span>
                 </div>
               </div>
@@ -116,6 +116,7 @@ QuestionList.defaultProps = {
 };
 
 function mapStateToProps(state) {
+  debugger;
   return {
     displayList: state.questionReducer.displayList,
   };

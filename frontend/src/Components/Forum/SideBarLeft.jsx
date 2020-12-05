@@ -5,13 +5,9 @@ import React from 'react';
 import './sideBarLeft.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterByTag, reset } from '../../redux/actions/questionAction';
+import loadQuestion from '../../redux/actions/questionAction';
 
 function DetailHeader({ tags, dispatch }) {
-  function handleClick(tag) {
-    dispatch(filterByTag(tag));
-  }
-
   return (
 
     <>
@@ -28,7 +24,8 @@ function DetailHeader({ tags, dispatch }) {
             <Link
               to={`/${tag}`}
               className="tags__all"
-              onClick={() => handleClick(tag)}
+              key={tag}
+              onClick={() => dispatch(loadQuestion(tag))}
             >
               {tag}
 
@@ -39,7 +36,7 @@ function DetailHeader({ tags, dispatch }) {
       </aside>
       <aside>
         <div className="wrapper-tags">
-          <Link to="/" onClick={() => dispatch(reset())}>Back</Link>
+          <Link to="/">All</Link>
         </div>
       </aside>
 

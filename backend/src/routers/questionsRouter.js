@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const answerController = require('../controllers/answerController');
+const questionsController = require('../controllers/questionsController');
 
-function answerRouter(Answer) {
+function questionsRouter(Question) {
   const router = Router();
-  const question = answerController(Answer);
+  const question = questionsController(Question);
 
   router.route('/')
     .get(question.getMethod)
@@ -13,4 +13,4 @@ function answerRouter(Answer) {
   return router;
 }
 
-module.exports = answerRouter;
+module.exports = questionsRouter;
