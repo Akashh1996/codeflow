@@ -2,22 +2,23 @@
 import React from 'react';
 import './secondaryNav.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { filterByNoAnswer } from '../../redux/actions/questionAction';
 
 function SecondaryNav({ dispatch }) {
+  function handleClick() {
+    dispatch(filterByNoAnswer());
+  }
   return (
     <header>
       <div className="answer-types">
-        <Link to="/">Recent</Link>
         <Link
           to="/"
-          onClick={() => dispatch(filterByNoAnswer())}
+          onClick={() => handleClick()}
         >
           No Answer
-
         </Link>
-        <Link to="/">Most Answered</Link>
-        <Link to="/">Most Disliked</Link>
+
       </div>
 
       <div className="select-wrapper ">
@@ -28,10 +29,11 @@ function SecondaryNav({ dispatch }) {
             <option value="opel">Opel</option>
             <option value="audi">Audi</option>
           </select>
+
         </div>
 
       </div>
     </header>
   );
 }
-export default SecondaryNav;
+export default connect()(SecondaryNav);
