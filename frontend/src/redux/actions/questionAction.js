@@ -26,10 +26,9 @@ export default function loadQuestion(tag) {
     }
   };
 }
-export function filterByTag(tag) {
+export function filterByNoAnswer() {
   return {
-    type: actionTypes.FILTER_BY_TAG,
-    tag,
+    type: actionTypes.FILTER_BY_NO_ANSWER,
   };
 }
 export function reset() {

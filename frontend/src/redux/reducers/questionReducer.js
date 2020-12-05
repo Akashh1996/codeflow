@@ -20,6 +20,11 @@ export default function questionReducer(state = initialState, action) {
       return { ...state, error: action.error };
     case actionTypes.FILTER_BY_TAG:
       return { ...state, displayList: action.tagList };
+    case actionTypes.FILTER_BY_NO_ANSWER:
+      return {
+        ...state,
+        displayList: state.questionList.filter((question) => question.answers.length === 0),
+      };
     default:
       return state;
   }
