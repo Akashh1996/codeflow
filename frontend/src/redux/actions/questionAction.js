@@ -16,13 +16,24 @@ function loadQuestionError(error) {
   };
 }
 
-export default function loadQuestion(newTag) {
+export default function loadQuestion(tag) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(endpoint, { params: { tag: newTag } });
+      const { data } = await axios.get(endpoint, { params: { tag } });
       dispatch(loadQuestionSuccess(data));
     } catch (error) {
       dispatch(loadQuestionError(error));
     }
+  };
+}
+export function filterByTag(tag) {
+  return {
+    type: actionTypes.FILTER_BY_TAG,
+    tag,
+  };
+}
+export function reset() {
+  return {
+    type: actionTypes.FILTER_BY_TAG,
   };
 }
