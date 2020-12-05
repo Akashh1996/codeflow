@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({ dispatch, questionList }) {
+function QuestionList({ dispatch, displayList }) {
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
@@ -39,7 +39,7 @@ function QuestionList({ dispatch, questionList }) {
   }, [tag]);
   return (
     <>
-      {questionList && questionList.length > 0 && questionList.map((question, index) => (
+      {displayList && displayList.length > 0 && displayList.map((question, index) => (
         <article className="question-article" key={index}>
           <div className="question-article__content">
             <div className="content-header">
@@ -109,15 +109,16 @@ function QuestionList({ dispatch, questionList }) {
 
 QuestionList.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  questionList: PropTypes.arrayOf(PropTypes.object),
+  displayList: PropTypes.arrayOf(PropTypes.object),
 };
 QuestionList.defaultProps = {
-  questionList: [],
+  displayList: [],
 };
 
 function mapStateToProps(state) {
+  debugger;
   return {
-    questionList: state.questionReducer.questionList,
+    displayList: state.questionReducer.displayList,
   };
 }
 

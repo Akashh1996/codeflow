@@ -6,15 +6,12 @@ import { connect } from 'react-redux';
 import { filterByNoAnswer } from '../../redux/actions/questionAction';
 
 function SecondaryNav({ dispatch }) {
-  function handleClick() {
-    dispatch(filterByNoAnswer());
-  }
   return (
     <header>
       <div className="answer-types">
         <Link
           to="/"
-          onClick={() => handleClick()}
+          onClick={() => dispatch(filterByNoAnswer())}
         >
           No Answer
         </Link>

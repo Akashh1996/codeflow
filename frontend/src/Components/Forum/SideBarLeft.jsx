@@ -5,8 +5,9 @@ import React from 'react';
 import './sideBarLeft.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import loadQuestion from '../../redux/actions/questionAction';
 
-function DetailHeader({ tags }) {
+function DetailHeader({ tags, dispatch }) {
   return (
 
     <>
@@ -24,6 +25,7 @@ function DetailHeader({ tags }) {
               to={`/${tag}`}
               className="tags__all"
               key={tag}
+              onClick={() => dispatch(loadQuestion(tag))}
             >
               {tag}
 
