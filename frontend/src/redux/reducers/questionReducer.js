@@ -7,7 +7,6 @@ export default function questionReducer(state = initialState, action) {
   let newTags;
   switch (action.type) {
     case actionTypes.LOAD_QUESTION:
-      debugger;
       newTagsMap = action.questionList.map((question) => question.tag);
       newTags = newTagsMap.reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
       return {
@@ -24,6 +23,11 @@ export default function questionReducer(state = initialState, action) {
       return {
         ...state,
         displayList: state.questionList.filter((question) => question.answers.length === 0),
+      };
+    case actionTypes.AUTH_LOGIN:
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

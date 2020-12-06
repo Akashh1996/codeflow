@@ -116,7 +116,6 @@ QuestionList.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  debugger;
   return {
     displayList: state.questionReducer.displayList,
   };
