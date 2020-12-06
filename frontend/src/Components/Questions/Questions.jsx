@@ -1,11 +1,11 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import QuestionList from './QuestionList';
-import SecondaryNav from './SecondaryNav';
-import SideBarLeft from './SideBarLeft';
-import './forum.css';
+import QuestionList from './QuestionList/QuestionList';
+import SecondaryNav from './Header/header';
+import SideBarLeft from './Tags/Tags';
+import './questions.css';
 
-function Forum() {
+function Questions() {
   return (
 
     <main>
@@ -20,4 +20,4 @@ function Forum() {
 
   );
 }
-export default Forum;
+export default Questions;
