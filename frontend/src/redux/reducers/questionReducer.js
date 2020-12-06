@@ -7,7 +7,6 @@ export default function questionReducer(state = initialState, action) {
   let newTags;
   switch (action.type) {
     case actionTypes.LOAD_QUESTION:
-      debugger;
       newTagsMap = action.questionList.map((question) => question.tag);
       newTags = newTagsMap.reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
       return {

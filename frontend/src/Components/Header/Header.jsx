@@ -1,11 +1,15 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { signInWithGoogle } from '../../redux/actions/questionAction';
+import signInWithGoogle from '../../redux/actions/userAction';
 
-function Header({ dispatch }) {
+function Header({ dispatch, user }) {
   return (
+
     <>
+      {user
+      && <img src={user.photoURL} alt="" />}
       <button
         type="button"
         onClick={(event) => {
@@ -20,4 +24,12 @@ function Header({ dispatch }) {
 
   );
 }
-export default connect()(Header);
+
+function mapStateToProps(state) {
+  debugger;
+  return {
+    user: state.userReducer.user,
+    isLogged: state.userReducer.isLogged,
+  };
+}
+export default connect(mapStateToProps)(Header);
