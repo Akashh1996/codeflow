@@ -25,6 +25,11 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         displayList: state.questionList.filter((question) => question.answers.length === 0),
       };
+    case actionTypes.AUTH_LOGIN:
+      return {
+        ...state,
+        user: action.user,
+      };
     default:
       return state;
   }
