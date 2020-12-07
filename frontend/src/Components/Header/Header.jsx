@@ -76,7 +76,7 @@ function Header({ dispatch, user }) {
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
-            {!user ? (
+            {!user?.uid ? (
               <Button
                 type="button"
                 color="inherit"
@@ -120,7 +120,7 @@ function Header({ dispatch, user }) {
 function mapStateToProps(state) {
   debugger;
   return {
-    user: state.userReducer.user,
+    user: state.userReducer?.user?.user,
     isLogged: state.userReducer.isLogged,
   };
 }
