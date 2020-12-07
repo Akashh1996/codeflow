@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginLeft: theme.spacing(0),
+    padding: theme.spacing(0),
+
   },
   title: {
     flexGrow: 1,
@@ -63,7 +65,12 @@ function Header({ dispatch, user }) {
               aria-label="menu"
               onClick={toggleDrawer('left', true)}
             >
-              <MenuIcon />
+              <MenuIcon
+                className="menu-button"
+                style={{
+                  width: '45', height: '40px', marginBottom: '6px',
+                }}
+              />
             </IconButton>
             <Link to="/" className="logo-home">
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
