@@ -6,7 +6,7 @@ const questionSchema = new Schema({
   questionTitle: { type: String },
   questionDescription: { type: String },
   date: { type: Date, default: new Date() },
-  owner: { type: Schema.Types.ObjectId, ref: 'user' },
+  owner: { type: Schema.Types.ObjectId, ref: 'users' },
   answers: [{ type: Schema.Types.ObjectId, ref: 'answers' }],
   likes: { type: Number },
   dislikes: { type: Number },

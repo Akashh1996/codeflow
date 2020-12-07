@@ -1,16 +1,14 @@
 function questionsController(Question) {
   function getMethod(req, res) {
     const { query } = req;
-    const question = Question.find(query);
-    question.populate({
-      path: 'answers',
-    });
-    question.exec((errorFindQuestion, questions) => {
-      if (errorFindQuestion) {
-        return res.send(errorFindQuestion);
-      }
-      return res.json(questions);
-    });
+    Question.find(query).populate('answers')
+      .populate('owner')
+      .exec((errorFindQuestion, questions) => {
+        if (errorFindQuestion) {
+          return res.send(errorFindQuestion);
+        }
+        return res.json(questions);
+      });
   }
 
   function deleteMethod({ body }, res) {
