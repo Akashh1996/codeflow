@@ -13,7 +13,7 @@ function Tags({ tags, dispatch }) {
     <>
       <aside>
         <div className="add-question">
-          <Link to="/add/AddQuestion">Add Question +</Link>
+          <Link to="/add-question">Add Question +</Link>
         </div>
 
       </aside>

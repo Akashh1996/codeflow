@@ -67,3 +67,28 @@ export function addUser(userData) {
     dispatch(addUserSuccess(data));
   };
 }
+
+function postQuestionSuccess(newQuestion) {
+  return {
+    type: actionTypes.LOAD_QUESTION,
+    newQuestion,
+  };
+}
+
+function postQuestionError(error) {
+  return {
+    type: actionTypes.POST_QUESTION,
+    error,
+  };
+}
+
+export function postQuestion(question) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, question);
+      dispatch(postQuestionSuccess(data));
+    } catch (error) {
+      dispatch(postQuestionError(error));
+    }
+  };
+}

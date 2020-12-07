@@ -11,8 +11,8 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Questions} />
+          <Route path="/add-question" exact component={AddQuestion} />
           <Route path="/:tag" exact component={Questions} />
-          <Route path="/add/question" exact component={AddQuestion} />
         </Switch>
       </BrowserRouter>
     </>
