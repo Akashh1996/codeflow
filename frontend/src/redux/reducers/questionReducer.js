@@ -13,7 +13,7 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         questionList: action.questionList,
         tags: newTags,
-        displayList: action.questionList,
+        displayList: action.questionList.reverse(),
       };
     case actionTypes.LOAD_QUESTION_ERROR:
       return { ...state, error: action.error };

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
@@ -7,7 +8,7 @@ import './add-question.css';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../redux/actions/questionAction';
 
-function AddQuestion({ dispatch }) {
+function AddQuestion({ dispatch, history }) {
   const [questionTitle, setQuestionTitle] = useState('');
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
@@ -53,18 +54,29 @@ function AddQuestion({ dispatch }) {
           <button
             type="button"
             className="button-submit"
-            onClick={() => dispatch(postQuestion({
-              questionTitle,
-              questionDescription,
-              tag,
-              code: {
-                code,
-              },
-            }))}
+            onClick={() => {
+              if (!!questionTitle && !!questionDescription && !!code && !!tag) {
+                dispatch(postQuestion({
+                  questionTitle,
+                  questionDescription,
+                  tag,
+                  code: {
+                    code,
+                  },
+                }));
+                setQuestionTitle('');
+                setQuestionBody('');
+                setQuestionTag('');
+                setCode('');
+                history.push('/');
+              } else {
+                alert('fill the form');
+              }
+            }}
           >
             Submit
-
           </button>
+
         </div>
 
       </form>

@@ -91,11 +91,11 @@ function QuestionList({ dispatch, displayList }) {
                 </div>
                 <div className="icon-wrapper">
                   <ThumbDownOutlinedIcon />
-                  <span>3</span>
+                  <span>{question.dislikes}</span>
                 </div>
                 <div className="icon-wrapper">
                   <QuestionAnswerOutlinedIcon />
-                  <span>6</span>
+                  <span>{question.answers?.length}</span>
                 </div>
               </div>
             </div>
