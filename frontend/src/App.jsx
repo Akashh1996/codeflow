@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Forum from './Components/Forum/Forum';
-import Detail from './Components/Detail/Detail';
+import Questions from './Components/Questions/Questions';
 import Header from './Components/Header/Header';
 
 function App() {
@@ -10,10 +9,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route path="/" exact component={Forum} />
-          <Route path="/:tag" exact component={Forum} />
-          <Route path="/question/:questionId" exact component={Detail} />
-
+          <Route path="/" exact component={Questions} />
+          <Route path="/:tag" exact component={Questions} />
         </Switch>
       </BrowserRouter>
     </>

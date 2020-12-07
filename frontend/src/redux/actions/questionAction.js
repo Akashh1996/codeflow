@@ -36,3 +36,19 @@ export function reset() {
     type: actionTypes.FILTER_BY_TAG,
   };
 }
+
+/* export default function createNewQuestion(questionData, userData) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.gepostt(endpoint, { body:{
+        question: questionData.question,
+        date: Date.now()
+        user: userData.displayName,
+        userPhoto:
+      } });
+      dispatch(loadQuestionSuccess(data));
+    } catch (error) {
+      dispatch(loadQuestionError(error));
+    }
+  };
+} */

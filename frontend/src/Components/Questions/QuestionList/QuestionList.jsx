@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import loadQuestion from '../../redux/actions/questionAction';
+import loadQuestion from '../../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
   margin: {

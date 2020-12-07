@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 const questionSchema = new Schema({
   questionTitle: { type: String },
   questionDescription: { type: String },
-  date: { type: String },
+  date: { type: Date, default: new Date() },
   owner: { type: Schema.Types.ObjectId, ref: 'user' },
   answers: [{ type: Schema.Types.ObjectId, ref: 'answers' }],
   likes: { type: Number },

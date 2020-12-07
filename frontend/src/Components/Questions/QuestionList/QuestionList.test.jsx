@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import QuestionList from './QuestionList';
-import loadQuestion from '../../redux/actions/questionAction';
+import loadQuestion from '../../../redux/actions/questionAction';
 
 jest.mock('../../redux/actions/questionAction');
 const buildStore = configureStore([thunk]);

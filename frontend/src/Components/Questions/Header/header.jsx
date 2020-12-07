@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './secondaryNav.css';
+import './header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterByNoAnswer } from '../../redux/actions/questionAction';
+import { filterByNoAnswer } from '../../../redux/actions/questionAction';
 
-function SecondaryNav({ dispatch }) {
+function Header({ dispatch }) {
   return (
     <header>
       <div className="answer-types">
@@ -33,4 +33,4 @@ function SecondaryNav({ dispatch }) {
     </header>
   );
 }
-export default connect()(SecondaryNav);
+export default connect()(Header);

@@ -2,12 +2,11 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './sideBarLeft.css';
+import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import loadQuestion from '../../redux/actions/questionAction';
 
-function DetailHeader({ tags, dispatch }) {
+function Tags({ tags }) {
   return (
 
     <>
@@ -25,7 +24,6 @@ function DetailHeader({ tags, dispatch }) {
               to={`/${tag}`}
               className="tags__all"
               key={tag}
-              onClick={() => dispatch(loadQuestion(tag))}
             >
               {tag}
 
@@ -51,4 +49,4 @@ function mapStateToProps({ questionReducer }) {
   };
 }
 
-export default connect(mapStateToProps)(DetailHeader);
+export default connect(mapStateToProps)(Tags);
