@@ -29,6 +29,11 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         user: action.user,
       };
+    case actionTypes.RESET:
+      return {
+        ...state,
+        displayList: state.questionList,
+      };
     default:
       return state;
   }

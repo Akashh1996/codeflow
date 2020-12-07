@@ -5,8 +5,9 @@ import React from 'react';
 import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { reset } from '../../../redux/actions/questionAction';
 
-function Tags({ tags }) {
+function Tags({ tags, dispatch }) {
   return (
 
     <>
@@ -34,7 +35,7 @@ function Tags({ tags }) {
       </aside>
       <aside>
         <div className="wrapper-tags">
-          <Link to="/">All</Link>
+          <Link to="/" onClick={() => dispatch(reset())}>All</Link>
         </div>
       </aside>
 

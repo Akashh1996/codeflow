@@ -34,7 +34,7 @@ export function filterByNoAnswer() {
 }
 export function reset() {
   return {
-    type: actionTypes.FILTER_BY_TAG,
+    type: actionTypes.RESET,
   };
 }
 
