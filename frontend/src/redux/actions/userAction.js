@@ -1,6 +1,8 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import actionTypes from './actionTypes';
 import './Firebase/firebaseIndex';
+import 'firebase/database';
+import 'firebase/storage';
 
 function signInWithGoogleSuccess(user) {
   return {
@@ -25,5 +27,10 @@ export default function signInWithGoogle() {
     } catch (error) {
       dispatch(signInWithGoogleError(error));
     }
+  };
+}
+export function logOut() {
+  return {
+    type: actionTypes.AUTH_LOGOUT,
   };
 }

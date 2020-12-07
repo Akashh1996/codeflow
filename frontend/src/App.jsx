@@ -11,7 +11,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Questions} />
           <Route path="/:tag" exact component={Questions} />
-
         </Switch>
       </BrowserRouter>
     </>

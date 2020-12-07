@@ -5,9 +5,8 @@ import React from 'react';
 import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import loadQuestion from '../../../redux/actions/questionAction';
 
-function Tags({ tags, dispatch }) {
+function Tags({ tags }) {
   return (
 
     <>
@@ -25,7 +24,6 @@ function Tags({ tags, dispatch }) {
               to={`/${tag}`}
               className="tags__all"
               key={tag}
-              onClick={() => dispatch(loadQuestion(tag))}
             >
               {tag}
 
