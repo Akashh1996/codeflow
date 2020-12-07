@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Questions from './Components/Questions/Questions';
 import Header from './Components/Header/Header';
+import AddQuestion from './Components/AddQuestion/AddQuestion';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Questions} />
           <Route path="/:tag" exact component={Questions} />
+          <Route path="/add/question" exact component={AddQuestion} />
         </Switch>
       </BrowserRouter>
     </>

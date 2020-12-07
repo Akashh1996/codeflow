@@ -12,7 +12,7 @@ function Tags({ tags }) {
     <>
       <aside>
         <div className="add-question">
-          <Link to="/add-question">Add Question +</Link>
+          <Link to="/add/AddQuestion">Add Question +</Link>
         </div>
 
       </aside>
