@@ -77,7 +77,6 @@ function Answer({ questionDetail }) {
                       )}
 
                   </div>
-                  <p className="tag">{questionDetail.tag}</p>
                 </div>
                 <div className="code">
                   {questionDetail.code.code}

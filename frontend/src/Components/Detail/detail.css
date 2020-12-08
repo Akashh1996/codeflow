@@ -8,12 +8,14 @@
     box-shadow: none;
 }
 .code{ 
-    margin: 5px 0;
+    margin: 10px 10px 0 0;
     font-family: Consolas, monaco, monospace;
     font-size: 14px;
     background-color: #FFF9EF;
     white-space: pre-line;
     padding: 5px 10px;
+    border-left: 4px solid  #0077CC;
+    line-height: 25px;
 }
 .question-article-detail{
     width: 100%;
@@ -21,7 +23,7 @@
 .question-detail-article__content{
     margin: 0;
 }
-.question-title, .answer-title{
+.question-title{
     font-size: 18px;
     color: #0077CC;
 }
@@ -31,3 +33,17 @@
 .answers{
     margin-top: 5px;
 }
+.answer-title{
+    color: #0077CC;
+    font-size: 1.5em;
+    font-family: 'Castoro', serif;
+}
+.tag-detail{
+    padding: 4px 10px;
+    box-sizing: border-box;
+    color: #0077CC;
+    box-shadow: 0 0px 3px 1px #0077CC;
+    margin: 5px  0 0;
+    width: 15%;
+    text-align: center;
+  } 

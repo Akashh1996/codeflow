@@ -80,7 +80,7 @@ function QuestionList({ dispatch, displayList }) {
                   {' '}
                 </p>
               </div>
-              <p className="tag">{question.tag}</p>
+              <Link to={`/${question.tag}`} className="tags">{question.tag}</Link>
             </div>
             <div className="content-footer">
               <div className="content-footer__left">

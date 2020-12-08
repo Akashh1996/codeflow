@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './tags.css';
@@ -44,7 +42,6 @@ function Tags({ tags, dispatch }) {
 }
 
 function mapStateToProps({ questionReducer }) {
-  // eslint-disable-next-line no-debugger
   return {
     tags: questionReducer.tags,
   };

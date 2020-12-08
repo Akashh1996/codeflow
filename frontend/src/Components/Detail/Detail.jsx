@@ -7,14 +7,15 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import '../Questions/QuestionList/questionList.css';
-import './detail.css';
 import { connect } from 'react-redux';
 import PropTypes, { string } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
+import '../Questions/QuestionList/questionList.css';
+import './detail.css';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -79,7 +80,7 @@ function Detail({ dispatch, questionDetail, match }) {
                       {' '}
                     </p>
                   </div>
-                  <p className="tag">{questionDetail.tag}</p>
+                  <Link to={`/${questionDetail.tag}`} className="tag-detail">{questionDetail.tag}</Link>
                 </div>
                 <div className="code">
                   {questionDetail.code.code}
@@ -105,7 +106,7 @@ function Detail({ dispatch, questionDetail, match }) {
           </section>
         </>
       )}
-      <div className="answers"><h2 className="answer-title">Answers</h2></div>
+      <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <section className="all-answers">
         <Answer questionDetail={questionDetail} />
       </section>
