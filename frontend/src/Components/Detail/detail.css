@@ -1,3 +1,33 @@
-.question-detail{
-    margin-top: 100px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+.question-detail, .answers{
+    width: 60%;
+    margin: 80px auto 0;
+    background: white;
+    padding: 10px;
+    box-shadow: none;
+}
+.code{ 
+    margin: 5px 0;
+    font-family: Consolas, monaco, monospace;
+    font-size: 14px;
+    background-color: #FFF9EF;
+    white-space: pre-line;
+    padding: 5px 10px;
+}
+.question-article-detail{
+    width: 100%;
+}
+.question-detail-article__content{
+    margin: 0;
+}
+.question-title, .answer-title{
+    font-size: 18px;
+    color: #0077CC;
+}
+.content-question-detail{
+    margin-top: 5px;
+}
+.answers{
+    margin-top: 5px;
 }

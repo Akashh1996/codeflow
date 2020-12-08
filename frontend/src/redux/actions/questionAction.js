@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -109,7 +110,8 @@ function loadQuestionDetailError(error) {
 export function loadQuestionDetail(questionId) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/user${questionId}`);
+      debugger;
+      const { data } = await axios.get(`http://localhost:8000/question/${questionId}`);
       dispatch(loadQuestionDetailSuccess(data));
     } catch (error) {
       dispatch(loadQuestionDetailError(error));
