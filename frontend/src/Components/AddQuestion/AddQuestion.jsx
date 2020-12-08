@@ -84,4 +84,11 @@ function AddQuestion({ dispatch, history }) {
     </section>
   );
 }
-export default connect()(AddQuestion);
+
+function mapStateToProps(state) {
+  return {
+    user: state.userReducer?.user?.user,
+
+  };
+}
+export default connect(mapStateToProps)(AddQuestion);

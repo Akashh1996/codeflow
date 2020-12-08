@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import QuestionList from '../Forum/QuestionList';
+import './detail.css';
 
 function Detail() {
   return (
-    <>
-      <QuestionList />
-    </>
+    <section className="question-detail">
+      <h1>This is detail</h1>
+    </section>
 
   );
 }

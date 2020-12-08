@@ -92,3 +92,27 @@ export function postQuestion(question) {
     }
   };
 }
+
+function loadQuestionDetailSuccess(questionDetail) {
+  return {
+    type: actionTypes.LOAD_QUESTION_DETAIL,
+    questionDetail,
+  };
+}
+function loadQuestionDetailError(error) {
+  return {
+    type: actionTypes.LOAD_QUESTION_DETAIL_ERROR,
+    error,
+  };
+}
+
+export function loadQuestionDetail(questionId) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`http://localhost:8000/user${questionId}`);
+      dispatch(loadQuestionDetailSuccess(data));
+    } catch (error) {
+      dispatch(loadQuestionDetailError(error));
+    }
+  };
+}

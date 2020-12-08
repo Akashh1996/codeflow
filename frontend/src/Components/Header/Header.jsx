@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
@@ -79,7 +80,7 @@ function Header({ dispatch, user }) {
 
             <button
               type="button"
-              onClick={() => dispatch(addUser({ displayName: user.displayName, uid: user.uid }))}
+              onClick={() => dispatch(addUser({ displayName: user.displayName, uid: user.uid, photo: user.photoURL }))}
             >
               Click Me
 
