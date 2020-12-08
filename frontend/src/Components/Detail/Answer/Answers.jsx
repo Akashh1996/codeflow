@@ -22,10 +22,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Answer({ questionDetail }) {
+/*   const answers = questionDetail?.answers.answer;
+ */ const isAnswerTrue = questionDetail?.answers.length > 0;
   const classes = useStyles();
   return (
     <>
-      {questionDetail && (
+      {isAnswerTrue && (
         <>
           <section className="answers-detail">
             <article className="question-article-detail" key={questionDetail._id}>
@@ -61,7 +63,7 @@ function Answer({ questionDetail }) {
                   </div>
                 </div>
                 <div className="content-question-detail">
-                  <div className="question__description">
+                  {/* <div className="question__description">
 
                     {questionDetail?.answers.length > 0
                       ? (
@@ -74,7 +76,7 @@ function Answer({ questionDetail }) {
                         <p>Sorry there aint answer</p>
                       )}
 
-                  </div>
+                  </div> */}
                 </div>
                 <div className="code">
                   {questionDetail.code.code}
@@ -110,14 +112,14 @@ Answer.propTypes = {
     questionTitle: PropTypes.string.isRequired,
     questionDescription: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf({}).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
     code: PropTypes.shape({
       code: PropTypes.string.isRequired,
     }),
-    date: PropTypes.shape({}),
+    date: PropTypes.string.isRequired,
   }),
 
 };

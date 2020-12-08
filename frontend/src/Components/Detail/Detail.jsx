@@ -8,7 +8,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { connect } from 'react-redux';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
@@ -123,7 +123,7 @@ Detail.propTypes = {
     questionTitle: PropTypes.string.isRequired,
     questionDescription: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(string).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
