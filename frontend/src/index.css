@@ -8,9 +8,17 @@ body {
 }
 a{
   text-decoration: none;
+  cursor: pointer;
   color: '#0077CC',
 }
 *{
   margin: 0;
   padding: 0;
 }
+.tags__all{
+  padding: 4px;
+  box-sizing: border-box;
+  width: 45%;
+  color: #0077CC;
+  box-shadow: 0 0px 2px 1px #0077CC;
+} 

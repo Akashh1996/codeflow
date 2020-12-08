@@ -1,18 +1,17 @@
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { reset } from '../../../redux/actions/questionAction';
 
-function Tags({ tags }) {
+function Tags({ tags, dispatch }) {
   return (
 
     <>
       <aside>
         <div className="add-question">
-          <Link to="/add/AddQuestion">Add Question +</Link>
+          <Link to="/add-question">Add Question +</Link>
         </div>
 
       </aside>
@@ -34,7 +33,7 @@ function Tags({ tags }) {
       </aside>
       <aside>
         <div className="wrapper-tags">
-          <Link to="/">All</Link>
+          <Link to="/" onClick={() => dispatch(reset())}>All</Link>
         </div>
       </aside>
 
@@ -43,7 +42,6 @@ function Tags({ tags }) {
 }
 
 function mapStateToProps({ questionReducer }) {
-  // eslint-disable-next-line no-debugger
   return {
     tags: questionReducer.tags,
   };

@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-debugger */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -39,8 +38,8 @@ function QuestionList({ dispatch, displayList }) {
   }, [tag]);
   return (
     <>
-      {displayList && displayList.length > 0 && displayList.map((question, index) => (
-        <article className="question-article" key={index}>
+      {displayList && displayList.length > 0 && displayList.map((question) => (
+        <article className="question-article" key={question._id}>
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
@@ -73,7 +72,7 @@ function QuestionList({ dispatch, displayList }) {
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link to={`/question/:${question._id}`}>{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to={`/question/${question._id}`}>{question.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
@@ -81,7 +80,7 @@ function QuestionList({ dispatch, displayList }) {
                   {' '}
                 </p>
               </div>
-              <p className="tag">{question.tag}</p>
+              <Link to={`/${question.tag}`} className="tags">{question.tag}</Link>
             </div>
             <div className="content-footer">
               <div className="content-footer__left">
@@ -91,11 +90,11 @@ function QuestionList({ dispatch, displayList }) {
                 </div>
                 <div className="icon-wrapper">
                   <ThumbDownOutlinedIcon />
-                  <span>3</span>
+                  <span>{question.dislikes}</span>
                 </div>
                 <div className="icon-wrapper">
                   <QuestionAnswerOutlinedIcon />
-                  <span>6</span>
+                  <span>{question.answers?.length}</span>
                 </div>
               </div>
             </div>

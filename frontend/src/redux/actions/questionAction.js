@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -34,7 +35,7 @@ export function filterByNoAnswer() {
 }
 export function reset() {
   return {
-    type: actionTypes.FILTER_BY_TAG,
+    type: actionTypes.RESET,
   };
 }
 
@@ -65,5 +66,55 @@ export function addUser(userData) {
   return async (dispatch) => {
     const { data } = await axios.post(endpointUser, userData);
     dispatch(addUserSuccess(data));
+  };
+}
+
+function postQuestionSuccess(newQuestion) {
+  return {
+    type: actionTypes.LOAD_QUESTION,
+    newQuestion,
+  };
+}
+
+function postQuestionError(error) {
+  return {
+    type: actionTypes.POST_QUESTION,
+    error,
+  };
+}
+
+export function postQuestion(question) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, question);
+      dispatch(postQuestionSuccess(data));
+    } catch (error) {
+      dispatch(postQuestionError(error));
+    }
+  };
+}
+
+function loadQuestionDetailSuccess(questionDetail) {
+  return {
+    type: actionTypes.LOAD_QUESTION_DETAIL,
+    questionDetail,
+  };
+}
+function loadQuestionDetailError(error) {
+  return {
+    type: actionTypes.LOAD_QUESTION_DETAIL_ERROR,
+    error,
+  };
+}
+
+export function loadQuestionDetail(questionId) {
+  return async (dispatch) => {
+    try {
+      debugger;
+      const { data } = await axios.get(`http://localhost:8000/question/${questionId}`);
+      dispatch(loadQuestionDetailSuccess(data));
+    } catch (error) {
+      dispatch(loadQuestionDetailError(error));
+    }
   };
 }

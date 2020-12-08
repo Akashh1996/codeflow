@@ -6,15 +6,10 @@ aside{
 } 
 .wrapper-tags-fixed{
     position: sticky;
-    top: 0px;
+    top: 70px;
+
 }
-.tags__all{
-    border: 1px solid #707885;
-    width: fit-content;
-    width: 40%;
-    border-radius: 2px;
-    color: #0077CC;
-} 
+
 .wrapper-tags{
     margin: 20px;
     display: flex;
@@ -55,7 +50,7 @@ aside{
    padding-bottom: 4px;
 
 }
-@media only screen and (max-width: 934px) {
+@media only screen and (max-width: 600px) {
     aside {
       display: none;
     }

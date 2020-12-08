@@ -13,7 +13,7 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         questionList: action.questionList,
         tags: newTags,
-        displayList: action.questionList,
+        displayList: action.questionList.reverse(),
       };
     case actionTypes.LOAD_QUESTION_ERROR:
       return { ...state, error: action.error };
@@ -24,10 +24,26 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         displayList: state.questionList.filter((question) => question.answers.length === 0),
       };
+    case actionTypes.LOAD_QUESTION_DETAIL:
+      debugger;
+      return {
+        ...state,
+        questionDetail: action.questionDetail,
+      };
+    case actionTypes.LOAD_QUESTION_DETAIL_ERROR:
+      return {
+        ...state,
+        error: action.error,
+      };
     case actionTypes.AUTH_LOGIN:
       return {
         ...state,
         user: action.user,
+      };
+    case actionTypes.RESET:
+      return {
+        ...state,
+        displayList: state.questionList,
       };
     default:
       return state;

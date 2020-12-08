@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
@@ -14,7 +15,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import signInWithGoogle, { logOut } from '../../redux/actions/userAction';
 import './header.css';
-import { addUser } from '../../redux/actions/questionAction';
+import { addUser, reset } from '../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,13 +74,13 @@ function Header({ dispatch, user }) {
                 }}
               />
             </IconButton>
-            <Link to="/" className="logo-home">
+            <Link to="/" className="logo-home" onClick={() => dispatch(reset())}>
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
             <button
               type="button"
-              onClick={() => dispatch(addUser({ displayName: user.displayName, uid: user.uid }))}
+              onClick={() => dispatch(addUser({ displayName: user.displayName, uid: user.uid, photo: user.photoURL }))}
             >
               Click Me
 
@@ -127,7 +128,6 @@ function Header({ dispatch, user }) {
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
     user: state.userReducer?.user?.user,
     isLogged: state.userReducer.isLogged,

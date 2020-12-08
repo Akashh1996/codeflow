@@ -1,21 +1,16 @@
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { connect } from 'react-redux';
-import PropTypes, { string } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom';
-import { loadQuestionDetail } from '../../redux/actions/questionAction';
-import Answer from './Answer/Answers';
-import '../Questions/QuestionList/questionList.css';
-import './detail.css';
+import PropTypes from 'prop-types';
+import './answers.css';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -26,19 +21,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Detail({ dispatch, questionDetail, match }) {
-  const [id] = useState(match.params.questionId);
+function Answer({ questionDetail }) {
+  debugger;
   const classes = useStyles();
-  useEffect(() => {
-    if (!questionDetail || id !== questionDetail._id) {
-      dispatch(loadQuestionDetail(id));
-    }
-  }, []);
   return (
     <>
       {questionDetail && (
         <>
-          <section className="question-detail">
+          <section className="answers-detail">
             <article className="question-article-detail" key={questionDetail._id}>
               <div className="question-detail-article__content">
                 <div className="content-header">
@@ -74,13 +64,19 @@ function Detail({ dispatch, questionDetail, match }) {
                 <div className="content-question-detail">
                   <h2 className="question-title">{questionDetail.questionTitle}</h2>
                   <div className="question__description">
-                    <p>
-                      {' '}
-                      {questionDetail.questionDescription}
-                      {' '}
-                    </p>
+
+                    {questionDetail?.answers.length > 0
+                      ? (
+                        <p>
+                          {' '}
+                          {questionDetail?.answers[0].answer}
+                          {' '}
+                        </p>
+                      ) : (
+                        <p>Sorry there aint answer</p>
+                      )}
+
                   </div>
-                  <Link to={`/${questionDetail.tag}`} className="tag-detail">{questionDetail.tag}</Link>
                 </div>
                 <div className="code">
                   {questionDetail.code.code}
@@ -106,20 +102,17 @@ function Detail({ dispatch, questionDetail, match }) {
           </section>
         </>
       )}
-      <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <section className="all-answers">
-        <Answer questionDetail={questionDetail} />
-      </section>
+
     </>
   );
 }
 
-Detail.propTypes = {
+Answer.propTypes = {
   questionDetail: PropTypes.shape({
     questionTitle: PropTypes.string.isRequired,
     questionDescription: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(string).isRequired,
+    answers: PropTypes.arrayOf({}).isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
@@ -128,22 +121,10 @@ Detail.propTypes = {
     }),
     date: PropTypes.shape({}),
   }),
-  dispatch: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      questionId: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+
 };
 
-Detail.defaultProps = {
+Answer.defaultProps = {
   questionDetail: undefined,
 };
-function mapStateToProps(state) {
-  debugger;
-  return {
-    questionDetail: state.questionReducer.questionDetail,
-  };
-}
-
-export default connect(mapStateToProps)(Detail);
+export default Answer;

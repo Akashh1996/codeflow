@@ -10,6 +10,7 @@ const Question = require('./src/models/questionsModel');
 const Answer = require('./src/models/answerModel');
 const User = require('./src/models/userModel');
 const questionsRouter = require('./src/routers/questionsRouter')(Question, Answer);
+const questionRouter = require('./src/routers/questionRouter')(Question, Answer);
 const answerRouter = require('./src/routers/answerRouter')(Answer);
 const userRouter = require('./src/routers/userRouter')(User);
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/questions', questionsRouter);
+app.use('/question', questionRouter);
 app.use('/answers', answerRouter);
 app.use('/user', userRouter);
 
