@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Answer({ questionDetail }) {
-  debugger;
   const classes = useStyles();
   return (
     <>
@@ -42,7 +41,7 @@ function Answer({ questionDetail }) {
                       {' '}
                     </div>
                     <div className="date-query">
-                      Asked at:
+                      Posted At:
                       {' '}
                       <span className="date">{questionDetail.date}</span>
                       {' '}
@@ -62,7 +61,6 @@ function Answer({ questionDetail }) {
                   </div>
                 </div>
                 <div className="content-question-detail">
-                  <h2 className="question-title">{questionDetail.questionTitle}</h2>
                   <div className="question__description">
 
                     {questionDetail?.answers.length > 0

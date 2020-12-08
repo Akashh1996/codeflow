@@ -110,7 +110,6 @@ function loadQuestionDetailError(error) {
 export function loadQuestionDetail(questionId) {
   return async (dispatch) => {
     try {
-      debugger;
       const { data } = await axios.get(`http://localhost:8000/question/${questionId}`);
       dispatch(loadQuestionDetailSuccess(data));
     } catch (error) {

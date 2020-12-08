@@ -10,27 +10,24 @@ label{
     flex-direction: column;
     color: #0077CC;
     font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
 
 }
-textarea {
-    resize: none;
+ textarea {
+    resize: vertical;
     height: 200px;
-    padding: 10px;
     outline: none;
     border: 1px solid #c9cccd;
     margin-top: 5px;
-    background-color: #FFF9EF;
-    
-
-
-}
-.form-section{
-   margin: 75px auto 0;
-   width: 80%;
+    background-color: #F5F5F5;
+} 
+.answer-form-section{
+   width: 62.5%;
    background-color: white;
-   box-shadow: 0 3px 9px #c9cccd;
+   margin: 0px auto 0;
+   box-sizing: border-box;
 }
-form{
+.answer-form{
     padding: 10px;
 
 }
@@ -46,4 +43,12 @@ form{
 .button-submit:hover{
     background-color: #2D6FF7;
     color: white;
+}
+.add-answer{
+    padding: 20px;
+    text-align: center;
+    background-color: #F5F5F5;
+    color: #0077CC;
+    font-family: Roboto;
+    font-size: 10px;
 }

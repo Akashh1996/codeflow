@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
+import AnswerForm from './AnswerForm/AnswerForm';
 import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
@@ -110,6 +111,9 @@ function Detail({ dispatch, questionDetail, match }) {
       <section className="all-answers">
         <Answer questionDetail={questionDetail} />
       </section>
+      <section className="answer-form">
+        <AnswerForm />
+      </section>
     </>
   );
 }
@@ -126,7 +130,7 @@ Detail.propTypes = {
     code: PropTypes.shape({
       code: PropTypes.string.isRequired,
     }),
-    date: PropTypes.shape({}),
+    date: PropTypes.string.isRequired,
   }),
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.shape({
@@ -140,7 +144,6 @@ Detail.defaultProps = {
   questionDetail: undefined,
 };
 function mapStateToProps(state) {
-  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
   };

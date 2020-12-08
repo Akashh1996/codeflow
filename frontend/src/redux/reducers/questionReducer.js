@@ -25,7 +25,6 @@ export default function questionReducer(state = initialState, action) {
         displayList: state.questionList.filter((question) => question.answers.length === 0),
       };
     case actionTypes.LOAD_QUESTION_DETAIL:
-      debugger;
       return {
         ...state,
         questionDetail: action.questionDetail,
