@@ -52,7 +52,6 @@ function answerController(Answer, Question) {
         res.send(errorFound);
       } else {
         question.answers.push(answerFound);
-        console.log('ACAAAAAAAAAAAA', question);
         question.save();
       }
     });
