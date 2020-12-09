@@ -8,12 +8,13 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { connect } from 'react-redux';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
+import AnswerForm from './AnswerForm/AnswerForm';
 import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
@@ -107,8 +108,9 @@ function Detail({ dispatch, questionDetail, match }) {
         </>
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <section className="all-answers">
-        <Answer questionDetail={questionDetail} />
+      <Answer questionDetail={questionDetail} />
+      <section className="answer-form">
+        <AnswerForm />
       </section>
     </>
   );
@@ -119,14 +121,14 @@ Detail.propTypes = {
     questionTitle: PropTypes.string.isRequired,
     questionDescription: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(string).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
     code: PropTypes.shape({
       code: PropTypes.string.isRequired,
     }),
-    date: PropTypes.shape({}),
+    date: PropTypes.string.isRequired,
   }),
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.shape({
@@ -140,7 +142,6 @@ Detail.defaultProps = {
   questionDetail: undefined,
 };
 function mapStateToProps(state) {
-  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
   };

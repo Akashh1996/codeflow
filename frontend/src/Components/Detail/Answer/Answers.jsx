@@ -22,14 +22,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Answer({ questionDetail }) {
-  debugger;
-  const classes = useStyles();
+  /* const answers =  */
+  /*   const isAnswerTrue = questionDetail?.answers.length > 0;
+ */ const classes = useStyles();
   return (
     <>
-      {questionDetail && (
+      {questionDetail?.answers.length > 0 && questionDetail?.answers.map((answer) => (
         <>
-          <section className="answers-detail">
-            <article className="question-article-detail" key={questionDetail._id}>
+          <section className="answers-detail" key={answer.answer._id}>
+            <article className="question-article-detail">
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
@@ -42,7 +43,7 @@ function Answer({ questionDetail }) {
                       {' '}
                     </div>
                     <div className="date-query">
-                      Asked at:
+                      Posted At:
                       {' '}
                       <span className="date">{questionDetail.date}</span>
                       {' '}
@@ -62,8 +63,7 @@ function Answer({ questionDetail }) {
                   </div>
                 </div>
                 <div className="content-question-detail">
-                  <h2 className="question-title">{questionDetail.questionTitle}</h2>
-                  <div className="question__description">
+                  {/* <div className="question__description">
 
                     {questionDetail?.answers.length > 0
                       ? (
@@ -76,10 +76,10 @@ function Answer({ questionDetail }) {
                         <p>Sorry there aint answer</p>
                       )}
 
-                  </div>
+                  </div> */}
                 </div>
                 <div className="code">
-                  {questionDetail.code.code}
+                  {answer.answer}
                 </div>
                 <div className="content-footer">
                   <div className="content-footer__left">
@@ -101,7 +101,7 @@ function Answer({ questionDetail }) {
             </article>
           </section>
         </>
-      )}
+      ))}
 
     </>
   );
@@ -112,14 +112,14 @@ Answer.propTypes = {
     questionTitle: PropTypes.string.isRequired,
     questionDescription: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf({}).isRequired,
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
     code: PropTypes.shape({
       code: PropTypes.string.isRequired,
     }),
-    date: PropTypes.shape({}),
+    date: PropTypes.string.isRequired,
   }),
 
 };
