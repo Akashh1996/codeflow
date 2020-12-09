@@ -39,7 +39,7 @@ function Detail({ dispatch, questionDetail, match }) {
     <>
       {questionDetail && (
         <>
-          <section className="question-detail">
+          <section className="question-detail" key={questionDetail._id}>
             <article className="question-article-detail" key={questionDetail._id}>
               <div className="question-detail-article__content">
                 <div className="content-header">
@@ -108,7 +108,7 @@ function Detail({ dispatch, questionDetail, match }) {
         </>
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <Answer questionDetail={questionDetail} />
+      <Answer questionDetail={questionDetail} key={Date.now()} />
       <section className="answer-form">
         <AnswerForm />
       </section>

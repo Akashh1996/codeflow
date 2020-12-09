@@ -58,7 +58,7 @@ function Header({ dispatch, user }) {
   return (
     <div>
       <div className={classes.root}>
-        <AppBar position="fixed" className={classes.AppBar}>
+        <AppBar position="static" className={classes.AppBar}>
           <Toolbar>
             <IconButton
               edge="start"

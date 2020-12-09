@@ -27,9 +27,9 @@ function Answer({ questionDetail }) {
  */ const classes = useStyles();
   return (
     <>
-      {questionDetail?.answers.length > 0 && questionDetail?.answers.map((answer) => (
+      {questionDetail?.answers.length > 0 && questionDetail.answers.map((answer) => (
         <>
-          <section className="answers-detail" key={answer.answer._id}>
+          <section className="answers-detail" key={answer._id}>
             <article className="question-article-detail">
               <div className="question-detail-article__content">
                 <div className="content-header">
@@ -61,22 +61,6 @@ function Answer({ questionDetail }) {
                       </IconButton>
                     </div>
                   </div>
-                </div>
-                <div className="content-question-detail">
-                  {/* <div className="question__description">
-
-                    {questionDetail?.answers.length > 0
-                      ? (
-                        <p>
-                          {' '}
-                          {questionDetail?.answers[0].answer}
-                          {' '}
-                        </p>
-                      ) : (
-                        <p>Sorry there aint answer</p>
-                      )}
-
-                  </div> */}
                 </div>
                 <div className="code">
                   {answer.answer}
