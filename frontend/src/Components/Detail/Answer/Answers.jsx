@@ -22,15 +22,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Answer({ questionDetail }) {
-/*   const answers = questionDetail?.answers.answer;
- */ const isAnswerTrue = questionDetail?.answers.length > 0;
-  const classes = useStyles();
+  /* const answers =  */
+  /*   const isAnswerTrue = questionDetail?.answers.length > 0;
+ */ const classes = useStyles();
   return (
     <>
-      {isAnswerTrue && (
+      {questionDetail?.answers.length > 0 && questionDetail?.answers.map((answer) => (
         <>
-          <section className="answers-detail">
-            <article className="question-article-detail" key={questionDetail._id}>
+          <section className="answers-detail" key={answer.answer._id}>
+            <article className="question-article-detail">
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
@@ -79,7 +79,7 @@ function Answer({ questionDetail }) {
                   </div> */}
                 </div>
                 <div className="code">
-                  {questionDetail.code.code}
+                  {answer.answer}
                 </div>
                 <div className="content-footer">
                   <div className="content-footer__left">
@@ -101,7 +101,7 @@ function Answer({ questionDetail }) {
             </article>
           </section>
         </>
-      )}
+      ))}
 
     </>
   );

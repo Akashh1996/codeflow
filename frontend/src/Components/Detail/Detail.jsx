@@ -108,9 +108,7 @@ function Detail({ dispatch, questionDetail, match }) {
         </>
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <section className="all-answers">
-        <Answer questionDetail={questionDetail} />
-      </section>
+      <Answer questionDetail={questionDetail} />
       <section className="answer-form">
         <AnswerForm />
       </section>
