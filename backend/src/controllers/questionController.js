@@ -36,6 +36,7 @@ function questionController(Question) {
     }
     Question.create(newQuestion, postCallback);
   }
+
   function allMiddleware(req, res, next) {
     req.id = req.params.questionId;
     next();

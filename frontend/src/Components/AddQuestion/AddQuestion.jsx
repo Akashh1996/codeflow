@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable max-len */
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -8,7 +10,10 @@ import './add-question.css';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../redux/actions/questionAction';
 
-function AddQuestion({ dispatch, history }) {
+function AddQuestion({
+  dispatch, history, user, currentUser,
+}) {
+  const loggedUser = user.filter((eachUser) => eachUser.email === currentUser);
   const [questionTitle, setQuestionTitle] = useState('');
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
@@ -63,6 +68,7 @@ function AddQuestion({ dispatch, history }) {
                   code: {
                     code,
                   },
+                  owner: loggedUser[0]._id,
                 }));
                 setQuestionTitle('');
                 setQuestionBody('');
@@ -87,8 +93,8 @@ function AddQuestion({ dispatch, history }) {
 
 function mapStateToProps(state) {
   return {
-    user: state.userReducer?.user?.user,
-
+    currentUser: state.userReducer.user.additionalUserInfo.profile.email,
+    user: state.userReducer.myUser,
   };
 }
 export default connect(mapStateToProps)(AddQuestion);

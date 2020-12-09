@@ -6,7 +6,7 @@ aside{
 } 
 .wrapper-tags-fixed{
     position: sticky;
-    top: 70px;
+    top: 0px;
 
 }
 
@@ -31,7 +31,7 @@ aside{
 
 .second{
     position: sticky;
-    top: 10px;
+    top: 0px;
 } 
 .add-question{
     display: flex;

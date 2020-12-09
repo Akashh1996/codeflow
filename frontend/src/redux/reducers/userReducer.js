@@ -20,6 +20,16 @@ export default function userReducer(state = {}, action) {
         user: null,
         isLogged: false,
       };
+    case actionTypes.LOAD_USER:
+      return {
+        ...state,
+        myUser: action.user,
+      };
+    case actionTypes.LOAD_USER_ERROR:
+      return {
+        ...state,
+        error: action.error,
+      };
     default:
       return state;
   }

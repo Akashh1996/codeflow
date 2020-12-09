@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import loadQuestion from '../../../redux/actions/questionAction';
+import { loadUser } from '../../../redux/actions/userAction';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -36,6 +37,10 @@ function QuestionList({ dispatch, displayList }) {
       dispatch(loadQuestion());
     }
   }, [tag]);
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
   return (
     <>
       {displayList && displayList.length > 0 && displayList.map((question) => (
@@ -43,8 +48,7 @@ function QuestionList({ dispatch, displayList }) {
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
-                <Avatar alt="Remy Sharp" src="https://avatars3.githubusercontent.com/u/12779984?s=400&u=bd7db8429aee0fa72d76fafd02a6edcdea784789&v=4" />
-
+                <Avatar alt="Remy Sharp" src={question.owner?.photo} />
               </div>
               <div className="content-header__right">
                 <div className="owner-name">

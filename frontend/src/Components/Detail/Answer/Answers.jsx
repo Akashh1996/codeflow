@@ -27,81 +27,65 @@ function Answer({ questionDetail }) {
  */ const classes = useStyles();
   return (
     <>
-      {questionDetail?.answers.length > 0 && questionDetail?.answers.map((answer) => (
-        <>
-          <section className="answers-detail" key={answer.answer._id}>
-            <article className="question-article-detail">
-              <div className="question-detail-article__content">
-                <div className="content-header">
-                  <div className="image-wrapper">
-                    <Avatar alt="Remy Sharp" src="https://avatars3.githubusercontent.com/u/12779984?s=400&u=bd7db8429aee0fa72d76fafd02a6edcdea784789&v=4" />
+      {questionDetail?.answers.length > 0 && questionDetail.answers.map((answer) => (
+        <section className="answers-detail" key={answer._id}>
+          <article className="question-article-detail">
+            <div className="question-detail-article__content">
+              <div className="content-header">
+                <div className="image-wrapper">
+                  <Avatar alt="Remy Sharp" src="https://avatars3.githubusercontent.com/u/12779984?s=400&u=bd7db8429aee0fa72d76fafd02a6edcdea784789&v=4" />
 
+                </div>
+                <div className="content-header__right">
+                  <div className="owner-name">
+                    akash
+                    {' '}
                   </div>
-                  <div className="content-header__right">
-                    <div className="owner-name">
-                      akash
-                      {' '}
-                    </div>
-                    <div className="date-query">
-                      Posted At:
-                      {' '}
-                      <span className="date">{questionDetail.date}</span>
-                      {' '}
-                    </div>
-                  </div>
-                  <div className="buttons-user-logged">
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <DeleteOutlineOutlinedIcon />
-                      </IconButton>
-                    </div>
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <EditOutlinedIcon />
-                      </IconButton>
-                    </div>
+                  <div className="date-query">
+                    Posted At:
+                    {' '}
+                    <span className="date">{questionDetail.date}</span>
+                    {' '}
                   </div>
                 </div>
-                <div className="content-question-detail">
-                  {/* <div className="question__description">
-
-                    {questionDetail?.answers.length > 0
-                      ? (
-                        <p>
-                          {' '}
-                          {questionDetail?.answers[0].answer}
-                          {' '}
-                        </p>
-                      ) : (
-                        <p>Sorry there aint answer</p>
-                      )}
-
-                  </div> */}
-                </div>
-                <div className="code">
-                  {answer.answer}
-                </div>
-                <div className="content-footer">
-                  <div className="content-footer__left">
-                    <div className="icon-wrapper">
-                      <ThumbUpAltOutlinedIcon />
-                      <span>{questionDetail.likes}</span>
-                    </div>
-                    <div className="icon-wrapper">
-                      <ThumbDownOutlinedIcon />
-                      <span>{questionDetail.dislikes}</span>
-                    </div>
-                    <div className="icon-wrapper">
-                      <QuestionAnswerOutlinedIcon />
-                      <span>{questionDetail.answers?.length}</span>
-                    </div>
+                <div className="buttons-user-logged">
+                  <div>
+                    <IconButton aria-label="delete" className={classes.margin}>
+                      <DeleteOutlineOutlinedIcon />
+                    </IconButton>
+                  </div>
+                  <div>
+                    <IconButton aria-label="delete" className={classes.margin}>
+                      <EditOutlinedIcon />
+                    </IconButton>
                   </div>
                 </div>
               </div>
-            </article>
-          </section>
-        </>
+              <div className="code">
+                {answer.answer}
+              </div>
+              <div className="content-footer">
+                <div className="content-footer__left">
+                  <div className="icon-wrapper">
+                    <ThumbUpAltOutlinedIcon />
+                    <span>{questionDetail.likes}</span>
+                  </div>
+                  <div className="icon-wrapper">
+                    <ThumbDownOutlinedIcon />
+                    <span>{questionDetail.dislikes}</span>
+                  </div>
+                  <div className="icon-wrapper">
+                    <QuestionAnswerOutlinedIcon />
+                    <span>{questionDetail.answers?.length}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
       ))}
+      {questionDetail?.answers.length === 0
+        && <p>No ans</p>}
 
     </>
   );

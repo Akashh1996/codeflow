@@ -11,7 +11,7 @@ const Answer = require('./src/models/answerModel');
 const User = require('./src/models/userModel');
 const questionsRouter = require('./src/routers/questionsRouter')(Question, Answer);
 const questionRouter = require('./src/routers/questionRouter')(Question, Answer);
-const answerRouter = require('./src/routers/answerRouter')(Answer);
+const answerRouter = require('./src/routers/answerRouter')(Answer, Question);
 const userRouter = require('./src/routers/userRouter')(User);
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use('/questions', questionsRouter);
 app.use('/question', questionRouter);
 app.use('/answers', answerRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 app.listen(port, () => {
   debug(`server is running on port ${chalk.blue(port)}`);

@@ -6,9 +6,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import './answer-form.css';
+import postAnswer from '../../../redux/actions/answerAction';
 
-function AddQuestion() {
-  const [questionTitle, setQuestionTitle] = useState('');
+function AddQuestion({ dispatch }) {
+  const [answerDescription, setQuestionTitle] = useState('');
   const [code, setCode] = useState('');
 
   return (
@@ -20,7 +21,7 @@ function AddQuestion() {
           <input
             type="text"
             onChange={(event) => setQuestionTitle(event.target.value)}
-            value={questionTitle}
+            value={answerDescription}
           />
         </label>
         <label htmlFor="answer-code">
@@ -33,24 +34,15 @@ function AddQuestion() {
           />
         </label>
         <div>
-          {/*    <button
+          <button
             type="button"
             className="button-submit"
             onClick={() => {
-              if (!!questionTitle && !!questionDescription && !!code && !!tag) {
-                dispatch(postQuestion({
-                  questionTitle,
-                  questionDescription,
-                  tag,
-                  code: {
-                    code,
-                  },
+              if (!!answerDescription && !!code) {
+                dispatch(postAnswer({
+                  answerDescription,
+                  code,
                 }));
-                setQuestionTitle('');
-                setQuestionBody('');
-                setQuestionTag('');
-                setCode('');
-                history.push('/');
               } else {
                 alert('fill the form');
               }
@@ -59,7 +51,6 @@ function AddQuestion() {
             Submit
           </button>
 
- */}
         </div>
 
       </form>
@@ -68,10 +59,4 @@ function AddQuestion() {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.userReducer?.user?.user,
-
-  };
-}
-export default connect(mapStateToProps)(AddQuestion);
+export default connect()(AddQuestion);
