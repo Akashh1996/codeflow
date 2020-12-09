@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import signInWithGoogle from '../../redux/actions/userAction';
+import signInWithGoogle, { signOut } from '../../redux/actions/userAction';
 import './header.css';
 import { reset } from '../../redux/actions/questionAction';
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({ dispatch }) {
+function Header({ dispatch, user }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -78,19 +78,6 @@ function Header({ dispatch }) {
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
-            <Button
-              type="button"
-              color="inherit"
-              className={classes.signUp}
-              onClick={(event) => {
-                event.preventDefault();
-                dispatch(signInWithGoogle());
-              }}
-            >
-              Sign in
-            </Button>
-
-            {/*
             {!user?.uid ? (
               <Button
                 type="button"
@@ -108,14 +95,11 @@ function Header({ dispatch }) {
                 type="button"
                 color="inherit"
                 className={classes.signUp}
-                onClick={(event) => {
-                  event.preventDefault();
-                  dispatch(logOut());
-                }}
+                onClick={() => dispatch(signOut())}
               >
                 Sign Out
               </Button>
-            )} */}
+            )}
 
           </Toolbar>
         </AppBar>
@@ -133,8 +117,10 @@ function Header({ dispatch }) {
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
     user: state.userReducer?.user?.user,
+    currentUser: state.userReducer.myUser,
     isLogged: state.userReducer.isLogged,
   };
 }
