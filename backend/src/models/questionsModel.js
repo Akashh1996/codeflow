@@ -8,7 +8,9 @@ const questionSchema = new Schema({
   code: { type: Object, required: true },
   date: { type: Date, default: new Date() },
   owner: { type: Schema.Types.ObjectId, ref: 'users' },
+
   answers: [{ type: Schema.Types.ObjectId, ref: 'answers' }],
+
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   tag: { type: String, required: true },

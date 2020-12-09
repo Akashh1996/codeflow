@@ -1,9 +1,9 @@
 const { Router } = require('express');
 const answerController = require('../controllers/answerController');
 
-function answerRouter(Answer) {
+function answerRouter(Answer, Question) {
   const router = Router();
-  const question = answerController(Answer);
+  const question = answerController(Answer, Question);
 
   router.route('/')
     .get(question.getMethod)

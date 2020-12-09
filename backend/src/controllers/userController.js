@@ -1,6 +1,6 @@
 function userController(User) {
   function getMethod(req, res) {
-    const query = req.body;
+    const query = {};
     function findCallback(errorFindUser, user) {
       return errorFindUser ? res.send(errorFindUser) : res.json(user);
     }
