@@ -3,7 +3,6 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 
 const endpoint = 'http://localhost:8000/questions';
-const endpointUser = 'http://localhost:8000/user';
 
 function loadQuestionSuccess(questionList) {
   return {
@@ -54,20 +53,6 @@ export function reset() {
     }
   };
 } */
-
-function addUserSuccess(user) {
-  return {
-    type: actionTypes.ADD_USER,
-    user,
-  };
-}
-
-export function addUser(userData) {
-  return async (dispatch) => {
-    const { data } = await axios.post(endpointUser, userData);
-    dispatch(addUserSuccess(data));
-  };
-}
 
 function postQuestionSuccess(newQuestion) {
   return {

@@ -13,9 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import signInWithGoogle, { logOut } from '../../redux/actions/userAction';
+import signInWithGoogle from '../../redux/actions/userAction';
 import './header.css';
-import { addUser, reset } from '../../redux/actions/questionAction';
+import { reset } from '../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({ dispatch, user }) {
+function Header({ dispatch }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -78,14 +78,19 @@ function Header({ dispatch, user }) {
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
-            <button
+            <Button
               type="button"
-              onClick={() => dispatch(addUser({ displayName: user.displayName, uid: user.uid, photo: user.photoURL }))}
+              color="inherit"
+              className={classes.signUp}
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(signInWithGoogle());
+              }}
             >
-              Click Me
+              Sign in
+            </Button>
 
-            </button>
-
+            {/*
             {!user?.uid ? (
               <Button
                 type="button"
@@ -110,7 +115,7 @@ function Header({ dispatch, user }) {
               >
                 Sign Out
               </Button>
-            )}
+            )} */}
 
           </Toolbar>
         </AppBar>

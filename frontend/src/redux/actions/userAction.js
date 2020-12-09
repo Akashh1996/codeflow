@@ -1,8 +1,23 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
+import axios from 'axios';
 import actionTypes from './actionTypes';
 import './Firebase/firebaseIndex';
-import 'firebase/database';
-import 'firebase/storage';
+
+const endpointUser = 'http://localhost:8000/user';
+
+function addUserSuccess(user) {
+  return {
+    type: actionTypes.ADD_USER,
+    user,
+  };
+}
+
+export function addUser(userData) {
+  return async (dispatch) => {
+    const { data } = await axios.post(endpointUser, userData);
+    dispatch(addUserSuccess(data));
+  };
+}
 
 function signInWithGoogleSuccess(user) {
   return {
@@ -22,34 +37,41 @@ export default function signInWithGoogle() {
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   return async (dispatch) => {
     try {
-      const result = await firebase.auth().signInWithPopup(provider);
-      if (result.additionalUserInfo.isNewUser) {
-        firebase
-          .database()
-          .ref(`/users/${result.user.uid}`)
-          .set({
-            gmail: result.user.email,
-            profile_picture: result.additionalUserInfo.profile.picture,
-            locale: result.additionalUserInfo.profile.locale,
-            first_name: result.additionalUserInfo.profile.given_name,
-            last_name: result.additionalUserInfo.profile.family_name,
-            created_at: Date.now(),
-          });
-      } else {
-        firebase
-          .database()
-          .ref(`/users/${result.user.uid}`).update({
-            last_logged_in: Date.now(),
-          });
-      }
-      dispatch(signInWithGoogleSuccess(result));
+      const { user } = await firebase.auth().signInWithPopup(provider);
+      dispatch(signInWithGoogleSuccess(user));
+      dispatch(addUser({
+        uid: user.uid,
+        displayName: user.displayName,
+        photo: user.photoURL,
+        email: user.email,
+      }));
     } catch (error) {
       dispatch(signInWithGoogleError(error));
     }
   };
 }
-export function logOut() {
+
+export function loadUserSuccess(user) {
   return {
-    type: actionTypes.AUTH_LOGOUT,
+    type: actionTypes.LOAD_USER,
+    user,
+  };
+}
+
+export function loadUserError(error) {
+  return {
+    type: actionTypes.LOAD_USER_ERROR,
+    error,
+  };
+}
+
+export function loadUser() {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('http://localhost:8000/user');
+      dispatch(loadUserSuccess(data));
+    } catch (error) {
+      dispatch(loadUserError(error));
+    }
   };
 }
