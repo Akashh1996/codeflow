@@ -15,10 +15,11 @@ function AddQuestion({ dispatch }) {
   return (
     <section className="answer-form-section">
       <form className="answer-form">
-        <div className="add-answer"><h2>Add Your Answer</h2></div>
-        <label htmlFor="answer-description">
+        <div className="add-answer"><h2 className="user-answer">Add Your Answer</h2></div>
+        <label htmlFor="answer-description" className="answer-description">
           Answer Description
           <input
+            className="data-test"
             type="text"
             onChange={(event) => setQuestionTitle(event.target.value)}
             value={answerDescription}
@@ -27,6 +28,7 @@ function AddQuestion({ dispatch }) {
         <label htmlFor="answer-code">
           Your Code
           <textarea
+            className="data-test"
             spellCheck="false"
             type="text"
             onChange={(event) => setCode(event.target.value)}

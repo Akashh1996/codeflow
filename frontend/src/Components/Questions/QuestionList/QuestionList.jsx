@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({ dispatch, displayList }) {
+function QuestionList({ dispatch, displayList, user }) {
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
@@ -39,8 +39,10 @@ function QuestionList({ dispatch, displayList }) {
   }, [tag]);
 
   useEffect(() => {
-    dispatch(loadUser());
-  }, []);
+    if (!user) {
+      dispatch(loadUser());
+    }
+  }, [user]);
   return (
     <>
       {displayList && displayList.length > 0 && displayList.map((question) => (
@@ -121,6 +123,7 @@ QuestionList.defaultProps = {
 function mapStateToProps(state) {
   return {
     displayList: state.questionReducer.displayList,
+    user: state.userReducer.myUser,
   };
 }
 

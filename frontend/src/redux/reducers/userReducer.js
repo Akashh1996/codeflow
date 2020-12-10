@@ -23,7 +23,7 @@ export default function userReducer(state = {}, action) {
     case actionTypes.LOAD_USER:
       return {
         ...state,
-        myUser: action.user,
+        myUser: [...action.user],
       };
     case actionTypes.LOAD_USER_ERROR:
       return {
