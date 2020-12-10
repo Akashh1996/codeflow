@@ -1,6 +1,5 @@
 function userController(User) {
   function getMethod(req, res) {
-    console.log(req);
     const { userEmail } = req.query;
     const query = { email: userEmail };
     function findCallback(errorFindUser, user) {
@@ -26,7 +25,6 @@ function userController(User) {
   }
 
   function postMethod({ body }, res) {
-    console.log(body);
     const query = { email: body.email };
     User.findOneAndUpdate(query, body, {
       new: true, upsert: true, useFindAndModify: false,
