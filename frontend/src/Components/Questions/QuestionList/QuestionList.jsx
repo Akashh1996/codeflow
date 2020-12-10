@@ -52,7 +52,7 @@ function QuestionList({ dispatch, displayList }) {
               </div>
               <div className="content-header__right">
                 <div className="owner-name">
-                  akash
+                  {question.owner?.displayName}
                   {' '}
                 </div>
                 <div className="date-query">

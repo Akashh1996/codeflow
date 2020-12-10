@@ -104,3 +104,8 @@ export function signOut() {
     }
   };
 }
+
+firebase.initializeApp({
+  apiKey: 'AIza…',
+  authDomain: '<PROJECT_ID>.firebasepp.com',
+});
