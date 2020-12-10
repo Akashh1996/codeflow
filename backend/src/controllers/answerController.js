@@ -26,7 +26,7 @@ function answerController(Answer, Question) {
 
   async function postMethod({ body }, res) {
     const answerObject = {
-      user: '5fd0e8de4aa3c42472f13e35',
+      user: body.userId,
       answerDescription: body.answerDescription,
       code: body.code,
     };

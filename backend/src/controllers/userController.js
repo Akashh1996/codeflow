@@ -1,10 +1,12 @@
 function userController(User) {
   function getMethod(req, res) {
-    const query = {};
+    console.log(req);
+    const { userEmail } = req.query;
+    const query = { email: userEmail };
     function findCallback(errorFindUser, user) {
       return errorFindUser ? res.send(errorFindUser) : res.json(user);
     }
-    User.find(query, findCallback);
+    User.findOne(query, findCallback);
   }
 
   function deleteMethod({ body }, res) {
@@ -24,13 +26,14 @@ function userController(User) {
   }
 
   function postMethod({ body }, res) {
-    const query = { uid: body.uid };
+    console.log(body);
+    const query = { email: body.email };
     User.findOneAndUpdate(query, body, {
-      upsert: true, useFindAndModify: false,
+      new: true, upsert: true, useFindAndModify: false,
     }, (errorFindUser, userModified) => (
       errorFindUser
         ? res.send(errorFindUser)
-        : res.json(userModified)
+        : res.send(userModified)
     ));
   }
 
