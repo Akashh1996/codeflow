@@ -119,7 +119,7 @@ function Header({ dispatch, user }) {
 function mapStateToProps(state) {
   debugger;
   return {
-    user: state.userReducer?.user?.user,
+    user: state.userReducer.newMongoUser,
     currentUser: state.userReducer.myUser,
     isLogged: state.userReducer.isLogged,
   };

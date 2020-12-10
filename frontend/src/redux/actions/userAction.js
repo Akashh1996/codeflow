@@ -14,6 +14,7 @@ function addUserSuccess(user) {
 }
 
 export function addUser(userData) {
+  debugger;
   return async (dispatch) => {
     const { data } = await axios.post(endpointUser, userData);
     dispatch(addUserSuccess(data));
