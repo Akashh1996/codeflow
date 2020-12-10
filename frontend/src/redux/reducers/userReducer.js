@@ -6,7 +6,7 @@ export default function userReducer(state = {}, action) {
     case actionTypes.AUTH_LOGIN:
       return {
         ...state,
-        user: action.user,
+        fireBaseUser: action.user,
         isLogged: true,
       };
     case actionTypes.AUTH_LOGIN_ERROR:
@@ -20,21 +20,17 @@ export default function userReducer(state = {}, action) {
         user: null,
         isLogged: false,
       };
-    case actionTypes.LOAD_USER:
-      return {
-        ...state,
-        myUser: action.user,
-      };
-    case actionTypes.LOAD_USER_ERROR:
-      return {
-        ...state,
-        error: action.error,
-      };
     case actionTypes.ADD_USER:
       debugger;
       return {
         ...state,
-        newMongoUser: action.user,
+        user: action.user,
+      };
+    case actionTypes.SAVE_USER:
+      debugger;
+      return {
+        ...state,
+        localStorageUser: JSON.parse(window.localStorage.getItem('user')),
       };
     default:
       return state;

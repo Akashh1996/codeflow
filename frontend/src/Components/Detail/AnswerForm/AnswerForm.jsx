@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -8,7 +9,9 @@ import { connect } from 'react-redux';
 import './answer-form.css';
 import postAnswer from '../../../redux/actions/answerAction';
 
-function AddQuestion({ dispatch }) {
+// eslint-disable-next-line no-unused-vars
+function AddQuestion({ dispatch, questionDetail }) {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
   const [answerDescription, setQuestionTitle] = useState('');
   const [code, setCode] = useState('');
 
@@ -44,6 +47,7 @@ function AddQuestion({ dispatch }) {
                 dispatch(postAnswer({
                   answerDescription,
                   code,
+                  userId: userLocalStorage.user._id,
                 }));
               } else {
                 alert('fill the form');
@@ -61,4 +65,10 @@ function AddQuestion({ dispatch }) {
   );
 }
 
-export default connect()(AddQuestion);
+function mapStateToProps(state) {
+  return {
+    user: state.userReducer.myUser,
+
+  };
+}
+export default connect(mapStateToProps)(AddQuestion);

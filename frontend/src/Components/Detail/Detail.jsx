@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Detail({ dispatch, questionDetail, match }) {
+  debugger;
   const [id] = useState(match.params.questionId);
   const classes = useStyles();
   useEffect(() => {
@@ -111,7 +112,7 @@ function Detail({ dispatch, questionDetail, match }) {
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <Answer questionDetail={questionDetail} key={Date.now()} />
       <section className="answer-form">
-        <AnswerForm />
+        <AnswerForm questionDetail={questionDetail} />
       </section>
     </>
   );

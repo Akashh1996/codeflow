@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import signInWithGoogle, { signOut } from '../../redux/actions/userAction';
+import { signOut, signInWithGoogle } from '../../redux/actions/userAction';
 import './header.css';
 import { reset } from '../../redux/actions/questionAction';
 
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header({ dispatch, user }) {
+  console.log(user);
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -78,13 +81,12 @@ function Header({ dispatch, user }) {
               <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
-            {!user?.uid ? (
+            {!localStorage.user ? (
               <Button
                 type="button"
                 color="inherit"
                 className={classes.signUp}
-                onClick={(event) => {
-                  event.preventDefault();
+                onClick={() => {
                   dispatch(signInWithGoogle());
                 }}
               >
@@ -100,7 +102,7 @@ function Header({ dispatch, user }) {
                 Sign Out
               </Button>
             )}
-
+            <div><h1>{userLocalStorage?.user.displayName}</h1></div>
           </Toolbar>
         </AppBar>
       </div>
@@ -119,9 +121,7 @@ function Header({ dispatch, user }) {
 function mapStateToProps(state) {
   debugger;
   return {
-    user: state.userReducer.newMongoUser,
-    currentUser: state.userReducer.myUser,
-    isLogged: state.userReducer.isLogged,
+    user: state.userReducer.user,
   };
 }
 export default connect(mapStateToProps)(Header);
