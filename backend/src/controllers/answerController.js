@@ -27,39 +27,29 @@ function answerController(Answer, Question) {
   }
 
   async function postMethod({ body }, res) {
+    const { questionId } = body;
+
     const answerObject = {
       user: body.userId,
       answerDescription: body.answerDescription,
       code: body.code,
     };
+
     const queryFind = { answerDescription: answerObject.answerDescription };
-    let answerFound;
-    function findCallback(errorFindAnswer, answer) {
-      if (errorFindAnswer) {
-        res.send(errorFindAnswer);
-      } else {
-        res.json(answer);
-        answerFound = answer._id;
-      }
+    try {
+      await Answer.create(answerObject);
+      const answerFound = await Answer.findOne(queryFind).populate('user');
+
+      const answerId = answerFound._id;
+
+      const foundQuestion = await Question.findOne({ _id: questionId });
+      foundQuestion.answers.push(answerId);
+      await foundQuestion.save();
+
+      res.json(answerFound);
+    } catch (error) {
+      res.send(error);
     }
-    /*  function postCallback(errorCreateAnswer, createdNewAnswer) {
-      return errorCreateAnswer ? res.send(errorCreateAnswer) : res.json(createdNewAnswer);
-    } */
-
-    await Answer.create(answerObject);
-
-    await Answer.findOne(queryFind, findCallback);
-
-    Question.findOne({ _id: '5fd2b04ce7e9eb6634ba31c2' }, (errorFound, question) => {
-      if (errorFound) {
-        res.send(errorFound);
-      } else {
-        question.answers.push(answerFound);
-        question.save();
-      }
-    });
-
-    //  Question.findOneAndUpdate({ _id: '5fcec806e09ba44dc0b4f3ae' }, { $push: { answers: answerFound } });
   }
   return {
     getMethod, deleteMethod, putMethod, postMethod,
