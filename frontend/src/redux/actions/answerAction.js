@@ -6,13 +6,13 @@ const endpoint = 'http://localhost:8000/answers';
 
 function postAnswerSuccess(newAnswer) {
   return {
-    type: actionTypes.LOAD_QUESTION,
+    type: actionTypes.POST_ANSWER,
     newAnswer,
   };
 }
 function postAnswerError(error) {
   return {
-    type: actionTypes.LOAD_QUESTION_ERROR,
+    type: actionTypes.POST_ANSWER_ERROR,
     error,
   };
 }
@@ -21,6 +21,7 @@ export default function postAnswer(newAnswer) {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, newAnswer);
+      debugger;
       dispatch(postAnswerSuccess(data));
     } catch (error) {
       dispatch(postAnswerError(error));

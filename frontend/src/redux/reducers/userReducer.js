@@ -24,10 +24,9 @@ export default function userReducer(state = {}, action) {
       debugger;
       return {
         ...state,
-        user: action.user,
+        user: action.newUser,
       };
     case actionTypes.SAVE_USER:
-      debugger;
       return {
         ...state,
         localStorageUser: JSON.parse(window.localStorage.getItem('user')),

@@ -2,7 +2,7 @@ function questionController(Question) {
   function getMethod(req, res) {
     const query = req.id;
     const question = Question.findById(query);
-    question.populate('answers').populate('owner');
+    question.populate({ path: 'answers', populate: { path: 'user' } }).populate({ path: 'owner' });
     question.exec((errorFindQuestion, questions) => {
       if (errorFindQuestion) {
         return res.send(errorFindQuestion);

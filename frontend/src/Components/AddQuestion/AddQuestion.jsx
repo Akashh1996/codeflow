@@ -18,6 +18,7 @@ function AddQuestion({
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
   const [code, setCode] = useState('');
+
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   return (
@@ -93,7 +94,6 @@ function AddQuestion({
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
 
     user: state.userReducer.user,
