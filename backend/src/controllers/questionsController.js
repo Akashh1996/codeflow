@@ -1,7 +1,8 @@
 function questionsController(Question) {
   function getMethod(req, res) {
     const { query } = req;
-    Question.find(query).populate('answers')
+    Question.find(query)
+      .populate('answers')
       .populate('owner')
       .exec((errorFindQuestion, questions) => {
         if (errorFindQuestion) {

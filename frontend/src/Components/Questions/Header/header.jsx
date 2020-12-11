@@ -21,7 +21,7 @@ function Header({ dispatch }) {
       <div className="select-wrapper ">
         <div className="select-options">
           <select name="cars" id="cars" className="any">
-            <option value="volvo">Volvo</option>
+            <option value="volvo" className="no-answer">Volvo</option>
             <option value="saab">Saab</option>
             <option value="opel">Opel</option>
             <option value="audi">Audi</option>

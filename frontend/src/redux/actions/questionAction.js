@@ -17,7 +17,7 @@ function loadQuestionError(error) {
   };
 }
 
-export default function loadQuestion(tag) {
+export function loadQuestion(tag) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint, { params: { tag } });
@@ -56,14 +56,14 @@ export function reset() {
 
 function postQuestionSuccess(newQuestion) {
   return {
-    type: actionTypes.LOAD_QUESTION,
+    type: actionTypes.POST_QUESTION,
     newQuestion,
   };
 }
 
 function postQuestionError(error) {
   return {
-    type: actionTypes.POST_QUESTION,
+    type: actionTypes.POST_QUESTION_ERROR,
     error,
   };
 }

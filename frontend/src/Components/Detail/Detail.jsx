@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Detail({ dispatch, questionDetail, match }) {
+  debugger;
   const [id] = useState(match.params.questionId);
   const classes = useStyles();
   useEffect(() => {
@@ -44,12 +46,12 @@ function Detail({ dispatch, questionDetail, match }) {
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
-                    <Avatar alt="Remy Sharp" src="https://avatars3.githubusercontent.com/u/12779984?s=400&u=bd7db8429aee0fa72d76fafd02a6edcdea784789&v=4" />
+                    <Avatar alt="Remy Sharp" src={questionDetail.owner.photo} />
 
                   </div>
                   <div className="content-header__right">
                     <div className="owner-name">
-                      akash
+                      {questionDetail.owner.displayName}
                       {' '}
                     </div>
                     <div className="date-query">
@@ -110,7 +112,7 @@ function Detail({ dispatch, questionDetail, match }) {
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <Answer questionDetail={questionDetail} key={Date.now()} />
       <section className="answer-form">
-        <AnswerForm />
+        <AnswerForm questionDetail={questionDetail} />
       </section>
     </>
   );

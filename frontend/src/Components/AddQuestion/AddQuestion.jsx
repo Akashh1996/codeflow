@@ -11,13 +11,14 @@ import { connect } from 'react-redux';
 import { postQuestion } from '../../redux/actions/questionAction';
 
 function AddQuestion({
-  dispatch, history, user, currentUser,
+  dispatch, history,
 }) {
-  const loggedUser = user.filter((eachUser) => eachUser.email === currentUser);
-  const [questionTitle, setQuestionTitle] = useState('');
+  /*   const loggedUser = user.filter((eachUser) => eachUser.email === currentUser);
+ */ const [questionTitle, setQuestionTitle] = useState('');
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
   const [code, setCode] = useState('');
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   return (
     <section className="form-section">
@@ -68,7 +69,7 @@ function AddQuestion({
                   code: {
                     code,
                   },
-                  owner: loggedUser[0]._id,
+                  owner: userLocalStorage.user._id,
                 }));
                 setQuestionTitle('');
                 setQuestionBody('');
@@ -92,9 +93,10 @@ function AddQuestion({
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
-    currentUser: state.userReducer.user.additionalUserInfo.profile.email,
-    user: state.userReducer.myUser,
+
+    user: state.userReducer.user,
   };
 }
 export default connect(mapStateToProps)(AddQuestion);

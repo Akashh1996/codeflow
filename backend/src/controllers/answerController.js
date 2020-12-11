@@ -1,13 +1,15 @@
 /* eslint-disable max-len */
 function answerController(Answer, Question) {
   function getMethod(req, res) {
-    const query = {};
-    function findCallback(errorFindAnswer, question) {
-      return errorFindAnswer ? res.send(errorFindAnswer) : res.json(question);
-    }
-    Answer.find(query, findCallback);
+    const { query } = req;
+    Answer.find(query).populate('user')
+      .exec((errorFindAnswer, answer) => {
+        if (errorFindAnswer) {
+          return res.send(errorFindAnswer);
+        }
+        return res.json(answer);
+      });
   }
-
   function deleteMethod({ body }, res) {
     const query = body._id;
     function deleteCallback(errorDeleteAnswer, removedAnswer) {
@@ -26,7 +28,7 @@ function answerController(Answer, Question) {
 
   async function postMethod({ body }, res) {
     const answerObject = {
-      user: '5fd0e8de4aa3c42472f13e35',
+      user: body.userId,
       answerDescription: body.answerDescription,
       code: body.code,
     };
@@ -36,6 +38,7 @@ function answerController(Answer, Question) {
       if (errorFindAnswer) {
         res.send(errorFindAnswer);
       } else {
+        res.json(answer);
         answerFound = answer._id;
       }
     }
@@ -47,7 +50,7 @@ function answerController(Answer, Question) {
 
     await Answer.findOne(queryFind, findCallback);
 
-    Question.findOne({ _id: '5fcec806e09ba44dc0b4f3ae' }, (errorFound, question) => {
+    Question.findOne({ _id: '5fd2b04ce7e9eb6634ba31c2' }, (errorFound, question) => {
       if (errorFound) {
         res.send(errorFound);
       } else {

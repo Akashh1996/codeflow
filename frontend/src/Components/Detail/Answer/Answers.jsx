@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
@@ -22,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Answer({ questionDetail }) {
+  console.log(questionDetail);
+
   /* const answers =  */
   /*   const isAnswerTrue = questionDetail?.answers.length > 0;
  */ const classes = useStyles();
@@ -33,7 +36,7 @@ function Answer({ questionDetail }) {
             <div className="question-detail-article__content">
               <div className="content-header">
                 <div className="image-wrapper">
-                  <Avatar alt="Remy Sharp" src="https://avatars3.githubusercontent.com/u/12779984?s=400&u=bd7db8429aee0fa72d76fafd02a6edcdea784789&v=4" />
+                  <Avatar alt="Remy Sharp" src="www.google.com" />
 
                 </div>
                 <div className="content-header__right">
