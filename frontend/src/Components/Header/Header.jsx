@@ -119,6 +119,7 @@ function Header({ dispatch, user }) {
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
     user: state.userReducer.user,
   };

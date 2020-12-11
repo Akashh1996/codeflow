@@ -21,6 +21,7 @@ export default function postAnswer(newAnswer) {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, newAnswer);
+      debugger;
       dispatch(postAnswerSuccess(data));
     } catch (error) {
       dispatch(postAnswerError(error));

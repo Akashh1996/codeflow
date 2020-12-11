@@ -137,6 +137,7 @@ export function addUserError(error) {
   };
 }
 export function addUser(userData) {
+  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.post(serverUsersUrl, userData);

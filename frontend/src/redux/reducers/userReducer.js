@@ -21,9 +21,10 @@ export default function userReducer(state = {}, action) {
         isLogged: false,
       };
     case actionTypes.ADD_USER:
+      debugger;
       return {
         ...state,
-        user: action.user,
+        user: action.newUser,
       };
     case actionTypes.SAVE_USER:
       return {

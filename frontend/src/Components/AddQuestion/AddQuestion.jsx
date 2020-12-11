@@ -18,6 +18,7 @@ function AddQuestion({
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
   const [code, setCode] = useState('');
+
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   return (

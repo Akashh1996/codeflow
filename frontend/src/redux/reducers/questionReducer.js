@@ -56,6 +56,7 @@ export default function questionReducer(state = initialState, action) {
         questionDetail: {
           ...state.questionDetail,
           answers: [...state.questionDetail.answers, action.newAnswer],
+
         },
       };
       debugger;
