@@ -124,6 +124,7 @@ import firebase from 'firebase';
 import actionTypes from './actionTypes';
 
 const serverUsersUrl = 'http://localhost:8000/users';
+
 export function addUserSuccess(newUser) {
   return {
     type: actionTypes.ADD_USER,

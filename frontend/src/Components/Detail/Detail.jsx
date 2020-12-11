@@ -111,7 +111,7 @@ function Detail({ dispatch, questionDetail, match }) {
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <Answer key={Date.now()} />
       <section className="answer-form">
-        <AnswerForm questionDetail={questionDetail} />
+        <AnswerForm />
       </section>
     </>
   );

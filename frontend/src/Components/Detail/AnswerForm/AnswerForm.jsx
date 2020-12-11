@@ -47,11 +47,9 @@ function AddQuestion({ dispatch, questionDetail }) {
                 dispatch(postAnswer({
                   answerDescription,
                   code,
-                  userId: userLocalStorage.user._id,
+                  userId: userLocalStorage?.user?._id,
                   questionId: questionDetail._id,
                 }));
-              } else {
-                alert('fill the form');
               }
             }}
           >
@@ -68,7 +66,7 @@ function AddQuestion({ dispatch, questionDetail }) {
 
 function mapStateToProps(state) {
   return {
-    user: state.userReducer.myUser,
+    questionDetail: state.questionReducer.questionDetail,
 
   };
 }
