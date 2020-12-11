@@ -6,13 +6,13 @@ const endpoint = 'http://localhost:8000/answers';
 
 function postAnswerSuccess(newAnswer) {
   return {
-    type: actionTypes.LOAD_QUESTION,
+    type: actionTypes.POST_ANSWER,
     newAnswer,
   };
 }
 function postAnswerError(error) {
   return {
-    type: actionTypes.LOAD_QUESTION_ERROR,
+    type: actionTypes.POST_ANSWER_ERROR,
     error,
   };
 }

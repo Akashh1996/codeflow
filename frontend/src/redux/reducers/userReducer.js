@@ -21,13 +21,11 @@ export default function userReducer(state = {}, action) {
         isLogged: false,
       };
     case actionTypes.ADD_USER:
-      debugger;
       return {
         ...state,
         user: action.user,
       };
     case actionTypes.SAVE_USER:
-      debugger;
       return {
         ...state,
         localStorageUser: JSON.parse(window.localStorage.getItem('user')),

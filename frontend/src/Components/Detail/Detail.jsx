@@ -29,14 +29,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Detail({ dispatch, questionDetail, match }) {
-  debugger;
   const [id] = useState(match.params.questionId);
   const classes = useStyles();
   useEffect(() => {
     if (!questionDetail || id !== questionDetail._id) {
       dispatch(loadQuestionDetail(id));
     }
-  }, []);
+  }, [questionDetail?.answers.length, id]);
   return (
     <>
       {questionDetail && (
@@ -110,7 +109,7 @@ function Detail({ dispatch, questionDetail, match }) {
         </>
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <Answer questionDetail={questionDetail} key={Date.now()} />
+      <Answer key={Date.now()} />
       <section className="answer-form">
         <AnswerForm questionDetail={questionDetail} />
       </section>
@@ -143,7 +142,9 @@ Detail.propTypes = {
 Detail.defaultProps = {
   questionDetail: undefined,
 };
+
 function mapStateToProps(state) {
+  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
   };

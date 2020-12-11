@@ -93,7 +93,6 @@ function AddQuestion({
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
 
     user: state.userReducer.user,

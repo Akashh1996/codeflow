@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 import './answer-form.css';
 import postAnswer from '../../../redux/actions/answerAction';
 
-// eslint-disable-next-line no-unused-vars
 function AddQuestion({ dispatch, questionDetail }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const [answerDescription, setQuestionTitle] = useState('');
   const [code, setCode] = useState('');
 
@@ -48,6 +48,7 @@ function AddQuestion({ dispatch, questionDetail }) {
                   answerDescription,
                   code,
                   userId: userLocalStorage.user._id,
+                  questionId: questionDetail._id,
                 }));
               } else {
                 alert('fill the form');

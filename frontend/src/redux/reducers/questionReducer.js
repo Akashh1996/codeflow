@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-debugger */
 import actionTypes from '../actions/actionTypes';
 
@@ -44,6 +45,21 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         displayList: state.questionList,
       };
+    case actionTypes.POST_QUESTION:
+      return {
+        ...state,
+        displayList: state.questionList,
+      };
+    case actionTypes.POST_ANSWER:
+      const coso = {
+        ...state,
+        questionDetail: {
+          ...state.questionDetail,
+          answers: [...state.questionDetail.answers, action.newAnswer],
+        },
+      };
+      debugger;
+      return coso;
     default:
       return state;
   }

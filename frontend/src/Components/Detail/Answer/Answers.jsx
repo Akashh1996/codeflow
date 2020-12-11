@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import './answers.css';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -25,9 +26,7 @@ const useStyles = makeStyles((theme) => ({
 function Answer({ questionDetail }) {
   console.log(questionDetail);
 
-  /* const answers =  */
-  /*   const isAnswerTrue = questionDetail?.answers.length > 0;
- */ const classes = useStyles();
+  const classes = useStyles();
   return (
     <>
       {questionDetail?.answers.length > 0 && questionDetail.answers.map((answer) => (
@@ -36,12 +35,12 @@ function Answer({ questionDetail }) {
             <div className="question-detail-article__content">
               <div className="content-header">
                 <div className="image-wrapper">
-                  <Avatar alt="Remy Sharp" src="www.google.com" />
+                  <Avatar alt="Remy Sharp" src={answer.user.photo} />
 
                 </div>
                 <div className="content-header__right">
                   <div className="owner-name">
-                    akash
+                    {answer.user.displayName}
                     {' '}
                   </div>
                   <div className="date-query">
@@ -65,7 +64,7 @@ function Answer({ questionDetail }) {
                 </div>
               </div>
               <div className="code">
-                {answer.answer}
+                {answer.code}
               </div>
               <div className="content-footer">
                 <div className="content-footer__left">
@@ -114,4 +113,11 @@ Answer.propTypes = {
 Answer.defaultProps = {
   questionDetail: undefined,
 };
-export default Answer;
+
+function mapStateToProps(state) {
+  return {
+    questionDetail: state.questionReducer.questionDetail,
+  };
+}
+
+export default connect(mapStateToProps)(Answer);
