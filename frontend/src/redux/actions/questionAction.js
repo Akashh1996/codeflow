@@ -101,6 +101,7 @@ function deleteQuestionError(error) {
 }
 
 export function deleteQuestion(questionId) {
+  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.delete(endpoint, {
@@ -111,6 +112,31 @@ export function deleteQuestion(questionId) {
       dispatch(deleteQuestionSuccess(data));
     } catch (error) {
       dispatch(deleteQuestionError(error));
+    }
+  };
+}
+function updateQuestionSuccess(updatedQuestion) {
+  return {
+    type: actionTypes.UPDATE_QUESTION,
+    updatedQuestion,
+  };
+}
+
+function updateQuestionError(error) {
+  return {
+    type: actionTypes.UPDATE_QUESTION_ERROR,
+    error,
+  };
+}
+
+export function updateQuestion(questionToUpdate, id) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`http://localhost:8000/question/${id}`,
+        questionToUpdate);
+      dispatch(updateQuestionSuccess(data));
+    } catch (error) {
+      dispatch(updateQuestionError(error));
     }
   };
 }

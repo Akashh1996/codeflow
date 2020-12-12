@@ -5,21 +5,46 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-debugger */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './add-question.css';
 import { connect } from 'react-redux';
-import { postQuestion } from '../../redux/actions/questionAction';
+import { useParams } from 'react-router-dom';
+import _ from 'lodash';
+import { postQuestion, loadQuestionDetail, updateQuestion } from '../../redux/actions/questionAction';
 
-function AddQuestion({
-  dispatch, history,
-}) {
-  /*   const loggedUser = user.filter((eachUser) => eachUser.email === currentUser);
- */ const [questionTitle, setQuestionTitle] = useState('');
+function AddQuestion({ dispatch, history, questionDetail }) {
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (!questionDetail || id !== questionDetail._id) {
+      dispatch(loadQuestionDetail(id));
+    }
+  }, [questionDetail, id]);
+
+  const [questionTitle, setQuestionTitle] = useState('');
   const [questionDescription, setQuestionBody] = useState('');
   const [tag, setQuestionTag] = useState('');
   const [code, setCode] = useState('');
-
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
+  const addQuestion = {
+    questionTitle,
+    questionDescription,
+    tag,
+    code,
+    owner: userLocalStorage?.user._id,
+
+  };
+
+  useEffect(() => {
+    if (!_.isEmpty(id) && questionDetail) {
+      debugger;
+      setQuestionTitle(questionDetail.questionTitle);
+      setQuestionBody(questionDetail.questionDescription);
+      setQuestionTag(questionDetail.tag);
+      setCode(questionDetail.code);
+    }
+  }, [questionDetail, id]);
 
   return (
     <section className="form-section">
@@ -30,6 +55,7 @@ function AddQuestion({
             type="text"
             onChange={(event) => setQuestionTitle(event.target.value)}
             value={questionTitle}
+            required
           />
         </label>
         <label htmlFor="question-description">
@@ -38,6 +64,7 @@ function AddQuestion({
             type="text"
             onChange={(event) => setQuestionBody(event.target.value)}
             value={questionDescription}
+            required
           />
         </label>
         <label htmlFor="question-code">
@@ -55,32 +82,23 @@ function AddQuestion({
             type="text"
             onChange={(event) => setQuestionTag(event.target.value)}
             value={tag}
+            required
           />
         </label>
         <div>
           <button
             type="button"
             className="button-submit"
-            onClick={() => {
-              if (!!questionTitle && !!questionDescription && !!code && !!tag) {
-                dispatch(postQuestion({
-                  questionTitle,
-                  questionDescription,
-                  tag,
-                  code: {
-                    code,
-                  },
-                  owner: userLocalStorage.user._id,
-                }));
-                setQuestionTitle('');
-                setQuestionBody('');
-                setQuestionTag('');
-                setCode('');
-                history.push('/');
-              } else {
-                alert('fill the form');
-              }
-            }}
+            onClick={() => (_.isEmpty(id)
+              ? dispatch(postQuestion(addQuestion), history.push('/'))
+              : dispatch(updateQuestion({
+                questionTitle,
+                questionDescription,
+                tag,
+                code,
+                owner: userLocalStorage.user._id,
+                questionId: id,
+              }, id, history.push('/'))))}
           >
             Submit
           </button>
@@ -94,8 +112,9 @@ function AddQuestion({
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
-
+    questionDetail: state.questionReducer.questionDetail,
     user: state.userReducer.user,
   };
 }

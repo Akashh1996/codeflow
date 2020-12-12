@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({ dispatch, displayList, user }) {
+function QuestionList({ dispatch, displayList }) {
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
@@ -34,7 +34,9 @@ function QuestionList({ dispatch, displayList, user }) {
     } else {
       dispatch(loadQuestion());
     }
-  }, [tag]);
+  }, [tag, displayList?.length]);
+
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   function canDelete(userId, ownerId) {
     debugger;
@@ -65,19 +67,22 @@ function QuestionList({ dispatch, displayList, user }) {
               </div>
               <div className="buttons-user-logged">
                 {
-                  canDelete(user?._id, question?.owner?._id) && (
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteQuestion(question._id))}>
-                        <DeleteOutlineOutlinedIcon />
-                      </IconButton>
-                    </div>
+                  canDelete(userLocalStorage?.user._id, question?.owner?._id) && (
+                    <>
+                      <div>
+                        <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteQuestion(question._id))}>
+                          <DeleteOutlineOutlinedIcon />
+                        </IconButton>
+                      </div>
+                      <div>
+                        <IconButton aria-label="delete" className={classes.margin}>
+                          <Link to={`/add-question/${question._id}`} style={{ color: 'grey' }}><EditOutlinedIcon /></Link>
+                        </IconButton>
+                      </div>
+                    </>
                   )
                   }
-                <div>
-                  <IconButton aria-label="delete" className={classes.margin}>
-                    <EditOutlinedIcon />
-                  </IconButton>
-                </div>
+
               </div>
             </div>
             <div className="content-question">

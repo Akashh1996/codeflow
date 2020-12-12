@@ -22,7 +22,7 @@ function Detail({ dispatch, questionDetail, match }) {
     if (!questionDetail || id !== questionDetail._id) {
       dispatch(loadQuestionDetail(id));
     }
-  }, [questionDetail?.answers.length, id]);
+  }, [questionDetail?.answers?.length, id]);
 
   return (
     <>
@@ -61,7 +61,7 @@ function Detail({ dispatch, questionDetail, match }) {
                   <Link to={`/${questionDetail.tag}`} className="tag-detail">{questionDetail.tag}</Link>
                 </div>
                 <div className="code">
-                  {questionDetail.code.code}
+                  {questionDetail.code}
                 </div>
                 <div className="content-footer">
                   <div className="content-footer__left">

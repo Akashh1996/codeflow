@@ -6,6 +6,7 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
 export default function questionReducer(state = initialState, action) {
+  debugger;
   let newTagsMap;
   let newTags;
   switch (action.type) {
@@ -61,10 +62,12 @@ export default function questionReducer(state = initialState, action) {
         },
       };
     case actionTypes.DELETE_QUESTION:
+      debugger;
       const newQuestions = state.questionList.filter((question) => question._id !== action.deletedQuestion._id);
+      debugger;
       return {
         ...state,
-        displayList: newQuestions.reverse(),
+        displayList: [...state.displayList, newQuestions],
         tags: state.tags.filter((tag) => tag !== action.deletedQuestion.tag),
       };
     case actionTypes.DELETE_ANSWER:
