@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable max-len */
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-debugger */
 import actionTypes from '../actions/actionTypes';
@@ -51,16 +53,29 @@ export default function questionReducer(state = initialState, action) {
         displayList: state.questionList,
       };
     case actionTypes.POST_ANSWER:
-      const coso = {
+      return {
         ...state,
         questionDetail: {
           ...state.questionDetail,
           answers: [...state.questionDetail.answers, action.newAnswer],
-
         },
       };
+    case actionTypes.DELETE_QUESTION:
+      const newQuestions = state.questionList.filter((question) => question._id !== action.deletedQuestion._id);
+      return {
+        ...state,
+        displayList: newQuestions.reverse(),
+        tags: state.tags.filter((tag) => tag !== action.deletedQuestion.tag),
+      };
+    case actionTypes.DELETE_ANSWER:
       debugger;
-      return coso;
+      return {
+        ...state,
+        questionDetail: {
+          ...state.questionDetail,
+          answers: [...state.questionDetail.answers.filter((answer) => answer._id !== action.deletedAnswer._id)],
+        },
+      };
     default:
       return state;
   }

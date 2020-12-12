@@ -6,12 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
@@ -19,23 +16,14 @@ import AnswerForm from './AnswerForm/AnswerForm';
 import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(0),
-    padding: theme.spacing(0.5),
-
-  },
-
-}));
-
 function Detail({ dispatch, questionDetail, match }) {
   const [id] = useState(match.params.questionId);
-  const classes = useStyles();
   useEffect(() => {
     if (!questionDetail || id !== questionDetail._id) {
       dispatch(loadQuestionDetail(id));
     }
   }, [questionDetail?.answers.length, id]);
+
   return (
     <>
       {questionDetail && (
@@ -58,18 +46,6 @@ function Detail({ dispatch, questionDetail, match }) {
                       {' '}
                       <span className="date">{questionDetail.date}</span>
                       {' '}
-                    </div>
-                  </div>
-                  <div className="buttons-user-logged">
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <DeleteOutlineOutlinedIcon />
-                      </IconButton>
-                    </div>
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <EditOutlinedIcon />
-                      </IconButton>
                     </div>
                   </div>
                 </div>
@@ -144,9 +120,10 @@ Detail.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
+    user: state.userReducer.user,
+
   };
 }
 

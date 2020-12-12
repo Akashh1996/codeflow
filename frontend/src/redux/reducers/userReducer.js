@@ -21,7 +21,6 @@ export default function userReducer(state = {}, action) {
         isLogged: false,
       };
     case actionTypes.ADD_USER:
-      debugger;
       return {
         ...state,
         user: action.newUser,
@@ -29,7 +28,7 @@ export default function userReducer(state = {}, action) {
     case actionTypes.SAVE_USER:
       return {
         ...state,
-        localStorageUser: JSON.parse(window.localStorage.getItem('user')),
+        userLocal: action.userLocal,
       };
     default:
       return state;

@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import './answers.css';
 import { connect } from 'react-redux';
+import { deleteAnswer } from '../../../redux/actions/answerAction';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -23,10 +24,13 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Answer({ questionDetail }) {
-  console.log(questionDetail);
-
+function Answer({ questionDetail, dispatch, user }) {
   const classes = useStyles();
+  function canDelete(userId, ownerId) {
+    debugger;
+    const checkOwner = userId === ownerId;
+    return checkOwner;
+  }
   return (
     <>
       {questionDetail?.answers.length > 0 && questionDetail.answers.map((answer) => (
@@ -51,11 +55,15 @@ function Answer({ questionDetail }) {
                   </div>
                 </div>
                 <div className="buttons-user-logged">
-                  <div>
-                    <IconButton aria-label="delete" className={classes.margin}>
-                      <DeleteOutlineOutlinedIcon />
-                    </IconButton>
-                  </div>
+                  {
+                  canDelete(user?._id, answer?.user?._id) && (
+                    <div>
+                      <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteAnswer(answer._id))}>
+                        <DeleteOutlineOutlinedIcon />
+                      </IconButton>
+                    </div>
+                  )
+                  }
                   <div>
                     <IconButton aria-label="delete" className={classes.margin}>
                       <EditOutlinedIcon />
@@ -117,6 +125,8 @@ Answer.defaultProps = {
 function mapStateToProps(state) {
   return {
     questionDetail: state.questionReducer.questionDetail,
+    user: state.userReducer.user,
+
   };
 }
 

@@ -38,22 +38,6 @@ export function reset() {
   };
 }
 
-/* export default function createNewQuestion(questionData, userData) {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.gepostt(endpoint, { body:{
-        question: questionData.question,
-        date: Date.now()
-        user: userData.displayName,
-        userPhoto:
-      } });
-      dispatch(loadQuestionSuccess(data));
-    } catch (error) {
-      dispatch(loadQuestionError(error));
-    }
-  };
-} */
-
 function postQuestionSuccess(newQuestion) {
   return {
     type: actionTypes.POST_QUESTION,
@@ -99,6 +83,34 @@ export function loadQuestionDetail(questionId) {
       dispatch(loadQuestionDetailSuccess(data));
     } catch (error) {
       dispatch(loadQuestionDetailError(error));
+    }
+  };
+}
+function deleteQuestionSuccess(deletedQuestion) {
+  return {
+    type: actionTypes.DELETE_QUESTION,
+    deletedQuestion,
+  };
+}
+
+function deleteQuestionError(error) {
+  return {
+    type: actionTypes.DELETE_QUESTION_ERROR,
+    error,
+  };
+}
+
+export function deleteQuestion(questionId) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(endpoint, {
+        params: {
+          _id: questionId,
+        },
+      });
+      dispatch(deleteQuestionSuccess(data));
+    } catch (error) {
+      dispatch(deleteQuestionError(error));
     }
   };
 }
