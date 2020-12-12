@@ -10,8 +10,9 @@ function answerController(Answer, Question) {
         return res.json(answer);
       });
   }
-  function deleteMethod({ body }, res) {
-    const query = body._id;
+  function deleteMethod(req, res) {
+    const query = req.query._id;
+    const body = req.query;
     function deleteCallback(errorDeleteAnswer, removedAnswer) {
       return errorDeleteAnswer ? res.send(errorDeleteAnswer) : res.json(removedAnswer);
     }

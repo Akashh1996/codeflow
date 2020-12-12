@@ -13,8 +13,9 @@ function questionsController(Question) {
       });
   }
 
-  function deleteMethod({ body }, res) {
-    const query = body._id;
+  function deleteMethod(req, res) {
+    const query = req.query._id;
+    const body = req.query;
     function deleteCallback(errorDeleteQuestion, removedQuestion) {
       return errorDeleteQuestion ? res.send(errorDeleteQuestion) : res.json(removedQuestion);
     }
