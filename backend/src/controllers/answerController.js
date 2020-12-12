@@ -12,11 +12,10 @@ function answerController(Answer, Question) {
   }
   function deleteMethod(req, res) {
     const query = req.query._id;
-    const body = req.query;
     function deleteCallback(errorDeleteAnswer, removedAnswer) {
       return errorDeleteAnswer ? res.send(errorDeleteAnswer) : res.json(removedAnswer);
     }
-    Answer.findByIdAndRemove(query, body, deleteCallback);
+    Answer.findByIdAndRemove(query, deleteCallback);
   }
 
   function putMethod({ body }, res) {

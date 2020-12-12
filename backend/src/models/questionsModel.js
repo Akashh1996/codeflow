@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 const questionSchema = new Schema({
   questionTitle: { type: String, required: true },
   questionDescription: { type: String, required: true },
-  code: { type: Object, required: true },
+  code: { type: String, required: true },
   date: { type: Date, default: new Date() },
   owner: { type: Schema.Types.ObjectId, ref: 'users' },
   answers: [{ type: Schema.Types.ObjectId, ref: 'answers' }],
