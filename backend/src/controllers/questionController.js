@@ -20,10 +20,11 @@ function questionController(Question) {
   }
 
   function putMethod({ body }, res) {
-    const query = body._id;
+    const query = body.questionId;
     function putCallback(errorFindQuestion, updatedQuestion) {
       return errorFindQuestion ? res.send(errorFindQuestion) : res.json(updatedQuestion);
     }
+
     Question.findByIdAndUpdate(query, body, putCallback);
   }
 

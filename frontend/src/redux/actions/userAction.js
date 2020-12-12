@@ -124,6 +124,7 @@ import firebase from 'firebase';
 import actionTypes from './actionTypes';
 
 const serverUsersUrl = 'http://localhost:8000/users';
+
 export function addUserSuccess(newUser) {
   return {
     type: actionTypes.ADD_USER,
@@ -137,7 +138,6 @@ export function addUserError(error) {
   };
 }
 export function addUser(userData) {
-  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.post(serverUsersUrl, userData);
@@ -202,9 +202,9 @@ export function signOut() {
   };
 }
 
-export function saveUserFromLocalStorage(user) {
+export function saveUserFromLocalStorage(userLocal) {
   return {
     type: actionTypes.SAVE_USER,
-    user,
+    userLocal,
   };
 }

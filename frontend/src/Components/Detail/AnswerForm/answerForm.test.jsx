@@ -12,15 +12,14 @@ jest.mock('../../../redux/actions/answerAction');
 
 const buildStore = configureStore([thunk]);
 
-describe('Question', () => {
+describe.only('answer from', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
 
   beforeEach(() => {
     const dispatch = jest.fn();
-
-    const initialState = { questionReducer: { tags: [] }, dispatch };
+    const initialState = { questionReducer: { questionDetail: { _id: 'questionId' } }, dispatch };
     const store = buildStore(initialState);
     store.dispatch = jest.fn();
 
@@ -39,6 +38,7 @@ describe('Question', () => {
 
     expect(userAnswer.innerHTML).toBe('Add Your Answer');
   });
+
   test('should call the onChange function', () => {
     const event = {
       target: {
@@ -52,8 +52,10 @@ describe('Question', () => {
       expect(inputs.value).toBe('html');
     });
   });
-  test('should call dispatch on submit', () => {
+
+  test('should call dispatch on submit when input has some value', () => {
     const buttonElement = document.querySelector('.button-submit');
+
     const event = {
       target: {
         value: 'html',
@@ -63,10 +65,30 @@ describe('Question', () => {
 
     inputsElements.forEach((inputs) => {
       fireEvent.change(inputs, event);
+      expect(inputs.value).toBe('html');
     });
 
     fireEvent.click(buttonElement);
 
     expect(postAnswer).toHaveBeenCalled();
+  });
+
+  test('should call dispatch on submit when there is no value', () => {
+    const buttonElement = document.querySelector('.button-submit');
+    const event = {
+      target: {
+        value: '',
+      },
+    };
+    const inputsElements = document.querySelectorAll('.data-test');
+
+    inputsElements.forEach((inputs) => {
+      fireEvent.change(inputs, event);
+      expect(inputs.value).toBe('');
+    });
+
+    fireEvent.click(buttonElement);
+
+    expect(postAnswer).not.toHaveBeenCalled();
   });
 });

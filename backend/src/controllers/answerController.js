@@ -10,12 +10,12 @@ function answerController(Answer, Question) {
         return res.json(answer);
       });
   }
-  function deleteMethod({ body }, res) {
-    const query = body._id;
+  function deleteMethod(req, res) {
+    const query = req.query._id;
     function deleteCallback(errorDeleteAnswer, removedAnswer) {
       return errorDeleteAnswer ? res.send(errorDeleteAnswer) : res.json(removedAnswer);
     }
-    Answer.findByIdAndRemove(query, body, deleteCallback);
+    Answer.findByIdAndRemove(query, deleteCallback);
   }
 
   function putMethod({ body }, res) {

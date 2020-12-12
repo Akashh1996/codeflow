@@ -41,8 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({ dispatch, user }) {
-  console.log(user);
+function Header({ dispatch }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   const classes = useStyles();
@@ -119,7 +118,6 @@ function Header({ dispatch, user }) {
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
     user: state.userReducer.user,
   };

@@ -6,12 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
@@ -19,23 +16,14 @@ import AnswerForm from './AnswerForm/AnswerForm';
 import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(0),
-    padding: theme.spacing(0.5),
-
-  },
-
-}));
-
 function Detail({ dispatch, questionDetail, match }) {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const [id] = useState(match.params.questionId);
-  const classes = useStyles();
   useEffect(() => {
-    if (!questionDetail || id !== questionDetail._id) {
-      dispatch(loadQuestionDetail(id));
-    }
-  }, [questionDetail?.answers.length, id]);
+    dispatch(loadQuestionDetail(id));
+  }, []);
+
   return (
     <>
       {questionDetail && (
@@ -45,12 +33,12 @@ function Detail({ dispatch, questionDetail, match }) {
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
-                    <Avatar alt="Remy Sharp" src={questionDetail.owner.photo} />
+                    <Avatar alt="Remy Sharp" src={questionDetail?.owner?.photo} />
 
                   </div>
                   <div className="content-header__right">
                     <div className="owner-name">
-                      {questionDetail.owner.displayName}
+                      {questionDetail?.owner?.displayName}
                       {' '}
                     </div>
                     <div className="date-query">
@@ -58,18 +46,6 @@ function Detail({ dispatch, questionDetail, match }) {
                       {' '}
                       <span className="date">{questionDetail.date}</span>
                       {' '}
-                    </div>
-                  </div>
-                  <div className="buttons-user-logged">
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <DeleteOutlineOutlinedIcon />
-                      </IconButton>
-                    </div>
-                    <div>
-                      <IconButton aria-label="delete" className={classes.margin}>
-                        <EditOutlinedIcon />
-                      </IconButton>
                     </div>
                   </div>
                 </div>
@@ -85,7 +61,7 @@ function Detail({ dispatch, questionDetail, match }) {
                   <Link to={`/${questionDetail.tag}`} className="tag-detail">{questionDetail.tag}</Link>
                 </div>
                 <div className="code">
-                  {questionDetail.code.code}
+                  {questionDetail.code}
                 </div>
                 <div className="content-footer">
                   <div className="content-footer__left">
@@ -110,9 +86,13 @@ function Detail({ dispatch, questionDetail, match }) {
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <Answer key={Date.now()} />
-      <section className="answer-form">
-        <AnswerForm questionDetail={questionDetail} />
-      </section>
+      {!userLocalStorage?.user ? (
+        <h1>login</h1>
+      ) : (
+        <section className="answer-form">
+          <AnswerForm />
+        </section>
+      )}
     </>
   );
 }
@@ -126,9 +106,7 @@ Detail.propTypes = {
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
-    code: PropTypes.shape({
-      code: PropTypes.string.isRequired,
-    }),
+    code: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   }),
   dispatch: PropTypes.func.isRequired,
@@ -144,9 +122,10 @@ Detail.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
+    user: state.userReducer.user,
+
   };
 }
 

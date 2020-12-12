@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -37,22 +36,6 @@ export function reset() {
     type: actionTypes.RESET,
   };
 }
-
-/* export default function createNewQuestion(questionData, userData) {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.gepostt(endpoint, { body:{
-        question: questionData.question,
-        date: Date.now()
-        user: userData.displayName,
-        userPhoto:
-      } });
-      dispatch(loadQuestionSuccess(data));
-    } catch (error) {
-      dispatch(loadQuestionError(error));
-    }
-  };
-} */
 
 function postQuestionSuccess(newQuestion) {
   return {
@@ -99,6 +82,59 @@ export function loadQuestionDetail(questionId) {
       dispatch(loadQuestionDetailSuccess(data));
     } catch (error) {
       dispatch(loadQuestionDetailError(error));
+    }
+  };
+}
+function deleteQuestionSuccess(deletedQuestion) {
+  return {
+    type: actionTypes.DELETE_QUESTION,
+    deletedQuestion,
+  };
+}
+
+function deleteQuestionError(error) {
+  return {
+    type: actionTypes.DELETE_QUESTION_ERROR,
+    error,
+  };
+}
+
+export function deleteQuestion(questionId) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(endpoint, {
+        params: {
+          _id: questionId,
+        },
+      });
+      dispatch(deleteQuestionSuccess(data));
+    } catch (error) {
+      dispatch(deleteQuestionError(error));
+    }
+  };
+}
+function updateQuestionSuccess(updatedQuestion) {
+  return {
+    type: actionTypes.UPDATE_QUESTION,
+    updatedQuestion,
+  };
+}
+
+function updateQuestionError(error) {
+  return {
+    type: actionTypes.UPDATE_QUESTION_ERROR,
+    error,
+  };
+}
+
+export function updateQuestion(questionToUpdate, id) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`http://localhost:8000/question/${id}`,
+        questionToUpdate);
+      dispatch(updateQuestionSuccess(data));
+    } catch (error) {
+      dispatch(updateQuestionError(error));
     }
   };
 }

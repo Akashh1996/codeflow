@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-debugger */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
@@ -7,7 +5,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import './questionList.css';
 import { connect } from 'react-redux';
@@ -15,7 +14,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { loadQuestion } from '../../../redux/actions/questionAction';
+import { loadQuestion, deleteQuestion } from '../../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -26,18 +25,19 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function QuestionList({
-  dispatch, displayList,
-}) {
+function QuestionList({ dispatch, displayList }) {
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
-    if (tag) {
-      dispatch(loadQuestion(tag));
-    } else {
-      dispatch(loadQuestion());
-    }
-  }, [tag]);
+    dispatch(loadQuestion(tag));
+  }, [tag, displayList?.length]);
+
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
+  function canDelete(userId, ownerId) {
+    const checkOwner = userId === ownerId;
+    return checkOwner;
+  }
 
   return (
     <>
@@ -61,16 +61,23 @@ function QuestionList({
                 </div>
               </div>
               <div className="buttons-user-logged">
-                <div>
-                  <IconButton aria-label="delete" className={classes.margin} onClick={() => console.log(question)}>
-                    <DeleteOutlineOutlinedIcon />
-                  </IconButton>
-                </div>
-                <div>
-                  <IconButton aria-label="delete" className={classes.margin}>
-                    <EditOutlinedIcon />
-                  </IconButton>
-                </div>
+                {
+                  canDelete(userLocalStorage?.user._id, question?.owner?._id) && (
+                    <>
+                      <div>
+                        <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteQuestion(question._id))}>
+                          <DeleteOutlineOutlinedIcon />
+                        </IconButton>
+                      </div>
+                      <div>
+                        <IconButton aria-label="delete" className={classes.margin}>
+                          <Link to={`/add-question/${question._id}`} style={{ color: 'grey' }}><EditOutlinedIcon /></Link>
+                        </IconButton>
+                      </div>
+                    </>
+                  )
+                  }
+
               </div>
             </div>
             <div className="content-question">
@@ -111,15 +118,19 @@ function QuestionList({
 QuestionList.propTypes = {
   dispatch: PropTypes.func.isRequired,
   displayList: PropTypes.arrayOf(PropTypes.object),
+  user: PropTypes.shape({
+    _id: String.isRequired,
+  }),
 };
 QuestionList.defaultProps = {
   displayList: [],
+  user: {},
 };
 
 function mapStateToProps(state) {
   return {
     displayList: state.questionReducer.displayList,
-    user: state.userReducer.myUser,
+    user: state.userReducer.user,
 
   };
 }
