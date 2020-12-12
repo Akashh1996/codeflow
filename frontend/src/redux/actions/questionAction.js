@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -101,7 +100,6 @@ function deleteQuestionError(error) {
 }
 
 export function deleteQuestion(questionId) {
-  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.delete(endpoint, {

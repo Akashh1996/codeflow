@@ -29,17 +29,12 @@ function QuestionList({ dispatch, displayList }) {
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
-    if (tag) {
-      dispatch(loadQuestion(tag));
-    } else {
-      dispatch(loadQuestion());
-    }
+    dispatch(loadQuestion(tag));
   }, [tag, displayList?.length]);
 
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   function canDelete(userId, ownerId) {
-    debugger;
     const checkOwner = userId === ownerId;
     return checkOwner;
   }

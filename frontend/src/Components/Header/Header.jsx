@@ -3,7 +3,7 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut, signInWithGoogle, saveUserFromLocalStorage } from '../../redux/actions/userAction';
+import { signOut, signInWithGoogle } from '../../redux/actions/userAction';
 import './header.css';
 import { reset } from '../../redux/actions/questionAction';
 
@@ -43,10 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Header({ dispatch }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
-
-  useEffect(() => {
-    dispatch(saveUserFromLocalStorage(userLocalStorage?.user));
-  }, []);
 
   const classes = useStyles();
   const [state, setState] = React.useState({

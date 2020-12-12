@@ -17,12 +17,12 @@ import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
 function Detail({ dispatch, questionDetail, match }) {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const [id] = useState(match.params.questionId);
   useEffect(() => {
-    if (!questionDetail || id !== questionDetail._id) {
-      dispatch(loadQuestionDetail(id));
-    }
-  }, [questionDetail?.answers?.length, id]);
+    dispatch(loadQuestionDetail(id));
+  }, []);
 
   return (
     <>
@@ -33,12 +33,12 @@ function Detail({ dispatch, questionDetail, match }) {
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
-                    <Avatar alt="Remy Sharp" src={questionDetail.owner.photo} />
+                    <Avatar alt="Remy Sharp" src={questionDetail?.owner?.photo} />
 
                   </div>
                   <div className="content-header__right">
                     <div className="owner-name">
-                      {questionDetail.owner.displayName}
+                      {questionDetail?.owner?.displayName}
                       {' '}
                     </div>
                     <div className="date-query">
@@ -86,9 +86,13 @@ function Detail({ dispatch, questionDetail, match }) {
       )}
       <div className="answers"><h1 className="answer-title">Answers</h1></div>
       <Answer key={Date.now()} />
-      <section className="answer-form">
-        <AnswerForm />
-      </section>
+      {!userLocalStorage?.user ? (
+        <h1>login</h1>
+      ) : (
+        <section className="answer-form">
+          <AnswerForm />
+        </section>
+      )}
     </>
   );
 }
@@ -102,9 +106,7 @@ Detail.propTypes = {
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     _id: PropTypes.string.isRequired,
-    code: PropTypes.shape({
-      code: PropTypes.string.isRequired,
-    }),
+    code: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   }),
   dispatch: PropTypes.func.isRequired,

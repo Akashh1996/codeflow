@@ -39,12 +39,13 @@ function deleteAnswerSuccess(deletedAnswer) {
 
 function deleteAnswerError(error) {
   return {
-    type: actionTypes.DELETE_QUESTION_ERROR,
+    type: actionTypes.DELETE_ANSWER_ERROR,
     error,
   };
 }
 
 export function deleteAnswer(answerId) {
+  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.delete(endpoint, {
