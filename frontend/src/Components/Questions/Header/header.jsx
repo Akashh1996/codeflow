@@ -5,6 +5,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function Header() {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
+  return (
+    <header>
+      <div className="answer-types">
+        <Link to="/">
+          All Questions
   return (
     <header>
       <div className="answer-types">
@@ -13,7 +20,9 @@ function Header() {
         >
           No Answer
         </Link>
-
+        {!userLocalStorage?.user
+          ? <Link to="/">You need to loge in before</Link>
+          : <Link to="/add-question">Add Question +</Link>}
       </div>
 
       <div className="select-wrapper ">

@@ -3,15 +3,8 @@ import React from 'react';
 import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { reset } from '../../../redux/actions/questionAction';
 
-function Tags({ tags, dispatch }) {
-  /*  const [userPete, setUserPete] = useState(JSON.parse(window.localStorage.getItem('user')));
-
-  useEffect(() => {
-    setUserPete(JSON.parse(window.localStorage.getItem('user')));
-  }, [user]); */
-
+function Tags({ tags }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   return (
@@ -40,11 +33,6 @@ function Tags({ tags, dispatch }) {
           ))}
         </div>
 
-      </aside>
-      <aside>
-        <div className="wrapper-tags">
-          <Link to="/" onClick={() => dispatch(reset())}>All</Link>
-        </div>
       </aside>
 
     </>

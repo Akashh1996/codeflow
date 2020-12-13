@@ -12,6 +12,18 @@ function questionsController(Question) {
         return res.json(questions);
       });
   }
+  function getQuestionsUser(req, res) {
+    const { userId } = req.params;
+    Question.find({ owner: userId })
+      .populate({ path: 'answers', populate: { path: 'user' } })
+      .populate('owner')
+      .exec((errorFindQuestion, questions) => {
+        if (errorFindQuestion) {
+          return res.send(errorFindQuestion);
+        }
+        return res.json(questions);
+      });
+  }
 
   function deleteMethod(req, res) {
     const query = req.query._id;
@@ -38,7 +50,7 @@ function questionsController(Question) {
     Question.create(newQuestion, postCallback);
   }
   return {
-    getMethod, deleteMethod, putMethod, postMethod,
+    getMethod, deleteMethod, putMethod, postMethod, getQuestionsUser,
   };
 }
 

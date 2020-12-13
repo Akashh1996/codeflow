@@ -26,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function QuestionList({ dispatch, displayList }) {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const { tag } = useParams();
   const classes = useStyles();
   useEffect(() => {
     dispatch(loadQuestion(tag));
   }, [tag, displayList?.length]);
-
-  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   function canDelete(userId, ownerId) {
     const checkOwner = userId === ownerId;

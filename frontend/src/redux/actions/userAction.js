@@ -208,3 +208,29 @@ export function saveUserFromLocalStorage(userLocal) {
     userLocal,
   };
 }
+
+function loadUserQuestionSuccess(userQuestion) {
+  return {
+    type: actionTypes.LOAD_USER_QUESTION,
+    userQuestion,
+  };
+}
+function loadUserQuestionError(error) {
+  return {
+    type: actionTypes.LOAD_USER_QUESTION_ERROR,
+    error,
+  };
+}
+
+export function loadUserQuestion(userId) {
+  debugger;
+  return async (dispatch) => {
+    try {
+      debugger;
+      const { data } = await axios.get(`http://localhost:8000/questions/${userId}`);
+      dispatch(loadUserQuestionSuccess(data));
+    } catch (error) {
+      dispatch(loadUserQuestionError(error));
+    }
+  };
+}

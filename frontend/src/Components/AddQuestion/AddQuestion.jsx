@@ -16,10 +16,8 @@ function AddQuestion({ dispatch, history, questionDetail }) {
   const { id } = useParams();
 
   useEffect(() => {
-    if (!questionDetail || id !== questionDetail._id) {
-      dispatch(loadQuestionDetail(id));
-    }
-  }, [questionDetail, id]);
+    dispatch(loadQuestionDetail(id));
+  }, []);
 
   const [questionTitle, setQuestionTitle] = useState('');
   const [questionDescription, setQuestionBody] = useState('');
@@ -37,6 +35,7 @@ function AddQuestion({ dispatch, history, questionDetail }) {
   };
 
   useEffect(() => {
+    debugger;
     if (!_.isEmpty(id) && questionDetail) {
       debugger;
       setQuestionTitle(questionDetail.questionTitle);

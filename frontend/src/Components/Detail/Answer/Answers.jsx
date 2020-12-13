@@ -33,12 +33,11 @@ function Answer({ questionDetail, dispatch }) {
     const checkOwner = userId === ownerId;
     return checkOwner;
   }
+
   return (
     <>
 
-      {questionDetail?.answers?.length === 0
-        && <p>No ans</p>}
-      {questionDetail?.answers?.length && questionDetail.answers.map((answer) => (
+      {questionDetail?.answers?.length > 0 && questionDetail.answers.map((answer) => (
         <section className="answers-detail" key={answer._id}>
           <article className="question-article-detail">
             <div className="question-detail-article__content">

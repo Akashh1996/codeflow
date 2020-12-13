@@ -25,10 +25,10 @@ export default function userReducer(state = {}, action) {
         ...state,
         user: action.newUser,
       };
-    case actionTypes.SAVE_USER:
+    case actionTypes.LOAD_USER_QUESTION:
       return {
         ...state,
-        userLocal: action.userLocal,
+        userQuestion: action.userQuestion,
       };
     default:
       return state;

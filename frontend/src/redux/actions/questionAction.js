@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
@@ -17,6 +18,7 @@ function loadQuestionError(error) {
 }
 
 export function loadQuestion(tag) {
+  debugger;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint, { params: { tag } });
