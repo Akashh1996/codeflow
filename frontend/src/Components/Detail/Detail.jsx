@@ -22,7 +22,7 @@ function Detail({ dispatch, questionDetail, match }) {
   const [id] = useState(match.params.questionId);
   useEffect(() => {
     dispatch(loadQuestionDetail(id));
-  }, [id]);
+  }, [questionDetail?.answers?.length]);
 
   return (
     <>

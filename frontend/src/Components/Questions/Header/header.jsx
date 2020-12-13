@@ -3,19 +3,19 @@ import React from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterByNoAnswer } from '../../../redux/actions/questionAction';
 
-function Header({ dispatch }) {
+function Header() {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   return (
     <header>
       <div className="answer-types">
-        <Link
-          to="/"
-          onClick={() => dispatch(filterByNoAnswer())}
-        >
-          No Answer
+        <Link to="/">
+          All Questions
         </Link>
-
+        {!userLocalStorage?.user
+          ? <Link to="/">You need to loge in before</Link>
+          : <Link to="/add-question">Add Question +</Link>}
       </div>
 
       <div className="select-wrapper ">
