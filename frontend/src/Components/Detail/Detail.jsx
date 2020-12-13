@@ -14,8 +14,6 @@ import '../Questions/QuestionList/questionList.css';
 import './detail.css';
 
 function Detail({ dispatch, questionDetail, match }) {
-  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
-
   const [id] = useState(match.params.questionId);
   useEffect(() => {
     dispatch(loadQuestionDetail(id));
@@ -65,13 +63,9 @@ function Detail({ dispatch, questionDetail, match }) {
           </section>
           <div className="answers"><h1 className="answer-title">Answers</h1></div>
           <Answer key={Date.now()} />
-          {!userLocalStorage?.user ? (
-            <h1>login</h1>
-          ) : (
-            <section className="answer-form">
-              <AnswerForm />
-            </section>
-          )}
+          <section className="answer-form">
+            <AnswerForm />
+          </section>
         </>
       )}
 
@@ -81,15 +75,11 @@ function Detail({ dispatch, questionDetail, match }) {
 
 Detail.propTypes = {
   questionDetail: PropTypes.shape({
-    questionTitle: PropTypes.string.isRequired,
-    questionDescription: PropTypes.string.isRequired,
-    tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    likes: PropTypes.number.isRequired,
-    dislikes: PropTypes.number.isRequired,
-    _id: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    questionTitle: PropTypes.string,
+    tag: PropTypes.string,
+    _id: PropTypes.string,
+    code: PropTypes.string,
+    date: PropTypes.string,
   }),
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.shape({
@@ -100,7 +90,7 @@ Detail.propTypes = {
 };
 
 Detail.defaultProps = {
-  questionDetail: undefined,
+  questionDetail: null,
 };
 
 function mapStateToProps(state) {

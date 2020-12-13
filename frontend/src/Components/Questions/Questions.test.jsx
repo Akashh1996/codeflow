@@ -14,8 +14,8 @@ describe('Question', () => {
     jest.restoreAllMocks();
   });
 
-  test('should render no-answer text', () => {
-    const initialState = { questionReducer: { tags: [] } };
+  test('should render all question text', () => {
+    const initialState = { questionReducer: { tags: [] }, userReducer: { user: null } };
     const store = buildStore(initialState);
     store.dispatch = jest.fn();
 
@@ -28,8 +28,8 @@ describe('Question', () => {
     );
 
     render(<Questions />, { wrapper: Wrapper });
-    const noAnswer = document.querySelector('.no-answer');
+    const allQuestion = document.querySelector('.answer-types');
 
-    expect(noAnswer).toBeInTheDocument();
+    expect(allQuestion).toBeInTheDocument();
   });
 });

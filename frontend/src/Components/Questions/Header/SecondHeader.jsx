@@ -31,7 +31,10 @@ function Header() {
           aria-describedby="alert-dialog-description"
         >
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <DialogContentText
+              id="alert-dialog-description"
+              className="modal-text"
+            >
               You Must LogIn To Add A question
             </DialogContentText>
           </DialogContent>
@@ -51,7 +54,7 @@ function Header() {
           </Link>
           {!userLocalStorage?.user
             ? (
-              <Link to="/" onClick={handleClickOpen}>
+              <Link to="/" onClick={handleClickOpen} className="add-question">
                 Add Question+
               </Link>
             )

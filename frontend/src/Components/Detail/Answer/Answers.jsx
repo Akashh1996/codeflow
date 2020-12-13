@@ -105,13 +105,8 @@ function Answer({ questionDetail, dispatch }) {
 
 Answer.propTypes = {
   questionDetail: PropTypes.shape({
-    questionTitle: PropTypes.string.isRequired,
-    questionDescription: PropTypes.string.isRequired,
-    tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    likes: PropTypes.number.isRequired,
-    dislikes: PropTypes.number.isRequired,
-    _id: PropTypes.string.isRequired,
+    answers: PropTypes.arrayOf(PropTypes.object),
+    _id: PropTypes.string,
     code: PropTypes.shape({
       code: PropTypes.string.isRequired,
     }),

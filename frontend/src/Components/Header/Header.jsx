@@ -51,9 +51,9 @@ function Header({ dispatch }) {
 
             {!userLocalStorage?.user ? (
               <Button
-                type="button"
+                id="button-login"
                 color="inherit"
-                className={classes.signUp}
+                className={classes.signIn}
                 onClick={() => {
                   dispatch(signInWithGoogle());
                 }}
@@ -62,7 +62,7 @@ function Header({ dispatch }) {
               </Button>
             ) : (
               <Button
-                type="button"
+                id="button-logOut"
                 color="inherit"
                 className={classes.signUp}
                 onClick={() => dispatch(signOut())}
