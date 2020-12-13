@@ -5,19 +5,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function Tags({ tags }) {
-  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
-
   return (
-
     <>
-      <aside>
-        <div className="add-question">
-          {!userLocalStorage?.user
-            ? <Link to="/">You need to loge in before</Link>
-            : <Link to="/add-question">Add Question +</Link>}
-        </div>
-
-      </aside>
 
       <aside className="wrapper-tags-fixed">
         <div className="wrapper-tags">

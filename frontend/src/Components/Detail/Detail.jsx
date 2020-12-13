@@ -4,9 +4,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -62,22 +59,6 @@ function Detail({ dispatch, questionDetail, match }) {
                 </div>
                 <div className="code">
                   {questionDetail.code}
-                </div>
-                <div className="content-footer">
-                  <div className="content-footer__left">
-                    <div className="icon-wrapper">
-                      <ThumbUpAltOutlinedIcon />
-                      <span>{questionDetail.likes}</span>
-                    </div>
-                    <div className="icon-wrapper">
-                      <ThumbDownOutlinedIcon />
-                      <span>{questionDetail.dislikes}</span>
-                    </div>
-                    <div className="icon-wrapper">
-                      <QuestionAnswerOutlinedIcon />
-                      <span>{questionDetail.answers?.length}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </article>

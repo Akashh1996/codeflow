@@ -1,32 +1,20 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
-/* eslint-disable react/prop-types */
-
 import React from 'react';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Avatar from '@material-ui/core/Avatar';
+import PropTypes from 'prop-types';
 import { signOut, signInWithGoogle } from '../../redux/actions/userAction';
 import './header.css';
-import { reset } from '../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: theme.spacing(0),
-    padding: theme.spacing(0),
 
-  },
   title: {
     flexGrow: 1,
 
@@ -47,39 +35,18 @@ function Header({ dispatch }) {
   const userId = userLocalStorage?.user?._id;
 
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    left: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   return (
     <div>
       <div className={classes.root}>
         <AppBar position="static" className={classes.AppBar}>
           <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer('left', true)}
-            >
-              <MenuIcon
-                className="menu-button"
-                style={{
-                  width: '45', height: '40px', marginBottom: '6px',
-                }}
+            <Link style={{ marginLeft: '40px' }} to="/" className="logo-home">
+              <img
+                src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png"
+                alt="logo"
+                className="logo"
               />
-            </IconButton>
-            <Link to="/" className="logo-home" onClick={() => dispatch(reset())}>
-              <img src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png" alt="logo" className="logo" />
             </Link>
 
             {!userLocalStorage?.user ? (
@@ -103,22 +70,26 @@ function Header({ dispatch }) {
                 Sign Out
               </Button>
             )}
-            <div><Link to={`user/${userId}`}>{userLocalStorage?.user.displayName}</Link></div>
+            {userLocalStorage?.user
+              && (
+              <div className="image-wrapper" style={{ marginRight: '40px' }}>
+                <Link to={`user/${userId}`}>
+                  <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
+                </Link>
+              </div>
+              )}
+
           </Toolbar>
         </AppBar>
       </div>
-      <SwipeableDrawer
-        anchor="left"
-        open={state.left}
-        onClose={toggleDrawer('left', false)}
-        onOpen={toggleDrawer('left', true)}
-      >
-        <div>akash</div>
-      </SwipeableDrawer>
     </div>
   );
 }
 
+Header.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+
+};
 function mapStateToProps(state) {
   return {
     user: state.userReducer.user,

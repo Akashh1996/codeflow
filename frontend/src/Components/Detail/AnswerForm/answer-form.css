@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 input{
     border: 1px solid #c9cccd;
     padding: 10px;
@@ -49,6 +51,6 @@ label{
     text-align: center;
     background-color: #F5F5F5;
     color: #0077CC;
-    font-family: Roboto;
+    font-family: "Roboto", "sans-serif";
     font-size: 10px;
 }
