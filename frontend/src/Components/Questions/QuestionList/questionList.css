@@ -35,7 +35,7 @@
     background-color: #F5F5F5;
     align-items: center;
     padding: 7px 0;
-    justify-content: space-around;
+    justify-content: flex-start;
     color: grey;
 
 
@@ -44,6 +44,8 @@
 .icon-wrapper{
     display: flex;
     cursor: pointer;
+    margin-left: 10px;
+
 
 }
 .icon-wrapper span{
@@ -71,6 +73,7 @@
 
 
 } 
+
 
 .content-footer__left{
     display: flex;
@@ -138,4 +141,7 @@
 }
 .content-question{
     margin-bottom: 10px;
+}
+.content-question h2{
+    margin-top: 10px;
 }

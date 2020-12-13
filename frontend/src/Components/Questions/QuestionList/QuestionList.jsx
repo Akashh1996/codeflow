@@ -3,8 +3,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
+
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -93,14 +92,6 @@ function QuestionList({ dispatch, displayList }) {
             </div>
             <div className="content-footer">
               <div className="content-footer__left">
-                <div className="icon-wrapper">
-                  <ThumbUpAltOutlinedIcon />
-                  <span>{question.likes}</span>
-                </div>
-                <div className="icon-wrapper">
-                  <ThumbDownOutlinedIcon />
-                  <span>{question.dislikes}</span>
-                </div>
                 <div className="icon-wrapper">
                   <QuestionAnswerOutlinedIcon />
                   <span>{question.answers?.length}</span>
