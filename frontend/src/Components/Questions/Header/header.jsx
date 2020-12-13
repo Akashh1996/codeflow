@@ -3,15 +3,13 @@ import React from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterByNoAnswer } from '../../../redux/actions/questionAction';
 
-function Header({ dispatch }) {
+function Header() {
   return (
     <header>
       <div className="answer-types">
         <Link
           to="/"
-          onClick={() => dispatch(filterByNoAnswer())}
         >
           No Answer
         </Link>

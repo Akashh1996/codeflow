@@ -6,7 +6,8 @@ import React from 'react';
 import { Avatar } from '@material-ui/core';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'; import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
@@ -34,7 +35,10 @@ function Answer({ questionDetail, dispatch }) {
   }
   return (
     <>
-      {questionDetail?.answers?.length > 0 && questionDetail.answers.map((answer) => (
+
+      {questionDetail?.answers?.length === 0
+        && <p>No ans</p>}
+      {questionDetail?.answers?.length && questionDetail.answers.map((answer) => (
         <section className="answers-detail" key={answer._id}>
           <article className="question-article-detail">
             <div className="question-detail-article__content">
@@ -95,8 +99,6 @@ function Answer({ questionDetail, dispatch }) {
           </article>
         </section>
       ))}
-      {questionDetail?.answers.length === 0
-        && <p>No ans</p>}
 
     </>
   );
