@@ -22,7 +22,7 @@ function Detail({ dispatch, questionDetail, match }) {
   const [id] = useState(match.params.questionId);
   useEffect(() => {
     dispatch(loadQuestionDetail(id));
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -82,17 +82,18 @@ function Detail({ dispatch, questionDetail, match }) {
               </div>
             </article>
           </section>
+          <div className="answers"><h1 className="answer-title">Answers</h1></div>
+          <Answer key={Date.now()} />
+          {!userLocalStorage?.user ? (
+            <h1>login</h1>
+          ) : (
+            <section className="answer-form">
+              <AnswerForm />
+            </section>
+          )}
         </>
       )}
-      <div className="answers"><h1 className="answer-title">Answers</h1></div>
-      <Answer key={Date.now()} />
-      {!userLocalStorage?.user ? (
-        <h1>login</h1>
-      ) : (
-        <section className="answer-form">
-          <AnswerForm />
-        </section>
-      )}
+
     </>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Header({ dispatch }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+  const userId = userLocalStorage?.user?._id;
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -101,7 +103,7 @@ function Header({ dispatch }) {
                 Sign Out
               </Button>
             )}
-            <div><h1>{userLocalStorage?.user.displayName}</h1></div>
+            <div><Link to={`user/${userId}`}>{userLocalStorage?.user.displayName}</Link></div>
           </Toolbar>
         </AppBar>
       </div>
