@@ -10,6 +10,10 @@ function questionsRouter(Question) {
     .delete(question.deleteMethod)
     .put(question.putMethod)
     .post(question.postMethod);
+
+  router.route('/:userId')
+    .get(question.getQuestionsUser);
+
   return router;
 }
 
