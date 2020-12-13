@@ -12,6 +12,13 @@ function Header() {
       <div className="answer-types">
         <Link to="/">
           All Questions
+  return (
+    <header>
+      <div className="answer-types">
+        <Link
+          to="/"
+        >
+          No Answer
         </Link>
         {!userLocalStorage?.user
           ? <Link to="/">You need to loge in before</Link>
