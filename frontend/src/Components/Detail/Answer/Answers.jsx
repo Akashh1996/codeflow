@@ -4,9 +4,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Avatar } from '@material-ui/core';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -77,22 +74,6 @@ function Answer({ questionDetail, dispatch }) {
 
               <div className="code">
                 {answer.code}
-              </div>
-              <div className="content-footer">
-                <div className="content-footer__left">
-                  <div className="icon-wrapper">
-                    <ThumbUpAltOutlinedIcon />
-                    <span>{questionDetail.likes}</span>
-                  </div>
-                  <div className="icon-wrapper">
-                    <ThumbDownOutlinedIcon />
-                    <span>{questionDetail.dislikes}</span>
-                  </div>
-                  <div className="icon-wrapper">
-                    <QuestionAnswerOutlinedIcon />
-                    <span>{questionDetail.answers?.length}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </article>

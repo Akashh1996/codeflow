@@ -120,5 +120,64 @@ describe('Actions', () => {
         expect(store.getActions()).toEqual(expectedAction);
       });
     });
+
+    describe(('Update question'), () => {
+      test('should dispatch the correct action with success', async () => {
+        const mockUpdate = { data: 'updatedQuestion' };
+        axios.put = jest.fn().mockResolvedValueOnce(mockUpdate);
+        const updatedQuestion = 'updatedQuestion';
+        const expectedAction = [{
+          type: actionTypes.UPDATE_QUESTION,
+          updatedQuestion,
+        }];
+
+        await store.dispatch(actions.updateQuestion());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+
+      test('should dispatch the correct action with error', async () => {
+        axios.put = jest.fn().mockRejectedValueOnce(mockError);
+        const error = 'error';
+        const expectedAction = [{
+          type: actionTypes.UPDATE_QUESTION_ERROR,
+          error,
+        }];
+
+        await store.dispatch(actions.updateQuestion());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+    });
+
+    describe(('Delete Question'), () => {
+      test('should dispatch the correct action with success', async () => {
+        mockData = { data: 'deletedQuestion' };
+
+        axios.delete = jest.fn().mockResolvedValueOnce(mockData);
+        const deletedQuestion = 'deletedQuestion';
+        const expectedAction = [{
+          type: actionTypes.DELETE_QUESTION,
+          deletedQuestion,
+        }];
+
+        await store.dispatch(actions.deleteQuestion());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+
+      test('should dispatch the correct action with success', async () => {
+        axios.delete = jest.fn().mockRejectedValueOnce(mockError);
+        const error = 'error';
+        const expectedAction = [{
+          type: actionTypes.DELETE_QUESTION_ERROR,
+          error,
+        }];
+
+        await store.dispatch(actions.deleteQuestion());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+    });
   });
 });

@@ -20,6 +20,11 @@ export default function userReducer(state = {}, action) {
         user: null,
         isLogged: false,
       };
+    case actionTypes.ADD_USER:
+      return {
+        ...state,
+        user: action.newUser,
+      };
     case actionTypes.LOAD_USER_QUESTION:
       return {
         ...state,

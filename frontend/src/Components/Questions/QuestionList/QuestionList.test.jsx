@@ -34,7 +34,12 @@ describe('should call loadQuestion if there is no questions', () => {
     wrapper = null;
   });
   test('should render the component ', () => {
-    initialState = { questionReducer: { } };
+    initialState = {
+      questionReducer: { },
+      userReducer: {
+        user: null,
+      },
+    };
     wrapper = wrapperFactory(initialState);
 
     render(<QuestionList match={{ params: null }} />, { wrapper });
@@ -43,7 +48,12 @@ describe('should call loadQuestion if there is no questions', () => {
   });
 
   test('should render the component when there is tag on params ', () => {
-    initialState = { questionReducer: { } };
+    initialState = {
+      questionReducer: { },
+      userReducer: {
+        user: null,
+      },
+    };
     wrapper = wrapperFactory(initialState);
 
     render(<QuestionList match={{ params: 'react' }} />, { wrapper });
@@ -57,6 +67,9 @@ describe('should call loadQuestion if there is no questions', () => {
         displayList: [{
           questionTitle: 'what is react',
         }],
+      },
+      userReducer: {
+        user: null,
       },
     };
     wrapper = wrapperFactory(initialState);

@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Header from './Header';
-import { signInWithGoogle } from '../../redux/actions/userAction';
+import { signInWithGoogle, signOut } from '../../redux/actions/userAction';
 
 jest.mock('../../redux/actions/userAction');
 const buildStore = configureStore([thunk]);
@@ -28,6 +28,7 @@ describe('Header', () => {
       );
     };
   });
+
   afterEach(() => {
     jest.restoreAllMocks();
     wrapper = null;
@@ -54,5 +55,37 @@ describe('Header', () => {
     fireEvent.click(buttonElement);
 
     expect(signInWithGoogle).toHaveBeenCalled();
+  });
+
+  test('should call the dispatch action when user logs out', () => {
+    initialState = {
+      userReducer: { user: null },
+    };
+
+    const userMock = {
+      user: {
+        _id: 'someId',
+      },
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+
+    wrapper = wrapperFactory(initialState);
+
+    render(<Header />, { wrapper });
+
+    const buttonElement = document.querySelector('#button-logOut');
+
+    fireEvent.click(buttonElement);
+
+    expect(signOut).toHaveBeenCalled();
   });
 });

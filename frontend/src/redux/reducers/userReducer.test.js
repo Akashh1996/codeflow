@@ -55,4 +55,13 @@ describe('UserReducer', () => {
     const result = userReducer(initialState, loadUserQuestion);
     expect(result).toEqual({ userQuestion: 'userQuestion' });
   });
+  test('should add the user to state', () => {
+    const addUser = {
+      type: actionTypes.ADD_USER,
+      newUser: 'newUser',
+    };
+
+    const result = userReducer(initialState, addUser);
+    expect(result).toEqual({ user: 'newUser' });
+  });
 });

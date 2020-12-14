@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 10,
   },
   signUp: {
-    marginRight: theme.spacing(4),
+    marginRight: theme.spacing(1),
 
   },
 }));

@@ -45,7 +45,7 @@ function QuestionList({ dispatch, displayList }) {
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
-                <Avatar alt="Remy Sharp" src={question.owner?.photo} />
+                <Link to={`/user/${question?.owner?._id}`}><Avatar alt="Remy Sharp" src={question.owner?.photo} /></Link>
               </div>
               <div className="content-header__right">
                 <div className="owner-name">
@@ -126,6 +126,7 @@ QuestionList.defaultProps = {
 function mapStateToProps(state) {
   return {
     displayList: state.questionReducer.displayList,
+    user: state.userReducer.user,
   };
 }
 

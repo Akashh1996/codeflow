@@ -69,7 +69,6 @@ function Header() {
 
   );
 }
-
 function mapStateToProps(state) {
   return {
     user: state.userReducer.user,
