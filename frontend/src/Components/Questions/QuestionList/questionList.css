@@ -90,6 +90,10 @@
     display: flex;
     align-items: center;
 }
+.content-header__right{
+    justify-content: space-between;
+
+}
 .content-footer__right button{
     background-color: #FFFFFF;
     border: 1px solid grey;

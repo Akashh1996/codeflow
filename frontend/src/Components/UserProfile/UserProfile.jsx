@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { loadUserQuestion } from '../../redux/actions/userAction';
 import '../Questions/QuestionList/questionList.css';
 import '../Detail/detail.css';
+import './user-profile.css';
 
 function UserProfile({ dispatch, userQuestion, match }) {
   const [id] = useState(match.params.userId);
@@ -18,11 +19,19 @@ function UserProfile({ dispatch, userQuestion, match }) {
     dispatch(loadUserQuestion(id));
   }, [id]);
 
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   return (
     <>
-
+      <section className="user-data">
+        <div className=" user-image-wrapper">
+          <img src={userLocalStorage?.user.photo} alt="userImage" className="userImage" />
+        </div>
+        <h2 className="user-name">{userLocalStorage?.user.displayName}</h2>
+        <p>{userLocalStorage?.user.email}</p>
+      </section>
       {userQuestion && userQuestion?.length > 0 && userQuestion?.map((question) => (
-        <section className="question-detail" key={Date.now() * Math.random()}>
+        <section className="question-detail user-question-detail" key={Date.now() * Math.random()}>
           <article className="question-article-detail">
             <div className="question-detail-article__content">
               <div className="content-header">

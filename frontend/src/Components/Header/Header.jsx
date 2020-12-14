@@ -13,6 +13,7 @@ import './header.css';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+
   },
 
   title: {
@@ -23,9 +24,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     color: '#0077CC',
     fontSize: 10,
+    paddingLeft: '40px',
+    paddingRight: '40px',
   },
   signUp: {
     marginRight: theme.spacing(1),
+
+  },
+  header: {
+    justifyContent: 'space-between',
 
   },
 }));
@@ -39,45 +46,52 @@ function Header({ dispatch }) {
   return (
     <div>
       <div className={classes.root}>
-        <AppBar position="static" className={classes.AppBar}>
-          <Toolbar>
-            <Link style={{ marginLeft: '40px' }} to="/" className="logo-home">
-              <img
-                src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png"
-                alt="logo"
-                className="logo"
-              />
-            </Link>
+        <AppBar position="static" className={classes.AppBar} id="header-appbar">
+          <Toolbar className={classes.header}>
+            <div>
+              <Link to="/" className="logo-home">
+                <img
+                  src="https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5f9fe5242167b873b8f1f631/0c1019756f0969e79917b92aeebebab7/Screenshot_(264).png"
+                  alt="logo"
+                  className="logo"
+                />
+              </Link>
+            </div>
 
-            {!userLocalStorage?.user ? (
-              <Button
-                id="button-login"
-                color="inherit"
-                className={classes.signIn}
-                onClick={() => {
-                  dispatch(signInWithGoogle());
-                }}
-              >
-                Sign in
-              </Button>
-            ) : (
-              <Button
-                id="button-logOut"
-                color="inherit"
-                className={classes.signUp}
-                onClick={() => dispatch(signOut())}
-              >
-                Sign Out
-              </Button>
-            )}
-            {userLocalStorage?.user
-              && (
-              <div className="image-wrapper" style={{ marginRight: '40px' }}>
-                <Link to={`user/${userId}`}>
-                  <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
-                </Link>
+            <div>
+              <div style={{ display: 'flex' }}>
+                {!userLocalStorage?.user ? (
+                  <Button
+                    id="button-login"
+                    color="inherit"
+                    className={classes.signIn}
+                    onClick={() => {
+                      dispatch(signInWithGoogle());
+                    }}
+                  >
+                    Sign in
+                  </Button>
+                ) : (
+                  <Button
+                    id="button-logOut"
+                    color="inherit"
+                    className={classes.signUp}
+                    onClick={() => dispatch(signOut())}
+                  >
+                    Sign Out
+                  </Button>
+                )}
+                {userLocalStorage?.user.photo && (
+                <div className="image-wrapper">
+                  <Link to={`user/${userId}`}>
+                    <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
+                  </Link>
+                </div>
+                )}
+
               </div>
-              )}
+
+            </div>
 
           </Toolbar>
         </AppBar>

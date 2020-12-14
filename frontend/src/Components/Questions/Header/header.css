@@ -6,7 +6,7 @@
     box-shadow: 0 1px 2px #c9cccd;
     box-sizing: border-box;
     margin-top: 20px;
-    padding: 20px; 
+    padding: 10px; 
 
 }
 header{
@@ -51,7 +51,8 @@ select{
 }
 
 
-@media only screen and (max-width: 500px) {
+
+@media only screen and (max-width: 600px) {
     .select-wrapper{
         display: block;
     }
@@ -61,4 +62,9 @@ select{
     .content-header__right{
         flex-direction: column;
     }
+    header{
+        padding: 0!important;
+        
+    }
+
   }

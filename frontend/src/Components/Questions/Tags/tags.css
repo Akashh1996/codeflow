@@ -15,7 +15,6 @@ aside{
 .wrapper-tags{
     margin: 20px;
     display: flex;
-    flex-wrap: wrap;
     margin-top: 10px;
     background-color: white;
     justify-content: center;
@@ -53,8 +52,8 @@ aside{
    padding-bottom: 4px;
 
 }
-@media only screen and (max-width: 600px) {
-    aside {
-      display: none;
-    }
+@media only screen and (max-width: 900px) {
+   aside{
+       display: none;
+   }
  }

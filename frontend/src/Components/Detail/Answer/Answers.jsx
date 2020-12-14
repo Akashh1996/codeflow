@@ -26,7 +26,6 @@ function Answer({ questionDetail, dispatch }) {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
 
   function canDelete(userId, ownerId) {
-    debugger;
     const checkOwner = userId === ownerId;
     return checkOwner;
   }
@@ -55,6 +54,7 @@ function Answer({ questionDetail, dispatch }) {
                     {' '}
                   </div>
                 </div>
+
                 <div className="buttons-user-logged">
                   {
                   canDelete(userLocalStorage?.user._id, answer?.user?._id) && (
@@ -70,8 +70,15 @@ function Answer({ questionDetail, dispatch }) {
                   }
 
                 </div>
-              </div>
 
+              </div>
+              <div className="question-description answer-description">
+                <p>
+                  {' '}
+                  {answer.answerDescription}
+                  {' '}
+                </p>
+              </div>
               <div className="code">
                 {answer.code}
               </div>
