@@ -41,11 +41,11 @@ function QuestionList({ dispatch, displayList }) {
   return (
     <>
       {displayList && displayList.length > 0 && displayList.map((question) => (
-        <article className="question-article" key={question._id}>
+        <article className="question-article" key={Date.now() * Math.random()}>
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
-                <Avatar alt="Remy Sharp" src={question.owner?.photo} />
+                <Link to={`/user/${question?.owner?._id}`}><Avatar alt="Remy Sharp" src={question.owner?.photo} /></Link>
               </div>
               <div className="content-header__right">
                 <div className="owner-name">
@@ -64,7 +64,12 @@ function QuestionList({ dispatch, displayList }) {
                   canDelete(userLocalStorage?.user._id, question?.owner?._id) && (
                     <>
                       <div>
-                        <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteQuestion(question._id))}>
+                        <IconButton
+                          aria-label="delete"
+                          className={classes.margin}
+                          id="data-test-delete"
+                          onClick={() => dispatch(deleteQuestion(question._id))}
+                        >
                           <DeleteOutlineOutlinedIcon />
                         </IconButton>
                       </div>
@@ -80,7 +85,7 @@ function QuestionList({ dispatch, displayList }) {
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link to={`/question/${question._id}`}>{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to={`/question/${question._id}`} className="data-test">{question.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
@@ -122,7 +127,6 @@ function mapStateToProps(state) {
   return {
     displayList: state.questionReducer.displayList,
     user: state.userReducer.user,
-
   };
 }
 

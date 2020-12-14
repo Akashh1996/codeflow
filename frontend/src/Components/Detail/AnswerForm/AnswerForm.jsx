@@ -70,6 +70,7 @@ function AddQuestion({ dispatch, questionDetail }) {
 function mapStateToProps(state) {
   return {
     questionDetail: state.questionReducer.questionDetail,
+    user: state.userReducer.user,
 
   };
 }

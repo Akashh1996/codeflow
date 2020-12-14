@@ -19,7 +19,13 @@ describe.only('answer from', () => {
 
   beforeEach(() => {
     const dispatch = jest.fn();
-    const initialState = { questionReducer: { questionDetail: { _id: 'questionId' } }, dispatch };
+    const initialState = {
+      questionReducer: { questionDetail: { _id: 'questionId' } },
+      userReducer: {
+        user: null,
+      },
+      dispatch,
+    };
     const store = buildStore(initialState);
     store.dispatch = jest.fn();
 

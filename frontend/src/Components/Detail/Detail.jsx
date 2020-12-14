@@ -30,7 +30,7 @@ function Detail({ dispatch, questionDetail, match }) {
               <div className="question-detail-article__content">
                 <div className="content-header">
                   <div className="image-wrapper">
-                    <Avatar alt="Remy Sharp" src={questionDetail?.owner?.photo} />
+                    <Link to={`/user/${questionDetail?.owner?._id}`}><Avatar alt="Remy Sharp" src={questionDetail?.owner?.photo} /></Link>
 
                   </div>
                   <div className="content-header__right">
@@ -48,7 +48,7 @@ function Detail({ dispatch, questionDetail, match }) {
                 </div>
                 <div className="content-question-detail">
                   <h2 className="question-title">{questionDetail.questionTitle}</h2>
-                  <div className="question__description">
+                  <div className="question-description">
                     <p>
                       {' '}
                       {questionDetail.questionDescription}
@@ -65,9 +65,7 @@ function Detail({ dispatch, questionDetail, match }) {
           </section>
           <div className="answers"><h1 className="answer-title">Answers</h1></div>
           <Answer key={Date.now()} />
-          {!userLocalStorage?.user ? (
-            <h1>login</h1>
-          ) : (
+          {userLocalStorage?.user && (
             <section className="answer-form">
               <AnswerForm />
             </section>
@@ -81,15 +79,13 @@ function Detail({ dispatch, questionDetail, match }) {
 
 Detail.propTypes = {
   questionDetail: PropTypes.shape({
-    questionTitle: PropTypes.string.isRequired,
-    questionDescription: PropTypes.string.isRequired,
-    tag: PropTypes.string.isRequired,
-    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    likes: PropTypes.number.isRequired,
-    dislikes: PropTypes.number.isRequired,
-    _id: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    questionTitle: PropTypes.string,
+    questionDescription: PropTypes.string,
+    tag: PropTypes.string,
+    answers: PropTypes.arrayOf(PropTypes.object),
+    _id: PropTypes.string,
+    code: PropTypes.string,
+    date: PropTypes.string,
   }),
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.shape({

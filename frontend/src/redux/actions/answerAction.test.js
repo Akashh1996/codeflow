@@ -1,7 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import postAnswer from './answerAction';
+import postAnswer, { deleteAnswer } from './answerAction';
+
 import actionTypes from './actionTypes';
 
 jest.mock('axios');
@@ -38,7 +39,7 @@ describe('Actions', () => {
         expect(store.getActions()).toEqual(expectedAction);
       });
     });
-    describe(('Post Answer'), () => {
+    describe(('Post Answer error'), () => {
       test('should dispatch the correct action with error', async () => {
         axios.post = jest.fn().mockRejectedValueOnce(mockError);
         const error = 'error';
@@ -48,6 +49,40 @@ describe('Actions', () => {
         }];
 
         await store.dispatch(postAnswer());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+    });
+
+    describe(('Delete Answer'), () => {
+      test('should dispatch the correct action with success', async () => {
+        mockData = { data: 'deletedAnswer' };
+
+        axios.delete = jest.fn().mockResolvedValueOnce(mockData);
+        const deletedAnswer = 'deletedAnswer';
+        const expectedAction = [{
+          type: actionTypes.DELETE_ANSWER,
+          deletedAnswer,
+        }];
+
+        await store.dispatch(deleteAnswer());
+
+        expect(store.getActions()).toEqual(expectedAction);
+      });
+    });
+
+    describe(('Delete Answer Error'), () => {
+      test('should dispatch the correct action with success', async () => {
+        mockData = { data: 'deletedAnswer' };
+
+        axios.delete = jest.fn().mockRejectedValueOnce(mockError);
+        const error = 'error';
+        const expectedAction = [{
+          type: actionTypes.DELETE_ANSWER_ERROR,
+          error,
+        }];
+
+        await store.dispatch(deleteAnswer());
 
         expect(store.getActions()).toEqual(expectedAction);
       });

@@ -6,7 +6,7 @@ export default function userReducer(state = {}, action) {
     case actionTypes.AUTH_LOGIN:
       return {
         ...state,
-        fireBaseUser: action.user,
+        user: action.user,
         isLogged: true,
       };
     case actionTypes.AUTH_LOGIN_ERROR:

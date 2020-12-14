@@ -11,12 +11,12 @@
 .code{ 
     margin: 10px 10px 0 0;
     font-family: Consolas, monaco, monospace;
-    font-size: 14px;
-    background-color: #FFF9EF;
-    white-space: pre-line;
+    font-size: 13px;
+    background-color: #F5F5F5;
+    white-space: pre;
     padding: 5px 10px;
     border-left: 4px solid  #0077CC;
-    line-height: 25px;
+    overflow: scroll;
 }
 .question-article-detail{
     width: 100%;
@@ -48,3 +48,17 @@
     width: 15%;
     text-align: center;
   } 
+  .question-description p{
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    color: #707885;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 25px;
+    font-weight: 500;
+} 
+.question-description{
+    margin-bottom: 7px;
+}
+
