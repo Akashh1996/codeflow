@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import PropTypes from 'prop-types';
-import { signOut, signInWithGoogle } from '../../redux/actions/userAction';
+import { signOut, signInWithGoogle, loadUserQuestion } from '../../redux/actions/userAction';
 import './header.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -83,7 +83,7 @@ function Header({ dispatch }) {
                 )}
                 {userLocalStorage?.user.photo && (
                 <div className="image-wrapper">
-                  <Link to={`user/${userId}`}>
+                  <Link to={`/user/${userId}`} onClick={() => { dispatch(loadUserQuestion(userId)); }}>
                     <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
                   </Link>
                 </div>

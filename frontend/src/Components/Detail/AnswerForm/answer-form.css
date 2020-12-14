@@ -23,12 +23,8 @@ label{
     margin-top: 5px;
     background-color: #F5F5F5;
 } 
-.answer-form-section{
-   width: 62.5%;
-   background-color: white;
-   margin: 0px auto 0;
-   box-sizing: border-box;
-}
+
+
 .answer-form{
     padding: 10px;
 

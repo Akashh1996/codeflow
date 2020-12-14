@@ -66,7 +66,7 @@ function Detail({ dispatch, questionDetail, match }) {
           <div className="answers"><h1 className="answer-title">Answers</h1></div>
           <Answer key={Date.now()} />
           {userLocalStorage?.user && (
-            <section className="answer-form">
+            <section>
               <AnswerForm />
             </section>
           )}

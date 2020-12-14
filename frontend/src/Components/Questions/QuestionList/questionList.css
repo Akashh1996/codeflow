@@ -2,25 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .question-article {
     display: flex;
-    padding: 5px;
     margin-top:10px ;
     background-color: white;
     box-shadow: 0 3px 9px #c9cccd;
+    padding: 20px;
+
 
 }
 
 .question-article__content{
-    padding: 5px;
     width: 100%;
 }
 
 .tags{
-    padding: 4px 15px;
+    font-family: "Consolas";
+    padding: 7px;
     box-sizing: border-box;
     width: 100%;
     color: #0077CC;
     box-shadow: 0 0px 3px 1px #0077CC;
-    margin: 5px 0;
   
   } 
 
