@@ -35,7 +35,7 @@
 }
 .answers{
     margin-top: 5px;
-    font-family: "Roboto";
+    font-family: Roboto, sans-serif;
 }
 .answer-title{
     color: #0077CC;
@@ -57,7 +57,7 @@
     overflow: hidden;
     color: #707885;
     font-size: 13px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     line-height: 25px;
     font-weight: 500;
     margin-bottom: 13px;
@@ -86,8 +86,6 @@
     box-shadow: none;
     box-shadow: 0 1px 2px #c9cccd;
     display: flex;
-
-
 }
 
 @media only screen and (max-width: 800px) {

@@ -9,8 +9,7 @@ label{
     display: flex;
     flex-direction: column;
     color: #0077CC;
-    font-family: 'Roboto', sans-serif;
-
+    font-family: Roboto, sans-serif;
 }
 textarea {
     resize: none;

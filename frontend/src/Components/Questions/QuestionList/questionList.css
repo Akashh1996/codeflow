@@ -17,7 +17,7 @@
 }
 
 .tags{
-    font-family: "Roboto";
+    font-family: Roboto, sans-serif;
     padding: 7px;
     box-sizing: border-box;
     width: 100%;
@@ -69,7 +69,7 @@
     text-overflow: ellipsis;
     color: #707885;
     font-size: 13px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     line-height: 30px;
     font-weight: 500;
 
@@ -120,7 +120,7 @@
 }
 .question-title a{
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     color: #0077CC;
     font-weight: 500;
 }
@@ -141,7 +141,7 @@
 .owner-name{
     color: #0077CC;
     font-size: 13px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
 } 
 .question__description{
     margin-bottom: 8px;
