@@ -15,22 +15,17 @@ label{
     margin-top: 10px;
 
 }
- textarea {
-    resize: vertical;
-    height: 200px;
+ .textarea-code {
+    height: 50px;
     outline: none;
     border: 1px solid #c9cccd;
     margin-top: 5px;
     background-color: #F5F5F5;
 } 
-.answer-form-section{
-   width: 62.5%;
-   background-color: white;
-   margin: 0px auto 0;
-   box-sizing: border-box;
-}
+
+
 .answer-form{
-    padding: 10px;
+    padding: 20px;
 
 }
 .button-submit{
@@ -47,10 +42,17 @@ label{
     color: white;
 }
 .add-answer{
-    padding: 20px;
-    text-align: center;
-    background-color: #F5F5F5;
+    padding: 10px 0;
     color: #0077CC;
     font-family: "Roboto", "sans-serif";
-    font-size: 10px;
+    font-size: 0.7em;
+
 }
+.user-answer{
+        color: #0077CC;
+        font-family: 'Castoro', serif;
+}
+.post-answer-description, .form-answer-code{
+    font-size: 13px;
+}
+

@@ -1,22 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .question-detail, .answers{
-    width: 60%;
+    width: 70%;
     margin: 14px auto 0;
     background: white;
-    padding: 10px;
+    padding: 20px;
     box-shadow: none;
     box-shadow: 0 1px 2px #c9cccd;
+
 }
 .code{ 
-    margin: 10px 10px 0 0;
-    font-family: Consolas, monaco, monospace;
+    margin: 18px 10px 0 0;
+    font-family: "Consolas", "monaco", monospace;
     font-size: 13px;
     background-color: #F5F5F5;
     white-space: pre;
     padding: 5px 10px;
     border-left: 4px solid  #0077CC;
     overflow: scroll;
+    max-height: 350px;
 }
 .question-article-detail{
     width: 100%;
@@ -33,10 +35,11 @@
 }
 .answers{
     margin-top: 5px;
+    font-family: "Roboto";
 }
 .answer-title{
     color: #0077CC;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-family: 'Castoro', serif;
 }
 .tag-detail{
@@ -57,8 +60,32 @@
     font-family: 'Roboto', sans-serif;
     line-height: 25px;
     font-weight: 500;
+    margin-bottom: 13px;
 } 
 .question-description{
     margin-bottom: 7px;
 }
-
+.answer-form{
+    width: 70%;
+    margin: 5px auto;
+    background: white;
+}
+.answer-number{
+    display: flex;
+    margin-top: 4px;
+    color: #0077CC;
+    align-items: center;
+    justify-content: center;
+    margin-left: 18px;
+}
+.answers{
+    display: flex;
+}
+@media only screen and (max-width: 800px) {
+    .question-detail, .answers {
+      width: 80%;
+    }
+    .answer-form{
+        width: 80%;
+    }
+  }

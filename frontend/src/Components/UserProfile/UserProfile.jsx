@@ -11,20 +11,50 @@ import PropTypes from 'prop-types';
 import { loadUserQuestion } from '../../redux/actions/userAction';
 import '../Questions/QuestionList/questionList.css';
 import '../Detail/detail.css';
+import './user-profile.css';
 
 function UserProfile({ dispatch, userQuestion, match }) {
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+
   const [id] = useState(match.params.userId);
   useEffect(() => {
     dispatch(loadUserQuestion(id));
   }, [id]);
+  console.log(userLocalStorage);
 
   return (
     <>
 
+      {userQuestion && userQuestion?.length > 0
+        ? (
+          <section className="user-data">
+            <div className=" user-image-wrapper">
+              <img src={userQuestion[0].owner.photo} alt="userImage" className="userImage" />
+            </div>
+            <h2 className="user-name">{userQuestion[0].owner.displayName}</h2>
+            <p className="user-email">{userQuestion[0].owner.email}</p>
+          </section>
+        )
+        : (
+          <>
+            <section className="user-data">
+              <div className=" user-image-wrapper">
+                <img src={userLocalStorage?.user?.photo} alt="userImage" className="userImage" />
+              </div>
+              <h2 className="user-name">{userLocalStorage?.user?.displayName}</h2>
+              <p className="user-email">{userLocalStorage?.user?.email}</p>
+            </section>
+            <div className="no-question-text">
+              <h3>You Havent Posted Any Question Yet</h3>
+              <p>Post Your Question, Ask for help !!</p>
+            </div>
+          </>
+        )}
+
       {userQuestion && userQuestion?.length > 0 && userQuestion?.map((question) => (
-        <section className="question-detail" key={Date.now() * Math.random()}>
+        <section className="question-detail user-question-detail" key={Date.now() * Math.random()}>
           <article className="question-article-detail">
-            <div className="question-detail-article__content">
+            <div className="question-detail-article__content user-question-content">
               <div className="content-header">
                 <div className="image-wrapper">
                   <Avatar alt="Remy Sharp" src={question?.owner?.photo} />
@@ -52,7 +82,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                     {' '}
                   </p>
                 </div>
-                <div className="tag-detail">{question.tag}</div>
+                <div className="tag">{question.tag}</div>
               </div>
               <div className="code">
                 {question.code}
@@ -62,7 +92,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                   ? (
                     <div>
                       {question.answers.map((answer) => (
-                        <section className="answers-detail" key={Date.now() * Math.random()}>
+                        <section className="answers-detail answer-detail-user" key={Date.now() * Math.random()}>
                           <article className="question-article-detail" key={Date.now() * Math.random()}>
                             <div className="question-detail-article__content" key={Date.now() * Math.random()}>
                               <div className="content-header">
@@ -83,6 +113,13 @@ function UserProfile({ dispatch, userQuestion, match }) {
                                   </div>
                                 </div>
                               </div>
+                              <div className="question-description answer-description-users">
+                                <p>
+                                  {' '}
+                                  {answer.answerDescription}
+                                  {' '}
+                                </p>
+                              </div>
 
                               <div className="code" key={Date.now() * Math.random()}>
                                 {answer.code}
@@ -93,7 +130,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                       ))}
                     </div>
                   ) : (
-                    <h1>There are no ans yet</h1>
+                    <h2 className="no-answers-user">There Are No Answers Yet</h2>
                   )}
               </div>
             </div>

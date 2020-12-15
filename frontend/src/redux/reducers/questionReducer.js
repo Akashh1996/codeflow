@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-case-declarations */

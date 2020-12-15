@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
-/* eslint-disable no-underscore-dangle */
+
 import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import { loadQuestionDetail } from '../../redux/actions/questionAction';
 import Answer from './Answer/Answers';
 import AnswerForm from './AnswerForm/AnswerForm';
@@ -63,10 +62,16 @@ function Detail({ dispatch, questionDetail, match }) {
               </div>
             </article>
           </section>
-          <div className="answers"><h1 className="answer-title">Answers</h1></div>
+
+          <div className="answers">
+            <h1 className="answer-title">Answers</h1>
+            <div className="answer-number">
+              <QuestionAnswerOutlinedIcon />
+            </div>
+          </div>
           <Answer key={Date.now()} />
           {userLocalStorage?.user && (
-            <section className="answer-form">
+            <section>
               <AnswerForm />
             </section>
           )}

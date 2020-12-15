@@ -1,17 +1,47 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './header.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+  button: {
+    background: '#0077CC',
+    color: 'White',
+    '&:hover': {
+      backgroundColor: '#2D6FF7',
+      color: '#white',
+    },
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    fontSize: '12px',
+    colorAdjust: 'economy',
+    fontFamily: 'Roboto',
+
+  },
+  modal: {
+    color: '#0077CC',
+    fontFamily: 'Roboto',
+    fontSize: '16px',
+  },
+
+}));
 
 function Header() {
   const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
   const [open, setOpen] = React.useState(false);
+
+  const history = useHistory();
+
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,7 +63,7 @@ function Header() {
           <DialogContent>
             <DialogContentText
               id="alert-dialog-description"
-              className="modal-text"
+              className={classes.modal}
             >
               You Must LogIn To Add A question
             </DialogContentText>
@@ -54,12 +84,24 @@ function Header() {
           </Link>
           {!userLocalStorage?.user
             ? (
-              <Link to="/" onClick={handleClickOpen} className="add-question">
-                Add Question+
-              </Link>
+              <Button
+                to="/"
+                onClick={handleClickOpen}
+                className={classes.button}
+                id="add-question"
+              >
+                Add Question +
+              </Button>
             )
             : (
-              <Link to="/add-question">Add Question +</Link>
+              <Button
+                onClick={() => history.push('/add-question')}
+                className={classes.button}
+                id="add-question"
+              >
+                Add Question +
+
+              </Button>
             )}
 
         </div>

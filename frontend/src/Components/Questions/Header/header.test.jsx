@@ -36,6 +36,31 @@ describe('SecondHeader', () => {
     wrapper = wrapperFactory(initialState);
 
     render(<SecondHeader />, { wrapper });
-    expect(document.querySelector('.add-question').textContent).toBe('Add Question+');
+    expect(document.querySelector('#add-question').textContent).toBe('Add Question+');
+  });
+
+  test('should render the component with text of button when there is user', () => {
+    initialState = { userReducer: { user: null } };
+
+    const userMock = {
+      user: {
+        _id: 'someId',
+      },
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+    wrapper = wrapperFactory(initialState);
+
+    render(<SecondHeader />, { wrapper });
+
+    expect(document.querySelector('.add-question-logged').textContent).toBe('#Add Question +');
   });
 });
