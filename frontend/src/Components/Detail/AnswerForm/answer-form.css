@@ -50,11 +50,15 @@ label{
     font-size: 0.7em;
 
 }
+
 .user-answer{
-        color: #0077CC;
-        font-family: 'Castoro', serif;
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+    color: #0077CC;
+    font-weight: 500;
 }
 .post-answer-description, .form-answer-code{
     font-size: 13px;
+    font-family: Roboto, serif;
 }
 

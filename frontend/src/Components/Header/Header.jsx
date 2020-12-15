@@ -45,6 +45,7 @@ function Header({ dispatch }) {
 
   return (
     <div>
+
       <div className={classes.root}>
         <AppBar position="static" className={classes.AppBar} id="header-appbar">
           <Toolbar className={classes.header}>
@@ -82,15 +83,15 @@ function Header({ dispatch }) {
                   </Button>
                 )}
                 {userLocalStorage?.user.photo && (
-                <div className="image-wrapper">
-                  <Link
-                    to={`/user/${userId}`}
-                    id="user-photo"
-                    onClick={() => { dispatch(loadUserQuestion(userId)); }}
-                  >
-                    <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
-                  </Link>
-                </div>
+                  <div className="image-wrapper">
+                    <Link
+                      to={`/user/${userId}`}
+                      id="user-photo"
+                      onClick={() => { dispatch(loadUserQuestion(userId)); }}
+                    >
+                      <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
+                    </Link>
+                  </div>
                 )}
 
               </div>
@@ -101,6 +102,7 @@ function Header({ dispatch }) {
         </AppBar>
       </div>
     </div>
+
   );
 }
 

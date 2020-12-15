@@ -8,20 +8,23 @@ import './questions.css';
 function Questions() {
   return (
 
-    <main>
-      <div className="main-content">
-        <SecondaryNav />
-        <span className="side-bar-mobile">
-          {' '}
+    <>
+      <div className="banner" />
+      <main>
+        <div className="main-content">
+          <SecondaryNav />
+          <span className="side-bar-mobile">
+            {' '}
+            <SideBarLeft />
+            {' '}
+          </span>
+          <QuestionList />
+        </div>
+        <div className="side-tag">
           <SideBarLeft />
-          {' '}
-        </span>
-        <QuestionList />
-      </div>
-      <div className="side-tag">
-        <SideBarLeft />
-      </div>
-    </main>
+        </div>
+      </main>
+    </>
 
   );
 }
