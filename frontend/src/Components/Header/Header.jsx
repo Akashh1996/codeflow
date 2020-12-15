@@ -83,7 +83,11 @@ function Header({ dispatch }) {
                 )}
                 {userLocalStorage?.user.photo && (
                 <div className="image-wrapper">
-                  <Link to={`/user/${userId}`} onClick={() => { dispatch(loadUserQuestion(userId)); }}>
+                  <Link
+                    to={`/user/${userId}`}
+                    id="user-photo"
+                    onClick={() => { dispatch(loadUserQuestion(userId)); }}
+                  >
                     <Avatar alt="Remy Sharp" src={userLocalStorage?.user.photo} />
                   </Link>
                 </div>

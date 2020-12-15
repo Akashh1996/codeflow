@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Header from './Header';
-import { signInWithGoogle, signOut } from '../../redux/actions/userAction';
+import { signInWithGoogle, signOut, loadUserQuestion } from '../../redux/actions/userAction';
 
 jest.mock('../../redux/actions/userAction');
 const buildStore = configureStore([thunk]);
@@ -87,5 +87,38 @@ describe('Header', () => {
     fireEvent.click(buttonElement);
 
     expect(signOut).toHaveBeenCalled();
+  });
+
+  test('should call the dispatch action when user clicks on avatar', () => {
+    initialState = {
+      userReducer: { user: null },
+    };
+
+    const userMock = {
+      user: {
+        photo: 'photoURL',
+        userId: '_id',
+      },
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+
+    wrapper = wrapperFactory(initialState);
+
+    render(<Header />, { wrapper });
+
+    const buttonElement = document.querySelector('#user-photo');
+
+    fireEvent.click(buttonElement);
+
+    expect(loadUserQuestion).toHaveBeenCalled();
   });
 });

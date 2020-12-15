@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import Answers from './Answers';
-import { deleteAnswer } from '../../../redux/actions/answerAction';
+import * as actions from '../../../redux/actions/answerAction';
 
 const buildStore = configureStore([thunk]);
 
@@ -72,8 +72,6 @@ describe('Answers', () => {
     };
     wrapper = wrapperFactory(initialState);
 
-    render(<Answers />, { wrapper });
-
     const userMock = {
       user: {
         _id: 'id',
@@ -89,11 +87,12 @@ describe('Answers', () => {
     });
 
     JSON.parse = jest.fn().mockReturnValue(userMock);
-
-    const buttonElement = document.querySelector('.delete-botton');
+    actions.deleteAnswer = jest.fn();
+    render(<Answers />, { wrapper });
+    const buttonElement = document.querySelector('#delete-botton');
 
     fireEvent.click(buttonElement);
 
-    expect(deleteAnswer).toHaveBeenCalled();
+    expect(actions.deleteAnswer).toHaveBeenCalled();
   });
 });

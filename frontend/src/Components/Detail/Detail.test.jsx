@@ -41,4 +41,32 @@ describe('Detail', () => {
     render(<Detail match={{ params: { questionId: '12' } }} />, { wrapper });
     expect(document.querySelector('.date').textContent).toBe('10 june 2020');
   });
+
+  test('should render the component answer form', () => {
+    initialState = {
+      questionReducer: { questionDetail: { date: '10 june 2020' } },
+      userReducer: { user: null },
+    };
+
+    const userMock = {
+      user: {
+        displayName: 'akash',
+      },
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+    wrapper = wrapperFactory(initialState);
+
+    render(<Detail match={{ params: { questionId: '12' } }} />, { wrapper });
+
+    expect(document.querySelector('.answer-form-section')).toBeInTheDocument();
+  });
 });

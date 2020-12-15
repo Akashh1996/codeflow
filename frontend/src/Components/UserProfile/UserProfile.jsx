@@ -1,9 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { connect } from 'react-redux';
