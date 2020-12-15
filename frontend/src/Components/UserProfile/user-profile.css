@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 .user-question-detail{
     margin-top: 10px;
@@ -37,7 +36,7 @@
 
 .user-email{
     color: #0077CC;
-    font-family: "emoji";
+    font-family: emoji, sans-serif;
 }
 .no-question-text{
     text-align: center;

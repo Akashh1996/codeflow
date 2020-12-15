@@ -45,7 +45,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
         )}
 
       {userQuestion && userQuestion?.length > 0 && userQuestion?.map((question) => (
-        <section className="question-detail user-question-detail" key={Date.now() * Math.random()}>
+        <section className="question-detail user-question-detail" key={question?._id}>
           <article className="question-article-detail">
             <div className="question-detail-article__content user-question-content">
               <div className="content-header">
@@ -85,9 +85,9 @@ function UserProfile({ dispatch, userQuestion, match }) {
                   ? (
                     <div>
                       {question.answers.map((answer) => (
-                        <section className="answers-detail answer-detail-user" key={Date.now() * Math.random()}>
-                          <article className="question-article-detail" key={Date.now() * Math.random()}>
-                            <div className="question-detail-article__content" key={Date.now() * Math.random()}>
+                        <section className="answers-detail answer-detail-user" key={answer._id}>
+                          <article className="question-article-detail" key={answer._id}>
+                            <div className="question-detail-article__content" key={answer._id}>
                               <div className="content-header">
                                 <div className="image-wrapper">
                                   <Avatar alt="Remy Sharp" src={answer.user.photo} />
@@ -101,7 +101,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                                   <div className="date-query">
                                     Posted At:
                                     {' '}
-                                    <span className="date">hello</span>
+                                    <span className="date">{new Date()}</span>
                                     {' '}
                                   </div>
                                 </div>
@@ -114,7 +114,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                                 </p>
                               </div>
 
-                              <div className="code" key={Date.now() * Math.random()}>
+                              <div className="code" key={answer._id}>
                                 {answer.code}
                               </div>
                             </div>

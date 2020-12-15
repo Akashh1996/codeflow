@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 .question-article {
     display: flex;
@@ -144,14 +143,11 @@
     font-family: Roboto, sans-serif;
 } 
 .question__description{
-    margin-bottom: 8px;
+    margin-bottom: 14px;
 }
 .content-question{
     margin-bottom: 10px;
 }
 .content-question h2{
     margin-top: 10px;
-}
-.question__description{
-    margin-bottom: 14px;
 }

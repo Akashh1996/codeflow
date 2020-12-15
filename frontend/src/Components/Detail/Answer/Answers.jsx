@@ -94,12 +94,11 @@ function Answer({ questionDetail, dispatch }) {
 
 Answer.propTypes = {
   questionDetail: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.object),
-    _id: PropTypes.string,
-    code: PropTypes.shape({
-      code: PropTypes.string.isRequired,
-    }),
-    date: PropTypes.string.isRequired,
+    answers: PropTypes.arrayOf(PropTypes.shape({
+
+    })),
+
+    date: PropTypes.string,
   }),
   dispatch: PropTypes.func.isRequired,
 
