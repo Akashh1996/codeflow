@@ -60,7 +60,12 @@ function Answer({ questionDetail, dispatch }) {
                   canDelete(userLocalStorage?.user._id, answer?.user?._id) && (
                     <>
                       <div>
-                        <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteAnswer(answer._id))}>
+                        <IconButton
+                          aria-label="delete"
+                          className={classes.margin}
+                          id="delete-botton"
+                          onClick={() => dispatch(deleteAnswer(answer._id))}
+                        >
                           <DeleteOutlineOutlinedIcon />
                         </IconButton>
                       </div>

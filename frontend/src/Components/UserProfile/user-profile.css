@@ -57,6 +57,9 @@
     
 
 }
+.tag{
+    width: fit-content;
+}
 @media only screen and (max-width: 800px) {
     .user-data {
       width: 80%;

@@ -20,7 +20,6 @@ function UserProfile({ dispatch, userQuestion, match }) {
   useEffect(() => {
     dispatch(loadUserQuestion(id));
   }, [id]);
-  console.log(userLocalStorage);
 
   return (
     <>
@@ -82,7 +81,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                     {' '}
                   </p>
                 </div>
-                <div className="tag">{question.tag}</div>
+                <div className="tags tag">{question.tag}</div>
               </div>
               <div className="code">
                 {question.code}

@@ -2,14 +2,15 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import SecondHeader from './SecondHeader';
+import { BrowserRouter } from 'react-router-dom';
+import Answers from './Answers';
+import { deleteAnswer } from '../../../redux/actions/answerAction';
 
 const buildStore = configureStore([thunk]);
 
-describe('SecondHeader', () => {
+describe('Answers', () => {
   let initialState;
   let wrapper;
   let wrapperFactory;
@@ -31,36 +32,51 @@ describe('SecondHeader', () => {
     wrapper = null;
   });
 
-  test('should render the component with text of button when there is user', () => {
-    initialState = { userReducer: { user: null } };
-
-    const userMock = {
-      user: null,
+  test('should render the Answer component ', () => {
+    initialState = {
+      questionReducer: {
+        questionDetail: {
+          answers: [{
+            user: {
+              displayName: 'Akash',
+            },
+          }],
+        },
+      },
+      userReducer: {
+        user: null,
+      },
     };
-
-    const localStorage = {
-      getItem: jest.fn().mockReturnValue(userMock),
-    };
-
-    Object.defineProperty(window, 'localStorage', {
-      value: localStorage,
-    });
-
-    JSON.parse = jest.fn().mockReturnValue(userMock);
     wrapper = wrapperFactory(initialState);
 
-    render(<SecondHeader />, { wrapper });
+    render(<Answers />, { wrapper });
 
-    expect(document.querySelector('#add-question').textContent).toBe('Add Question +');
+    expect(document.querySelector('.owner-name').textContent).toBe('Akash ');
   });
 
-  test('should render the component with text of button when there is user', () => {
-    initialState = { userReducer: { user: null } };
-    const mProps = { history: { push: jest.fn() } };
+  test('should call the delete actions ', () => {
+    initialState = {
+      questionReducer: {
+        questionDetail: {
+          answers: [{
+            user: {
+              _id: 'id',
+            },
+          }],
+        },
+
+      },
+      userReducer: {
+        user: null,
+      },
+    };
+    wrapper = wrapperFactory(initialState);
+
+    render(<Answers />, { wrapper });
 
     const userMock = {
       user: {
-        displayName: 'akash',
+        _id: 'id',
       },
     };
 
@@ -73,13 +89,11 @@ describe('SecondHeader', () => {
     });
 
     JSON.parse = jest.fn().mockReturnValue(userMock);
-    wrapper = wrapperFactory(initialState);
 
-    render(<SecondHeader />, { wrapper });
-    const buttonElement = document.querySelector('#add-question');
+    const buttonElement = document.querySelector('.delete-botton');
 
     fireEvent.click(buttonElement);
 
-    expect(mProps.history.push).toBeCalledWith('/add-question');
+    expect(deleteAnswer).toHaveBeenCalled();
   });
 });
