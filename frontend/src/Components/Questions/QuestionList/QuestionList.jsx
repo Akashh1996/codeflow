@@ -41,7 +41,7 @@ function QuestionList({ dispatch, displayList }) {
   return (
     <>
       {displayList && displayList.length > 0 && displayList.map((question) => (
-        <article className="question-article" key={Date.now() * Math.random()}>
+        <article className="question-article" key={question?._id}>
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
