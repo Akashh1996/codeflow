@@ -1,7 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -105,6 +101,7 @@ Answer.propTypes = {
     }),
     date: PropTypes.string.isRequired,
   }),
+  dispatch: PropTypes.func.isRequired,
 
 };
 
