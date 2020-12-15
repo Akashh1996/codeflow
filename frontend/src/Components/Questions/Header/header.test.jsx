@@ -32,10 +32,10 @@ describe('SecondHeader', () => {
   });
 
   test('should render the component with text of button when there is user', () => {
-    initialState = { userReducer: { user: null } };
+    initialState = { userReducer: { user: 'akash' } };
 
     const userMock = {
-      user: null,
+      user: 'akash',
     };
 
     const localStorage = {
@@ -54,8 +54,8 @@ describe('SecondHeader', () => {
     expect(document.querySelector('#add-question').textContent).toBe('Add Question +');
   });
 
-  test('should render the component with text of button when there is user', () => {
-    initialState = { userReducer: { user: null } };
+  test('should send the user to add question page when user is logged in ', () => {
+    initialState = { userReducer: { user: 'akash' } };
     const mProps = { history: { push: jest.fn() } };
 
     const userMock = {
@@ -81,5 +81,62 @@ describe('SecondHeader', () => {
     fireEvent.click(buttonElement);
 
     expect(mProps.history.push).toBeCalledWith('/add-question');
+  });
+
+  test('should Popup the modal if the user is not logged', () => {
+    initialState = { userReducer: { user: null } };
+
+    const userMock = {
+      user: null,
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+    wrapper = wrapperFactory(initialState);
+
+    render(<SecondHeader />, { wrapper });
+    const buttonElement = document.querySelector('#add-question');
+
+    fireEvent.click(buttonElement);
+
+    const alertElement = document.querySelector('#alert');
+    expect(alertElement).toBeDefined();
+  });
+
+  test('should close the popup when user is not logged in ', () => {
+    initialState = { userReducer: { user: null } };
+
+    const userMock = {
+      user: null,
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+    wrapper = wrapperFactory(initialState);
+
+    render(<SecondHeader />, { wrapper });
+    const buttonElement = document.querySelector('#add-question');
+
+    fireEvent.click(buttonElement);
+
+    const buttonCloseElement = document.querySelector('#close-alert');
+
+    fireEvent.click(buttonCloseElement);
+
+    expect(buttonCloseElement).toBeDefined();
   });
 });

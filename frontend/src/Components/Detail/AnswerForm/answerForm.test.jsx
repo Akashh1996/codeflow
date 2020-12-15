@@ -42,7 +42,7 @@ describe.only('answer from', () => {
   test('should render Add your answer text', () => {
     const userAnswer = document.querySelector('.user-answer');
 
-    expect(userAnswer.innerHTML).toBe('Add Your Answer');
+    expect(userAnswer.innerHTML).toBe('Post Your Answer');
   });
 
   test('should call the onChange function', () => {

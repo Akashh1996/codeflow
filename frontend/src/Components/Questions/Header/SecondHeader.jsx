@@ -55,6 +55,7 @@ function Header() {
     <>
       <div>
         <Dialog
+          id="alert"
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
@@ -64,12 +65,18 @@ function Header() {
             <DialogContentText
               id="alert-dialog-description"
               className={classes.modal}
+
             >
               You Must LogIn To Add A question
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary" autoFocus>
+            <Button
+              onClick={handleClose}
+              id="close-alert"
+              color="primary"
+              autoFocus
+            >
               ok
             </Button>
           </DialogActions>

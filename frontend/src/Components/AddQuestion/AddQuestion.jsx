@@ -1,10 +1,5 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
-/* eslint-disable no-alert */
-/* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-debugger */
+/* istanbul ignore file */
+
 import React, { useState, useEffect } from 'react';
 import './add-question.css';
 import { connect } from 'react-redux';
@@ -35,9 +30,7 @@ function AddQuestion({ dispatch, history, questionDetail }) {
   };
 
   useEffect(() => {
-    debugger;
     if (!_.isEmpty(id) && questionDetail) {
-      debugger;
       setQuestionTitle(questionDetail.questionTitle);
       setQuestionBody(questionDetail.questionDescription);
       setQuestionTag(questionDetail.tag);
@@ -111,7 +104,6 @@ function AddQuestion({ dispatch, history, questionDetail }) {
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
     questionDetail: state.questionReducer.questionDetail,
     user: state.userReducer.user,
