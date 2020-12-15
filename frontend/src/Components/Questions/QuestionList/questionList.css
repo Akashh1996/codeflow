@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 .question-article {
     display: flex;
     margin-top:10px ;
@@ -21,7 +23,6 @@
     width: 100%;
     color: #0077CC;
     box-shadow: 0 0px 3px 1px #0077CC;
-    font: larger;
   
   } 
 
@@ -93,6 +94,8 @@
 }
 .content-header__right{
     justify-content: space-between;
+    display: flex;
+    flex: 1;
 
 }
 .content-footer__right button{
@@ -108,10 +111,7 @@
 .buttons-user-logged{
     display: flex;
 }
-.content-header__right{
-    display: flex;
-    flex: 1;
-}
+
 .content-header__right>div {
     margin-left: 15px;
 }
