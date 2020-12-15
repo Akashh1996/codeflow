@@ -10,8 +10,8 @@
 
 }
 .code{ 
-    margin: 10px 10px 0 0;
-    font-family: Consolas, monaco, monospace;
+    margin: 18px 10px 0 0;
+    font-family: "Consolas", "monaco", monospace;
     font-size: 13px;
     background-color: #F5F5F5;
     white-space: pre;
@@ -35,10 +35,11 @@
 }
 .answers{
     margin-top: 5px;
+    font-family: "Roboto";
 }
 .answer-title{
     color: #0077CC;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-family: 'Castoro', serif;
 }
 .tag-detail{
@@ -59,6 +60,7 @@
     font-family: 'Roboto', sans-serif;
     line-height: 25px;
     font-weight: 500;
+    margin-bottom: 13px;
 } 
 .question-description{
     margin-bottom: 7px;
@@ -68,14 +70,22 @@
     margin: 5px auto;
     background: white;
 }
-
+.answer-number{
+    display: flex;
+    margin-top: 4px;
+    color: #0077CC;
+    align-items: center;
+    justify-content: center;
+    margin-left: 18px;
+}
+.answers{
+    display: flex;
+}
 @media only screen and (max-width: 800px) {
     .question-detail, .answers {
       width: 80%;
     }
-  }
-@media only screen and (max-width: 600px) {
-    .question-detail, .answers {
-      width: 90%;
+    .answer-form{
+        width: 80%;
     }
   }

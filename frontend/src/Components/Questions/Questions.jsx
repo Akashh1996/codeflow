@@ -11,6 +11,11 @@ function Questions() {
     <main>
       <div className="main-content">
         <SecondaryNav />
+        <span className="side-bar-mobile">
+          {' '}
+          <SideBarLeft />
+          {' '}
+        </span>
         <QuestionList />
       </div>
       <div className="side-tag">

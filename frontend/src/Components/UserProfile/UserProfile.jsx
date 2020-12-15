@@ -82,7 +82,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                     {' '}
                   </p>
                 </div>
-                <div className="tag-detail">{question.tag}</div>
+                <div className="tag">{question.tag}</div>
               </div>
               <div className="code">
                 {question.code}
@@ -130,7 +130,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                       ))}
                     </div>
                   ) : (
-                    <h1 className="no-answers-user">There Are No Answers Yet</h1>
+                    <h2 className="no-answers-user">There Are No Answers Yet</h2>
                   )}
               </div>
             </div>

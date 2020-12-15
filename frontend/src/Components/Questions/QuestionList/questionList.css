@@ -15,12 +15,13 @@
 }
 
 .tags{
-    font-family: "Consolas";
+    font-family: "Roboto";
     padding: 7px;
     box-sizing: border-box;
     width: 100%;
     color: #0077CC;
     box-shadow: 0 0px 3px 1px #0077CC;
+    font: larger;
   
   } 
 
@@ -114,6 +115,9 @@
 .content-header__right>div {
     margin-left: 15px;
 }
+.question-title{
+    margin: 10px 0;
+}
 .question-title a{
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
@@ -147,4 +151,7 @@
 }
 .content-question h2{
     margin-top: 10px;
+}
+.question__description{
+    margin-bottom: 14px;
 }

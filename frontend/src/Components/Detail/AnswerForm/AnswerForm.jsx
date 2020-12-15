@@ -20,24 +20,30 @@ function AddQuestion({ dispatch, questionDetail }) {
 
       <section className="answer-form-section">
         <form className="answer-form">
-          <div className="add-answer"><h2 className="user-answer">Add Your Answer</h2></div>
-          <label htmlFor="answer-description" className="answer-description">
+          <div className="add-answer"><h2 className="user-answer">Post Your Answer</h2></div>
+          <label htmlFor="answer-description" className="post-answer-description">
             Answer Description
-            <input
+            <textarea
+              style={{ resize: 'vertical', height: '30px' }}
               className="data-test"
               type="text"
               onChange={(event) => setAnswerDescription(event.target.value)}
               value={answerDescription}
+              spellCheck="false"
+
             />
           </label>
-          <label htmlFor="answer-code">
+          <label htmlFor="answer-code" className="form-answer-code">
             Your Code
             <textarea
+              id="textarea-code"
               className="data-test"
               spellCheck="false"
               type="text"
               onChange={(event) => setCode(event.target.value)}
               value={code}
+              style={{ resize: 'vertical' }}
+
             />
           </label>
           <div>
@@ -57,7 +63,7 @@ function AddQuestion({ dispatch, questionDetail }) {
                 setAnswerDescription('');
               }}
             >
-              Submit
+              POST
             </button>
           </div>
         </form>

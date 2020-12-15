@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,300&display=swap');;
 
 aside{
     align-items: center;
@@ -13,51 +13,36 @@ aside{
 }
 
 .wrapper-tags{
-    font-family: "Consolas";
+    font-family: "Roboto";
     display: flex;
-    margin-top: 10px;
     background-color: white;
     justify-content: center;
     font-size: 15px;
     text-align: center;
     padding: 10px;
     flex-wrap: wrap;
-
 }
+
 .wrapper-tags > a{
     margin: 5px 6px;
 }
+
 .wrapper-tags a:hover{
     background-color: #2D6FF7;
     color: white;
+    box-shadow: 0 0px 1px 1px #0077CC;
 }
 
 .second{
     position: sticky;
     top: 0px;
 } 
-.add-question{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0 1px 2px #c9cccd;
-    box-sizing: border-box;
-    margin-top: 20px;
-    padding: 20px;
-}
-.add-question a{
-   color: #0077CC;
-   font-size: 14px;
-   font-family: 'Roboto', sans-serif;
-   padding-bottom: 4px;
 
-}
 .wrapper-tags__title{
     display: block;
-    padding: 25px 20px 25px;
+    padding: 23px 20px 23px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Roboto", "sans-serif";
     color: #0077CC;
 
@@ -65,11 +50,3 @@ aside{
 .wrapper-tags__title i{
     margin-right: 20px;
 }
-@media only screen and (max-width: 933px) {
-   aside{
-       display: none;
-   }
-   .wrapper-tags{
-       display: none;
-   }
- }

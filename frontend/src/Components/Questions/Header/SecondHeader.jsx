@@ -20,9 +20,11 @@ const useStyles = makeStyles(() => ({
     },
     paddingLeft: '20px',
     paddingRight: '20px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
     fontSize: '12px',
     colorAdjust: 'economy',
-    fontFamily: 'Sans-serif',
+    fontFamily: 'Roboto',
 
   },
   modal: {
