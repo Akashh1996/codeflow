@@ -55,7 +55,7 @@ function AddQuestion({ dispatch, history, questionDetail }) {
           Question Description
           <textarea
             spellCheck="false"
-            style={{ resize: 'vertical', height: '30px' }}
+            style={{ resize: 'vertical', height: '50px' }}
             type="text"
             onChange={(event) => setQuestionBody(event.target.value)}
             value={questionDescription}
