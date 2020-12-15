@@ -12,7 +12,7 @@ jest.mock('../../../redux/actions/answerAction');
 
 const buildStore = configureStore([thunk]);
 
-describe.only('answer from', () => {
+describe('answer from', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });

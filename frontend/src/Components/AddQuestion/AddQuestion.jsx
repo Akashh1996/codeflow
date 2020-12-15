@@ -44,6 +44,7 @@ function AddQuestion({ dispatch, history, questionDetail }) {
         <label htmlFor="question-title">
           Question Title
           <input
+            spellCheck="false"
             type="text"
             onChange={(event) => setQuestionTitle(event.target.value)}
             value={questionTitle}
@@ -52,7 +53,9 @@ function AddQuestion({ dispatch, history, questionDetail }) {
         </label>
         <label htmlFor="question-description">
           Question Description
-          <input
+          <textarea
+            spellCheck="false"
+            style={{ resize: 'vertical', height: '30px' }}
             type="text"
             onChange={(event) => setQuestionBody(event.target.value)}
             value={questionDescription}
