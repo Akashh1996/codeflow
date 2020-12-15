@@ -65,16 +65,17 @@
     color: #707885;
     font-size: 13px;
     font-family: Roboto, sans-serif;
-    line-height: 25px;
+    line-height: 30px;
     font-weight: 500;
     margin-bottom: 13px;
+
 } 
 .question-description{
     margin-bottom: 7px;
 }
 .answer-form{
     width: 70%;
-    margin: 5px auto;
+    margin: 10px auto;
     background: white;
 }
 .answer-number{
@@ -84,6 +85,15 @@
     align-items: center;
     justify-content: center;
     margin-left: 18px;
+}
+.question-title{
+    margin: 10px 0;
+}
+.question-title{
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+    color: #0077CC;
+    font-weight: 500;
 }
 
 @media only screen and (max-width: 800px) {

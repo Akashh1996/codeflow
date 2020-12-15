@@ -24,7 +24,7 @@ textarea {
 
 }
 .form-section{
-   margin: 14px auto 0;
+   margin: 14px auto 10px;
    width: 80%;
    background-color: white;
    box-shadow: 0 3px 9px #c9cccd;

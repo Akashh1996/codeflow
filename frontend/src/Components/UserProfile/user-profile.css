@@ -3,6 +3,7 @@
 
 .user-question-detail{
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .user-data, .user-question{
     background-color: white;
@@ -44,6 +45,8 @@
     color: #0077CC;
     font-family: sans-serif;
     line-height: 25px;
+    margin-bottom: 170px;
+
 }
 .answer-detail-user{
     width: 90%;
@@ -61,6 +64,7 @@
 .tag{
     width: fit-content;
 }
+
 @media only screen and (max-width: 800px) {
     .user-data {
       width: 80%;

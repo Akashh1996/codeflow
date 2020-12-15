@@ -101,7 +101,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                                   <div className="date-query">
                                     Posted At:
                                     {' '}
-                                    <span className="date">{new Date()}</span>
+                                    <span className="date">{answer.date}</span>
                                     {' '}
                                   </div>
                                 </div>
