@@ -24,6 +24,7 @@ module.exports = {
     'global-require': 0,
     'eslint linebreak-style': [0, 'error', 'windows'],
     'no-underscore-dangle': 0,
+    'react/prop-types': 0,
 
   },
 };

@@ -1,7 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -60,7 +56,12 @@ function Answer({ questionDetail, dispatch }) {
                   canDelete(userLocalStorage?.user._id, answer?.user?._id) && (
                     <>
                       <div>
-                        <IconButton aria-label="delete" className={classes.margin} onClick={() => dispatch(deleteAnswer(answer._id))}>
+                        <IconButton
+                          aria-label="delete"
+                          className={classes.margin}
+                          id="delete-botton"
+                          onClick={() => dispatch(deleteAnswer(answer._id))}
+                        >
                           <DeleteOutlineOutlinedIcon />
                         </IconButton>
                       </div>
@@ -100,6 +101,7 @@ Answer.propTypes = {
     }),
     date: PropTypes.string.isRequired,
   }),
+  dispatch: PropTypes.func.isRequired,
 
 };
 
