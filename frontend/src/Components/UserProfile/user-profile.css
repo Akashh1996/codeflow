@@ -64,9 +64,22 @@
 .tag{
     width: fit-content;
 }
+.user-questions{
+    background-color: white;
+    font-family: Roboto;
+    padding: 20px;
+    margin: 10px auto;
+    width: 70%;
+    box-shadow: 0 3px 9px #c9cccd;
+    color: #0077CC;
+    text-align: center; 
+}
 
 @media only screen and (max-width: 800px) {
     .user-data {
+      width: 80%;
+    }
+    .user-questions {
       width: 80%;
     }
 

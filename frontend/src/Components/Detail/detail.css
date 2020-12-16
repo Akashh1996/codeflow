@@ -43,6 +43,7 @@
     box-shadow: none;
     box-shadow: 0 3px 9px #c9cccd;
     display: flex;
+    margin-bottom: 10px;
 }
 .answer-title{
     color: #0077CC;
