@@ -1,8 +1,5 @@
-/* istanbul ignore file */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
 /* eslint-disable no-case-declarations */
-/* eslint-disable no-debugger */
+/* eslint-disable max-len */
 import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
