@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* eslint-disable no-case-declarations */
 /* eslint-disable max-len */
 import actionTypes from '../actions/actionTypes';
