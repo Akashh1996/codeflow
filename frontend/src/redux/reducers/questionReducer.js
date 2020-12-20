@@ -44,7 +44,7 @@ export default function questionReducer(state = initialState, action) {
     case actionTypes.POST_QUESTION:
       return {
         ...state,
-        displayList: state.questionList,
+        displayList: [...state.displayList, action.newQuestions],
       };
     case actionTypes.POST_ANSWER:
       return {
