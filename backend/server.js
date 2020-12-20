@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const express = require('express');
 const cors = require('cors');
 const debug = require('debug')('app');
@@ -13,6 +12,7 @@ const questionsRouter = require('./src/routers/questionsRouter')(Question, Answe
 const questionRouter = require('./src/routers/questionRouter')(Question, Answer);
 const answerRouter = require('./src/routers/answerRouter')(Answer, Question);
 const userRouter = require('./src/routers/userRouter')(User);
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
