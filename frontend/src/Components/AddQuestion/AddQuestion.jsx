@@ -78,6 +78,8 @@ function AddQuestion({ dispatch, history, questionDetail }) {
             onChange={(event) => setQuestionTag(event.target.value)}
             value={tag}
             required
+            spellCheck="false"
+
           />
         </label>
         <div>

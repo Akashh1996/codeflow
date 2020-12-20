@@ -5,7 +5,6 @@ import Header from './Components/Header/Header';
 import AddQuestion from './Components/AddQuestion/AddQuestion';
 import Detail from './Components/Detail/Detail';
 import UserProfile from './Components/UserProfile/UserProfile';
-import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           <Route path="/:tag" exact component={Questions} />
           <Route path="/question/:questionId" component={Detail} />
         </Switch>
-        <Footer />
       </BrowserRouter>
     </>
   );

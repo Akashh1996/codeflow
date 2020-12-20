@@ -51,7 +51,7 @@ function AddQuestion({ dispatch, questionDetail }) {
               type="button"
               className="button-submit"
               onClick={() => {
-                if (!!answerDescription && !!code) {
+                if (answerDescription) {
                   dispatch(postAnswer({
                     answerDescription,
                     code,

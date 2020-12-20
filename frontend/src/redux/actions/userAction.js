@@ -3,7 +3,7 @@ import axios from 'axios';
 import firebase from 'firebase';
 import actionTypes from './actionTypes';
 
-const serverUsersUrl = 'http://localhost:8000/users';
+const serverUsersUrl = 'https://code-flow.herokuapp.com/users';
 
 export function addUserSuccess(newUser) {
   return {
@@ -98,7 +98,7 @@ function loadUserQuestionError(error) {
 export function loadUserQuestion(userId) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/questions/${userId}`);
+      const { data } = await axios.get(`https://code-flow.herokuapp.com/${userId}`);
       dispatch(loadUserQuestionSuccess(data));
     } catch (error) {
       dispatch(loadUserQuestionError(error));

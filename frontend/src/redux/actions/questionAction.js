@@ -1,8 +1,7 @@
-/* eslint-disable no-debugger */
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-const endpoint = 'http://localhost:8000/questions';
+const endpoint = 'https://code-flow.herokuapp.com/questions';
 
 function loadQuestionSuccess(questionList) {
   return {
@@ -79,7 +78,7 @@ function loadQuestionDetailError(error) {
 export function loadQuestionDetail(questionId) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/question/${questionId}`);
+      const { data } = await axios.get(`https://code-flow.herokuapp.com/question/${questionId}`);
       dispatch(loadQuestionDetailSuccess(data));
     } catch (error) {
       dispatch(loadQuestionDetailError(error));
@@ -131,7 +130,7 @@ function updateQuestionError(error) {
 export function updateQuestion(questionToUpdate, id) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`http://localhost:8000/question/${id}`,
+      const { data } = await axios.put(`https://code-flow.herokuapp.com/question/${id}`,
         questionToUpdate);
       dispatch(updateQuestionSuccess(data));
     } catch (error) {

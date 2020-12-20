@@ -15,18 +15,40 @@ function UserProfile({ dispatch, userQuestion, match }) {
     dispatch(loadUserQuestion(id));
   }, [id]);
 
+  function checkUser(userId, ownerId) {
+    const checkOwner = userId === ownerId;
+    return checkOwner;
+  }
+
   return (
     <>
 
       {userQuestion && userQuestion?.length > 0
         ? (
-          <section className="user-data">
-            <div className=" user-image-wrapper">
-              <img src={userQuestion[0].owner.photo} alt="userImage" className="userImage" />
-            </div>
-            <h2 className="user-name">{userQuestion[0].owner.displayName}</h2>
-            <p className="user-email">{userQuestion[0].owner.email}</p>
-          </section>
+          <>
+            <section className="user-data">
+              <div className=" user-image-wrapper">
+                <img src={userQuestion[0].owner.photo} alt="userImage" className="userImage" />
+              </div>
+              <h2 className="user-name">{userQuestion[0].owner.displayName}</h2>
+              <p className="user-email">{userQuestion[0].owner.email}</p>
+
+            </section>
+            {checkUser(userLocalStorage?.user?._id, userQuestion[0].owner._id)
+              ? (
+                <div className="user-questions">
+                  {userQuestion[0].owner.displayName.split(/\s(.+)/)[0]}
+                  {' '}
+                  , Here Are Your Questions
+                </div>
+              ) : (
+                <div className="user-questions">
+                  All Questions Posted By
+                  {userQuestion[0].owner.displayName.split(/\s(.+)/)[0]}
+                  {' '}
+                </div>
+              )}
+          </>
         )
         : (
           <>

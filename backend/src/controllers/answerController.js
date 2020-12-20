@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 function answerController(Answer, Question) {
   function getMethod(req, res) {
     const { query } = req;

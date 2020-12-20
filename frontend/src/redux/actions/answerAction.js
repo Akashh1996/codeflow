@@ -2,7 +2,7 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-const endpoint = 'http://localhost:8000/answers';
+const endpoint = 'https://code-flow.herokuapp.com/answers';
 
 function postAnswerSuccess(newAnswer) {
   return {
