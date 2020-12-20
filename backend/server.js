@@ -17,7 +17,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 8000;
-const URLDB = 'mongodb://localhost/codeflowdb';
+const URLDB = 'mongodb+srv://Akash-1996:6yafTYVLR6jESzFA@mern.rgosa.mongodb.net/codeflowdb?retryWrites=true&w=majority';
 
 mongoose.connect(URLDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
