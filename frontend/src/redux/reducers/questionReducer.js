@@ -72,9 +72,7 @@ export default function questionReducer(state = initialState, action) {
     case actionTypes.UPDATE_QUESTION:
       return {
         ...state,
-        questionDetail: {
-          displayList: [...state.questionDetail, action.updatedQuestion],
-        },
+        displayList: [...state.displayList, action.updatedQuestion],
       };
     default:
       return state;
