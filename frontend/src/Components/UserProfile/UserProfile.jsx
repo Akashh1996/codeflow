@@ -112,12 +112,12 @@ function UserProfile({ dispatch, userQuestion, match }) {
                             <div className="question-detail-article__content" key={answer._id}>
                               <div className="content-header">
                                 <div className="image-wrapper">
-                                  <Avatar alt="Remy Sharp" src={answer.user.photo} />
+                                  <Avatar alt="Remy Sharp" src={answer?.user?.photo} />
 
                                 </div>
                                 <div className="content-header__right">
                                   <div className="owner-name">
-                                    {answer.user.displayName}
+                                    {answer?.user?.displayName}
                                     {' '}
                                   </div>
                                   <div className="date-query">
