@@ -2,9 +2,9 @@ function answerController(Answer, Question) {
   function getMethod(req, res) {
     const { query } = req;
     Answer.find(query).populate('user')
-      .exec((errorFindAnswer, answer) => {
-        if (errorFindAnswer) {
-          return res.send(errorFindAnswer);
+      .exec((errorQuestion, answer) => {
+        if (errorQuestion) {
+          return res.send(errorQuestion);
         }
         return res.json(answer);
       });
