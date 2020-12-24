@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import React, { useState, useEffect } from 'react';
 import './add-question.css';
 import { connect } from 'react-redux';

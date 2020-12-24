@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import './header.css';
 import { Link, useHistory } from 'react-router-dom';
