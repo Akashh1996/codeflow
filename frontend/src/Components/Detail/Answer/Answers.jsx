@@ -35,12 +35,12 @@ function Answer({ questionDetail, dispatch }) {
             <div className="question-detail-article__content">
               <div className="content-header">
                 <div className="image-wrapper">
-                  <Avatar alt="Remy Sharp" src={answer.user.photo} />
+                  <Avatar alt="Remy Sharp" src={answer?.user?.photo} />
 
                 </div>
                 <div className="content-header__right">
                   <div className="owner-name">
-                    {answer.user.displayName}
+                    {answer?.user?.displayName}
                     {' '}
                   </div>
                   <div className="date-query">
