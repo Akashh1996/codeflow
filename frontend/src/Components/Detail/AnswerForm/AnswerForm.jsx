@@ -4,7 +4,7 @@ import './answer-form.css';
 import postAnswer from '../../../redux/actions/answerAction';
 
 function AddQuestion({ dispatch, questionDetail }) {
-  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'));
+  const [userLocalStorage] = useState(JSON.parse(window.localStorage.getItem('user')));
 
   const [answerDescription, setAnswerDescription] = useState('');
   const [code, setCode] = useState('');
@@ -69,8 +69,8 @@ function AddQuestion({ dispatch, questionDetail }) {
 
 function mapStateToProps(state) {
   return {
-    questionDetail: state.questionReducer.questionDetail,
     user: state.userReducer.user,
+    questionDetail: state.questionReducer.questionDetail,
   };
 }
 export default connect(mapStateToProps)(AddQuestion);
