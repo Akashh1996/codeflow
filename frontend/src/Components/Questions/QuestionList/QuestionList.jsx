@@ -43,17 +43,17 @@ function QuestionList({ dispatch, displayList }) {
           <div className="question-article__content">
             <div className="content-header">
               <div className="image-wrapper">
-                <Link to={`/user/${question?.owner?._id}`}><Avatar alt="Remy Sharp" src={question.owner?.photo} /></Link>
+                <Link to={`/user/${question?.owner?._id}`}><Avatar alt="Remy Sharp" src={question?.owner?.photo} /></Link>
               </div>
               <div className="content-header__right">
                 <div className="owner-name">
-                  {question.owner?.displayName}
+                  {question?.owner?.displayName}
                   {' '}
                 </div>
                 <div className="date-query">
                   Asked at:
                   {' '}
-                  <span className="date">{question.date}</span>
+                  <span className="date">{question?.date}</span>
                   {' '}
                 </div>
               </div>
@@ -66,14 +66,14 @@ function QuestionList({ dispatch, displayList }) {
                           aria-label="delete"
                           className={classes.margin}
                           id="data-test-delete"
-                          onClick={() => dispatch(deleteQuestion(question._id))}
+                          onClick={() => dispatch(deleteQuestion(question?._id))}
                         >
                           <DeleteOutlineOutlinedIcon />
                         </IconButton>
                       </div>
                       <div>
                         <IconButton aria-label="delete" className={classes.margin}>
-                          <Link to={`/add-question/${question._id}`} style={{ color: 'grey' }}><EditOutlinedIcon /></Link>
+                          <Link to={`/add-question/${question?._id}`} style={{ color: 'grey' }}><EditOutlinedIcon /></Link>
                         </IconButton>
                       </div>
                     </>
@@ -83,21 +83,21 @@ function QuestionList({ dispatch, displayList }) {
               </div>
             </div>
             <div className="content-question">
-              <h2 className="question-title"><Link to={`/question/${question._id}`} className="data-test">{question.questionTitle}</Link></h2>
+              <h2 className="question-title"><Link to={`/question/${question?._id}`} className="data-test">{question?.questionTitle}</Link></h2>
               <div className="question__description">
                 <p>
                   {' '}
-                  {question.questionDescription}
+                  {question?.questionDescription}
                   {' '}
                 </p>
               </div>
-              <Link to={`/${question.tag}`} className="tags">{question.tag}</Link>
+              <Link to={`/${question?.tag}`} className="tags">{question?.tag}</Link>
             </div>
             <div className="content-footer">
               <div className="content-footer__left">
                 <div className="icon-wrapper">
                   <QuestionAnswerOutlinedIcon />
-                  <span>{question.answers?.length}</span>
+                  <span>{question?.answers?.length}</span>
                 </div>
               </div>
             </div>

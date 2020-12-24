@@ -1,6 +1,3 @@
-/* istanbul ignore file */
-/* eslint-disable no-case-declarations */
-/* eslint-disable max-len */
 import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
@@ -10,7 +7,8 @@ export default function questionReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.LOAD_QUESTION:
       newTagsMap = action.questionList.map((question) => question.tag);
-      newTags = newTagsMap.reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
+      newTags = newTagsMap
+        .reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
       return {
         ...state,
         questionList: action.questionList,
@@ -24,7 +22,8 @@ export default function questionReducer(state = initialState, action) {
     case actionTypes.FILTER_BY_NO_ANSWER:
       return {
         ...state,
-        displayList: state.questionList.filter((question) => question.answers.length === 0),
+        displayList: state.questionList
+          .filter((question) => question.answers.length === 0),
       };
     case actionTypes.LOAD_QUESTION_DETAIL:
       return {
@@ -44,7 +43,7 @@ export default function questionReducer(state = initialState, action) {
     case actionTypes.POST_QUESTION:
       return {
         ...state,
-        displayList: state.questionList,
+        displayList: [...state.displayList, action.newQuestions],
       };
     case actionTypes.POST_ANSWER:
       return {
@@ -55,7 +54,8 @@ export default function questionReducer(state = initialState, action) {
         },
       };
     case actionTypes.DELETE_QUESTION:
-      const newQuestions = state.questionList.filter((question) => question._id !== action.deletedQuestion._id);
+      const newQuestions = state.questionList
+        .filter((question) => question._id !== action.deletedQuestion._id);
       return {
         ...state,
         displayList: [...state.displayList, newQuestions],
@@ -66,15 +66,14 @@ export default function questionReducer(state = initialState, action) {
         ...state,
         questionDetail: {
           ...state.questionDetail,
-          answers: [...state.questionDetail.answers.filter((answer) => answer._id !== action.deletedAnswer._id)],
+          answers: [...state.questionDetail.answers
+            .filter((answer) => answer._id !== action.deletedAnswer._id)],
         },
       };
     case actionTypes.UPDATE_QUESTION:
       return {
         ...state,
-        questionDetail: {
-          displayList: [...state.questionDetail, action.updatedQuestion],
-        },
+        displayList: [...state.displayList, action.updatedQuestion],
       };
     default:
       return state;

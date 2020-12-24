@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "set DEBUG=app & nodemon server.js",
-    "test": "jest --collect-coverage --watch--all"
+    "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1"
+
   },
   "keywords": [],
   "author": "",

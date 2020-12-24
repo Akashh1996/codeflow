@@ -1,9 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-alert */
-/* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-debugger */
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import './answer-form.css';
@@ -77,7 +71,6 @@ function mapStateToProps(state) {
   return {
     questionDetail: state.questionReducer.questionDetail,
     user: state.userReducer.user,
-
   };
 }
 export default connect(mapStateToProps)(AddQuestion);

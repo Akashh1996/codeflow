@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
 import QuestionList from './QuestionList/QuestionList';
 import SecondaryNav from './Header/SecondHeader';

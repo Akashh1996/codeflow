@@ -25,6 +25,8 @@ module.exports = {
     'eslint linebreak-style': [0, 'error', 'windows'],
     'no-underscore-dangle': 0,
     'react/prop-types': 0,
+    'no-case-declarations': 0,
+    'prefer-promise-reject-errors': 0,
 
   },
 };

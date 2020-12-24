@@ -98,7 +98,7 @@ function loadUserQuestionError(error) {
 export function loadUserQuestion(userId) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`https://code-flow.herokuapp.com/${userId}`);
+      const { data } = await axios.get(`https://code-flow.herokuapp.com/questions/${userId}`);
       dispatch(loadUserQuestionSuccess(data));
     } catch (error) {
       dispatch(loadUserQuestionError(error));

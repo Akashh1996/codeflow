@@ -34,6 +34,14 @@ function questionsController(Question) {
     Question.findByIdAndRemove(query, body, deleteCallback);
   }
 
+  function postMethod({ body }, res) {
+    const newQuestion = body;
+    function postCallback(errorFindQuestion, createdNewQuestion) {
+      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(createdNewQuestion);
+    }
+    Question.create(newQuestion, postCallback);
+  }
+
   function putMethod({ body }, res) {
     const query = body._id;
     function putCallback(errorFindQuestion, updatedQuestion) {
@@ -42,13 +50,6 @@ function questionsController(Question) {
     Question.findByIdAndUpdate(query, body, putCallback);
   }
 
-  function postMethod({ body }, res) {
-    const newQuestion = body;
-    function postCallback(errorFindQuestion, createdNewQuestion) {
-      return errorFindQuestion ? res.send(errorFindQuestion) : res.json(createdNewQuestion);
-    }
-    Question.create(newQuestion, postCallback);
-  }
   return {
     getMethod, deleteMethod, putMethod, postMethod, getQuestionsUser,
   };
