@@ -25,6 +25,8 @@ A simple forum based app where students can ask questions, answers, modify them 
 ## How it works ? 
  The server side is deployed in heroku and client side in firebase.
  Here is what the app looks like : 
+ 
+ 
  https://codeflow-ce514.web.app/
 
  1. It can be downloaded/cloned and you can start the app locally with - npm start command
