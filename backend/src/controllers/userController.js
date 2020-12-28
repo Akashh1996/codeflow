@@ -8,22 +8,6 @@ function userController(User) {
     User.findOne(query, findCallback);
   }
 
-  function deleteMethod({ body }, res) {
-    const query = body._id;
-    function deleteCallback(errorDeleteUser, removedUser) {
-      return errorDeleteUser ? res.send(errorDeleteUser) : res.json(removedUser);
-    }
-    User.findByIdAndRemove(query, body, deleteCallback);
-  }
-
-  function putMethod({ body }, res) {
-    const query = body._id;
-    function putCallback(errorFindUser, updatedUser) {
-      return errorFindUser ? res.send(errorFindUser) : res.json(updatedUser);
-    }
-    User.findByIdAndUpdate(query, body, putCallback);
-  }
-
   function postMethod({ body }, res) {
     const query = { email: body.email };
     User.findOneAndUpdate(query, body, {
@@ -31,12 +15,12 @@ function userController(User) {
     }, (errorFindUser, userModified) => (
       errorFindUser
         ? res.send(errorFindUser)
-        : res.send(userModified)
+        : res.json(userModified)
     ));
   }
 
   return {
-    getMethod, deleteMethod, putMethod, postMethod,
+    getMethod, postMethod,
   };
 }
 

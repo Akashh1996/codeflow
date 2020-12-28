@@ -8,9 +8,7 @@ function questionRouter(Question) {
   router.route('/:questionId')
     .all(question.allMiddleware)
     .get(question.getMethod)
-    .delete(question.deleteMethod)
-    .put(question.putMethod)
-    .post(question.postMethod);
+    .put(question.putMethod);
   return router;
 }
 
