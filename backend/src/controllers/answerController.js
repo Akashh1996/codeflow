@@ -1,14 +1,4 @@
 function answerController(Answer, Question) {
-  function getMethod(req, res) {
-    const { query } = req;
-    Answer.find(query).populate('user')
-      .exec((errorQuestion, answer) => {
-        if (errorQuestion) {
-          return res.send(errorQuestion);
-        }
-        return res.json(answer);
-      });
-  }
   function deleteMethod(req, res) {
     const query = req.query._id;
     function deleteCallback(errorDeleteAnswer, removedAnswer) {
@@ -16,15 +6,6 @@ function answerController(Answer, Question) {
     }
     Answer.findByIdAndRemove(query, deleteCallback);
   }
-
-  function putMethod({ body }, res) {
-    const query = body._id;
-    function putCallback(errorFindAnswer, updatedAnswer) {
-      return errorFindAnswer ? res.send(errorFindAnswer) : res.json(updatedAnswer);
-    }
-    Answer.findByIdAndUpdate(query, body, putCallback);
-  }
-
   async function postMethod({ body }, res) {
     const { questionId } = body;
 
@@ -51,7 +32,7 @@ function answerController(Answer, Question) {
     }
   }
   return {
-    getMethod, deleteMethod, putMethod, postMethod,
+    deleteMethod, postMethod,
   };
 }
 
