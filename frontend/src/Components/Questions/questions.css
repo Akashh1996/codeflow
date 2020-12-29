@@ -16,7 +16,7 @@ main{
 }
 
 .banner{
-  background-image: url("banner.jpg");
+  background-image: url("https://trello-attachments.s3.amazonaws.com/5f9fe516582bea5ce01d06b2/5fe4df6b695a035437d32f60/bfbc936bf76decce065f9b119c63315e/bannerImage.jpg");
   height: 250px;
   background-position: center; 
   background-repeat: no-repeat; 
