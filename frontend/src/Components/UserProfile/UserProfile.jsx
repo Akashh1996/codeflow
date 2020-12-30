@@ -22,11 +22,10 @@ function UserProfile({ dispatch, userQuestion, match }) {
 
   return (
     <>
-
       {userQuestion && userQuestion?.length > 0
         ? (
           <>
-            <section className="user-data">
+            <section className="user-data" key={Date.now() * Math.random()}>
               <div className=" user-image-wrapper">
                 <img src={userQuestion[0].owner.photo} alt="userImage" className="userImage" />
               </div>
@@ -60,7 +59,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
               <p className="user-email">{userLocalStorage?.user?.email}</p>
             </section>
             <div className="no-question-text">
-              <h3>You Havent Posted Any Question Yet</h3>
+              <h3 className="no-question">You Havent Posted Any Question Yet</h3>
               <p>Post Your Question, Ask for help !!</p>
             </div>
           </>
@@ -107,7 +106,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
                   ? (
                     <div>
                       {question.answers.map((answer) => (
-                        <section className="answers-detail answer-detail-user" key={answer._id}>
+                        <section className="answers-detail answer-detail-user" key={Date.now() * Math.random()}>
                           <article className="question-article-detail" key={answer._id}>
                             <div className="question-detail-article__content" key={answer._id}>
                               <div className="content-header">

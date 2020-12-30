@@ -27,6 +27,5 @@ module.exports = {
     'react/prop-types': 0,
     'no-case-declarations': 0,
     'prefer-promise-reject-errors': 0,
-
   },
 };

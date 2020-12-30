@@ -30,7 +30,7 @@ describe('Detail', () => {
     wrapper = null;
   });
 
-  test('should render the component answer form', () => {
+  test('should render the question title', () => {
     initialState = {
       userReducer: {
         userQuestion: [{
@@ -38,6 +38,7 @@ describe('Detail', () => {
           owner: {
             _id: 'id',
             photo: 'url',
+            displayName: 'akash sapkota',
           },
           answers: [{
             user: {
@@ -74,48 +75,14 @@ describe('Detail', () => {
     expect(document.querySelector('.question-title').textContent).toBe('what is react');
   });
 
-  test('should render the component answer form', () => {
-    initialState = {
-      userReducer: {
-        userQuestion: [],
-      },
-    };
-
-    const userMock = {
-      user: {
-        displayName: 'akash',
-      },
-    };
-
-    const localStorage = {
-      getItem: jest.fn().mockReturnValue(userMock),
-    };
-
-    Object.defineProperty(window, 'localStorage', {
-      value: localStorage,
-    });
-
-    JSON.parse = jest.fn().mockReturnValue(userMock);
-    wrapper = wrapperFactory(initialState);
-
-    render(<UserProfile match={{
-      params: {
-        userId: 'id',
-      },
-    }}
-    />, { wrapper });
-
-    expect(document.querySelector('.user-email').textContent).toBe('akash');
-  });
-
-  test('should render the component answer form', () => {
+  test('should render no answer text', () => {
     initialState = {
       userReducer: {
         userQuestion: [{
-          questionTitle: 'what is react',
           owner: {
-            _id: 'id',
-            photo: 'url',
+            photo: 'photoURL',
+            displayName: 'akash sapkota',
+
           },
           answers: [],
         }],
@@ -143,7 +110,37 @@ describe('Detail', () => {
       },
     }}
     />, { wrapper });
+    expect(document.querySelector('.no-answers-user').textContent).toBe('There Are No Answers Yet');
+  });
 
-    expect(document.querySelector('no-answers-user').textContent).toBe('There Are No Answers Yet');
+  test('should render no question text if no question has been posted by the user text', () => {
+    initialState = {
+      userReducer: {
+        userQuestion: [],
+      },
+    };
+
+    const userMock = {
+      user: 'akash',
+    };
+
+    const localStorage = {
+      getItem: jest.fn().mockReturnValue(userMock),
+    };
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorage,
+    });
+
+    JSON.parse = jest.fn().mockReturnValue(userMock);
+    wrapper = wrapperFactory(initialState);
+
+    render(<UserProfile match={{
+      params: {
+        userId: 'id',
+      },
+    }}
+    />, { wrapper });
+    expect(document.querySelector('.no-question').textContent).toBe('You Havent Posted Any Question Yet');
   });
 });
