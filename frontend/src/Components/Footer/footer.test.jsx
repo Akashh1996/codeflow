@@ -18,11 +18,11 @@ describe('Footer', () => {
     container = null;
   });
 
-  test('should have title', async () => {
+  test('should render about text', async () => {
     await act(async () => {
       render(<BrowserRouter><Footer /></BrowserRouter>, container);
     });
 
-    expect(container.querySelector('#about').textContent).toBe('Tour of heroes');
+    expect(container.querySelector('#about').textContent).toBe('About Us');
   });
 });

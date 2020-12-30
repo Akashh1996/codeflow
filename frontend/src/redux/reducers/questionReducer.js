@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import actionTypes from '../actions/actionTypes';
 
 const initialState = { tags: [] };
