@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import './questionList.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import Loading from '../../Loading/Loading';
 import { loadQuestion, deleteQuestion } from '../../../redux/actions/questionAction';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +41,7 @@ function QuestionList({ dispatch, displayList }) {
 
   return (
     <>
-      {displayList && displayList.length > 0 && displayList.map((question) => (
+      {displayList && displayList.length > 0 ? (displayList.map((question) => (
         <article className="question-article" key={question?._id}>
           <div className="question-article__content">
             <div className="content-header">
@@ -108,7 +107,14 @@ function QuestionList({ dispatch, displayList }) {
           </div>
         </article>
 
-      ))}
+      ))) : (
+        <article className="question-article">
+          <div className="question-article__content loading">
+            <Loading />
+          </div>
+        </article>
+
+      )}
     </>
   );
 }

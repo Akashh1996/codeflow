@@ -75,7 +75,9 @@
     font-weight: 500;
 
 } 
-
+.loading{
+    padding: 20px;
+}
 
 .content-footer__left{
     display: flex;

@@ -2,6 +2,7 @@ import React from 'react';
 import './tags.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Loading from '../../Loading/Loading';
 
 function Tags({ tags }) {
   return (
@@ -11,18 +12,24 @@ function Tags({ tags }) {
         <span>Filters</span>
       </div>
       <hr />
-      <div className="wrapper-tags">
-        {tags.map((tag) => (
-          <Link
-            to={`/${tag}`}
-            className="tags__all"
-            key={tag}
-          >
-            {tag}
+      {tags && tags.length > 0 ? (
+        <div className="wrapper-tags">
+          {tags.map((tag) => (
+            <Link
+              to={`/${tag}`}
+              className="tags__all"
+              key={tag}
+            >
+              {tag}
 
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="wrapper-tags">
+          <Loading />
+        </div>
+      )}
     </aside>
   );
 }
