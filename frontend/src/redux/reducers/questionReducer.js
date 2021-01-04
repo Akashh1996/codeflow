@@ -12,6 +12,7 @@ export default function questionReducer(state = initialState, action) {
         .reduce((acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]), []);
       return {
         ...state,
+        loading: false,
         questionList: action.questionList,
         tags: newTags,
         displayList: action.questionList.reverse(),
