@@ -30,7 +30,7 @@ function Answer({ questionDetail, dispatch }) {
     <>
 
       {questionDetail?.answers?.length > 0 && questionDetail.answers.map((answer) => (
-        <section className="answers-detail" key={answer._id}>
+        <section className="answers-detail" key={answer._id || Math.random() * Date.now()}>
           <article className="question-article-detail">
             <div className="question-detail-article__content">
               <div className="content-header">

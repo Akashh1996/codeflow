@@ -51,7 +51,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
         )
         : (
           <>
-            <section className="user-data">
+            <section className="user-data" key={Math.random() * Date.now()}>
               <div className=" user-image-wrapper">
                 <img src={userLocalStorage?.user?.photo} alt="userImage" className="userImage" />
               </div>
@@ -66,7 +66,7 @@ function UserProfile({ dispatch, userQuestion, match }) {
         )}
 
       {userQuestion && userQuestion?.length > 0 && userQuestion?.map((question) => (
-        <section className="question-detail user-question-detail" key={question?._id}>
+        <section className="question-detail user-question-detail" key={question?._id || Date.now() - 12}>
           <article className="question-article-detail">
             <div className="question-detail-article__content user-question-content">
               <div className="content-header">

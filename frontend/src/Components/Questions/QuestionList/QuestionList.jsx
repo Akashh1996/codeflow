@@ -42,8 +42,8 @@ function QuestionList({ dispatch, displayList }) {
   return (
     <>
       {displayList && displayList.length > 0 ? (displayList.map((question) => (
-        <article className="question-article" key={question?._id}>
-          <div className="question-article__content">
+        <article className="question-article" key={question?._id || Math.random() * Date.now()}>
+          <div className="question-article__content" key={question?._id}>
             <div className="content-header">
               <div className="image-wrapper">
                 <Link to={`/user/${question?.owner?._id}`}><Avatar alt="Remy Sharp" src={question?.owner?.photo} /></Link>
@@ -108,8 +108,8 @@ function QuestionList({ dispatch, displayList }) {
         </article>
 
       ))) : (
-        <article className="question-article">
-          <div className="question-article__content loading">
+        <article className="question-article" key={Math.random() * Date.now()}>
+          <div className="question-article__content loading" key={Math.random() * Date.now()}>
             <Loading />
           </div>
         </article>
