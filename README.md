@@ -1,5 +1,5 @@
 # CodeFlow
-A React App developed by Akash Sapkota during the final project of Skylab Coders Academy in 2.5 weeks.
+A React App that I build as a final project in Skylab Coders academy.
  
 ## OverView
 CodeFlow is an app that aims to facilate the students of Skylab Coders Academy to share their code. 
@@ -25,7 +25,6 @@ A simple forum based app where students can ask questions, answers, modify them 
 ## How it works ? 
  The server side is deployed in heroku and client side in firebase.
  Here is what the app looks like : 
- 
  
  https://codeflow-ce514.web.app/
 
