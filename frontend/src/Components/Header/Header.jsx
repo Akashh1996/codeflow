@@ -110,9 +110,9 @@ Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
 
 };
-function mapStateToProps(state) {
+function mapStateToProps({ userReducer }) {
   return {
-    user: state.userReducer.user,
+    user: userReducer.user,
   };
 }
 export default connect(mapStateToProps)(Header);

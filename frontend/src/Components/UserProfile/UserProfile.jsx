@@ -165,10 +165,10 @@ UserProfile.defaultProps = {
   userQuestion: [],
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ userReducer }) {
   return {
-    userQuestion: state.userReducer.userQuestion,
-    user: state.userReducer.user,
+    userQuestion: userReducer.userQuestion,
+    user: userReducer.user,
 
   };
 }

@@ -107,10 +107,10 @@ function AddQuestion({ dispatch, history, questionDetail }) {
   );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ questionReducer, userReducer }) {
   return {
-    questionDetail: state.questionReducer.questionDetail,
-    user: state.userReducer.user,
+    questionDetail: questionReducer.questionDetail,
+    user: userReducer.user,
   };
 }
 export default connect(mapStateToProps)(AddQuestion);

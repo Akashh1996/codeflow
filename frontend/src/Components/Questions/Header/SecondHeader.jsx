@@ -117,9 +117,9 @@ function Header() {
 
   );
 }
-function mapStateToProps(state) {
+function mapStateToProps({ userReducer }) {
   return {
-    user: state.userReducer.user,
+    user: userReducer.user,
 
   };
 }

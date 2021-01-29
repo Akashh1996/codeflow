@@ -10,11 +10,12 @@ import { loadQuestion, deleteQuestion } from '../../../redux/actions/questionAct
 jest.mock('../../../redux/actions/questionAction');
 
 const buildStore = configureStore([thunk]);
-
-describe('should call loadQuestion if there is no questions', () => {
+global.scroll = jest.fn();
+describe.only('should call loadQuestion if there is no questions', () => {
   let initialState;
   let wrapper;
   let wrapperFactory;
+
   beforeEach(() => {
     wrapperFactory = (wrapperInitialState) => {
       const store = buildStore(wrapperInitialState);

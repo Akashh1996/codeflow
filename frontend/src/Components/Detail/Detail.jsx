@@ -102,10 +102,10 @@ Detail.defaultProps = {
   questionDetail: undefined,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ questionReducer, userReducer }) {
   return {
-    questionDetail: state.questionReducer.questionDetail,
-    user: state.userReducer.user,
+    questionDetail: questionReducer.questionDetail,
+    user: userReducer.user,
 
   };
 }
