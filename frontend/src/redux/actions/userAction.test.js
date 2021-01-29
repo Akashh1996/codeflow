@@ -21,18 +21,18 @@ describe('Actions', () => {
       mockError = 'error';
       jest.spyOn(firebase, 'auth').mockImplementation(() => ({
         signInWithPopup: jest.fn().mockImplementation(() => Promise.resolve({
-          result: {
-            additionalUserInfo: {
-              profile: {
-                name: 'akash',
-                photo: 'photoUrl',
-                email: 'email',
-              },
+          user: {
+            displayName: { additionalUserInfo: { profile: { name: 'a' } } },
+            photo: { additionalUserInfo: { profile: { photoURL: 'c' } } },
+            email: { additionalUserInfo: { profile: { email: 'd' } } },
+          },
+          additionalUserInfo: {
+            profile: {
+              name: '1', photo: '3', email: '4',
             },
           },
         })),
       }));
-
       firebase.auth.GoogleAuthProvider = jest
         .fn()
         .mockReturnValue({ addScope: jest.fn() });
@@ -102,10 +102,12 @@ describe('Actions', () => {
 
     describe('Auth sigin', () => {
       test('should dispatch the correct action', async () => {
+        axios.post = jest.fn().mockResolvedValueOnce();
+
         const user = {
-          name: 'akash',
-          photo: 'photoUrl',
-          email: 'email',
+          displayName: { additionalUserInfo: { profile: { name: 'a' } } },
+          photo: { additionalUserInfo: { profile: { photoURL: 'c' } } },
+          email: { additionalUserInfo: { profile: { email: 'd' } } },
         };
         const expectedActions = [
           { type: actionTypes.AUTH_LOGIN, user },
