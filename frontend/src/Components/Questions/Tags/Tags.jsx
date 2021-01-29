@@ -34,9 +34,9 @@ function Tags({ tags }) {
   );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ questionReducer }) {
   return {
-    tags: state.questionReducer.tags,
+    tags: questionReducer.tags,
   };
 }
 

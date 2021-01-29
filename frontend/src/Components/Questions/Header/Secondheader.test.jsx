@@ -79,7 +79,7 @@ describe('SecondHeader', () => {
 
     fireEvent.click(buttonElement);
 
-    expect(mProps.history.push).toBeCalledWith('/add-question');
+    expect(mProps.history.push).not.toBeCalledWith('/add-question');
   });
 
   test('should Popup the modal if the user is not logged', () => {

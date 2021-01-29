@@ -30,9 +30,7 @@ function QuestionList({ dispatch, displayList }) {
     dispatch(loadQuestion(tag));
   }, [tag, displayList?.length]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  window.scroll(0, 0);
 
   function canDelete(userId, ownerId) {
     const checkOwner = userId === ownerId;
@@ -131,10 +129,10 @@ QuestionList.defaultProps = {
   user: {},
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ questionReducer, userReducer }) {
   return {
-    displayList: state.questionReducer.displayList,
-    user: state.userReducer.user,
+    displayList: questionReducer.displayList,
+    user: userReducer.user,
   };
 }
 

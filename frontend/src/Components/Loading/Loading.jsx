@@ -30,9 +30,11 @@ export default function LinearDeterminate() {
 
   return (
     <div className={classes.root}>
-      <h2 style={{
-        textAlign: 'center', color: '#0077CC', marginBottom: '10px', fontFamily: 'castoro',
-      }}
+      <h2
+        style={{
+          textAlign: 'center', color: '#0077CC', marginBottom: '10px', fontFamily: 'castoro',
+        }}
+        id="loading"
       >
         Loading...
       </h2>

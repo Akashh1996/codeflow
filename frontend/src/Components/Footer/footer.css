@@ -4,10 +4,9 @@ footer{
     justify-content: space-between;   
     box-shadow: 0 3px 9px #c9cccd;
     font-family: Roboto, sans-serif;
-    background-color: white;
     padding: 0 70px;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 70;
     font-size: 13px;
  
 }
