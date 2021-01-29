@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { shallow } from 'enzyme';
 import Loading from './Loading';
 
 describe('Loading', () => {
